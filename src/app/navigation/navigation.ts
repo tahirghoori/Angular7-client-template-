@@ -8,18 +8,114 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
-                id       : 'sample',
-                title    : 'Sample',
-                translate: 'NAV.SAMPLE.TITLE',
+                id       : 'dashboard',
+                title    : 'Dashboard',
+                translate: 'NAV.DASHBOARD.TITLE',
                 type     : 'item',
-                icon     : 'email',
-                url      : '/sample',
-                badge    : {
-                    title    : '25',
-                    translate: 'NAV.SAMPLE.BADGE',
-                    bg       : '#F44336',
-                    fg       : '#FFFFFF'
-                }
+                icon     : 'dashboard',
+                url      : '/dashboard'               
+            },
+            {
+                'id'       : 'project',
+                'title'    : 'Project',
+                'translate': 'NAV.PROJECT.TITLE',
+                'type'     : 'collapsable',
+                'icon'     : 'border_all',
+                'children' : [
+                    {
+                        'id'   : 'skills',
+                        'title': 'Skills',
+                        'translate': 'NAV.SKILLS.TITLE',
+                        'type' : 'item',
+                        'url'  : '/skills'
+                    },
+                    {
+                        'id'   : 'client',
+                        'title': 'Client',
+                        'translate': 'NAV.CLIENT.TITLE',
+                        'type' : 'item',
+                        'url'  : '/client'
+                    },
+                    {
+                        'id'   : 'create_project',
+                        'title': 'Create Project',
+                        'translate': 'NAV.CREATE_PROJECT.TITLE',
+                        'type' : 'item',
+                        'url'  : '/create_project'
+                    },
+                    {
+                        'id'   : 'project_list',
+                        'title': 'Project List',
+                        'translate': 'NAV.PROJECT_LIST.TITLE',
+                        'type' : 'item',
+                        'url'  : '/project_list'
+                    }
+
+                ]
+            },
+            {
+                'id'       : 'resorces',
+                'title'    : 'Resources',
+                'translate': 'NAV.RESOURCES.TITLE',
+                'type'     : 'collapsable',
+                'icon'     : 'border_all',
+                'children' : [
+                    {
+                        'id'   : 'department',
+                        'title': 'Department',
+                        'translate': 'NAV.DEPARTMENT.TITLE',
+                        'type' : 'item',
+                        'url'  : '/department'
+                    },
+                    {
+                        'id'   : 'create_resource',
+                        'title': 'Create Resource',
+                        'translate': 'NAV.CREATE_RESOURCE.TITLE',
+                        'type' : 'item',
+                        'url'  : '/create_resource'
+                    },
+                    {
+                        'id'   : 'resource_list',
+                        'title': 'Resource List',
+                        'translate': 'NAV.RESOURCE_LIST.TITLE',
+                        'type' : 'item',
+                        'url'  : '/resource_list'
+                    }
+
+                ]
+            },
+            {
+                'id'       : 'operating',
+                'title'    : 'Expense',
+                'translate': 'NAV.OPERATING.TITLE',
+                'type'     : 'collapsable',
+                'icon'     : 'border_all',
+                'children' : [
+                    {
+                        'id'   : 'operating_cost',
+                        'title': 'Operating Cost',
+                        'translate': 'NAV.OPERATING_COST.TITLE',
+                        'type' : 'item',
+                        'url'  : '/operating_cost'
+                    },
+                    {
+                        'id'   : 'fringe_benefits',
+                        'title': 'Fringe Benefits',
+                        'translate': 'NAV.FRINGE_BENEFITS.TITLE',
+                        'type' : 'item',
+                        'url'  : '/fringe_benefits'
+                    }
+                   
+
+                ]
+            },
+            {
+                'id'   : 'reports',
+                'title': 'Reports',
+                'translate': 'NAV.REPORTS.TITLE',
+                'type' : 'item',
+                'icon' : 'assessment',
+                'url'  : '/report'
             }
         ]
     }

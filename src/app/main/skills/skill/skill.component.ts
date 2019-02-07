@@ -1,0 +1,151 @@
+import { Component, OnInit } from '@angular/core';
+import { Skill } from '../skill.model';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
+import { SkillService } from '../skill.service';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+import { startWith, map, takeUntil } from 'rxjs/operators';
+import { FuseUtils } from '@fuse/utils';
+import { fuseAnimations } from '@fuse/animations';
+
+@Component({
+  selector: 'app-skill',
+  templateUrl: './skill.component.html',
+  styleUrls: ['./skill.component.scss'],
+  animations: fuseAnimations
+})
+export class SkillComponent implements OnInit {
+  skill: Skill;
+  pageType: string;
+  skillForm: FormGroup;
+  
+  // myControl = new FormControl();
+  package_id: string;
+
+  // Private
+  private _unsubscribeAll: Subject<any>;
+
+  
+  /**
+   * Constructor
+   *
+   * @param {SkillService} _skillService
+   * @param {FormBuilder} _formBuilder
+   * @param {MatSnackBar} _matSnackBar,
+   *
+   */
+  constructor(
+    private _skillService: SkillService,
+    private _formBuilder: FormBuilder,
+    private _matSnackBar: MatSnackBar,
+    private _router: Router
+  ) {
+    // Set the default
+    this.skill = new Skill();
+    // Set the private defaults
+    this._unsubscribeAll = new Subject();
+
+  }
+  // -----------------------------------------------------------------------------------------------------
+  // @ Lifecycle hooks
+  // -----------------------------------------------------------------------------------------------------
+  /**
+   * On init
+   */
+  ngOnInit(): void {
+
+    // Subscribe to update product on changes
+    this._skillService.onSkillChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(skill => {
+
+        if (skill) {
+          this.skill = new Skill(skill);
+          this.pageType = 'edit';
+        }
+        else {
+          this.pageType = 'new';
+          this.skill = new Skill();
+        }
+        this.skillForm = this.createSkillForm();
+
+
+      });
+  }
+  /**
+   * On destroy
+   */
+  ngOnDestroy(): void {
+    // Unsubscribe from all subscriptions
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
+  }
+
+
+
+  // -----------------------------------------------------------------------------------------------------
+  // @ Public methods
+  // -----------------------------------------------------------------------------------------------------
+  /**
+   * Create skill form
+   *
+   * @returns {FormGroup}
+   */
+  createSkillForm(): FormGroup {
+    
+      return this._formBuilder.group({
+        id: [this.skill.id],
+        skillName: [this.skill.skillName],
+        handle: [this.skill.handle]
+      });
+   
+  }
+
+  /**
+   * Save skill
+   */
+  saveSkill(): void {
+    const data = this.skillForm.getRawValue();
+    data.handle = FuseUtils.handleize(data.skillCompanyName);
+
+    this._skillService.saveSkill(data)
+      .then(() => {
+
+        // Trigger the subscription with new data
+        this._skillService.onSkillChanged.next(data);
+
+        // Show the success message
+        this._matSnackBar.open('Record saved', 'OK', {
+          verticalPosition: 'top',
+          duration: 2000
+        });
+        this._router.navigate(['/skills']);
+      });
+  }
+
+  /**
+   * Add skill
+   */
+  addSkill(): void {
+    const data = this.skillForm.getRawValue();
+    data.handle = FuseUtils.handleize(data.skillCompanyName);
+
+    this._skillService.addSkill(data)
+      .then(() => {
+
+        // Trigger the subscription with new data
+        this._skillService.onSkillChanged.next(data);
+
+        // Show the success message
+        this._matSnackBar.open('Record added', 'OK', {
+          verticalPosition: 'top',
+          duration: 2000
+        });
+
+        // Change the location with new one
+        this._router.navigate(['/skills']);
+      });
+  }
+
+}

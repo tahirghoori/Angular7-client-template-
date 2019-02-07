@@ -1,0 +1,9 @@
+{
+  "skills": [
+    {
+      "id": 1,
+      "skillName": "json-server",
+      "handle": "typicode"
+    }
+  ]
+}
