@@ -34,21 +34,21 @@ export const navigation: FuseNavigation[] = [
                         'title': 'Client',
                         'translate': 'NAV.CLIENT.TITLE',
                         'type' : 'item',
-                        'url'  : '/client'
+                        'url'  : '/clients'
                     },
                     {
                         'id'   : 'create_project',
                         'title': 'Create Project',
                         'translate': 'NAV.CREATE_PROJECT.TITLE',
                         'type' : 'item',
-                        'url'  : '/create_project'
+                        'url'  : '/projects/new'
                     },
                     {
                         'id'   : 'project_list',
                         'title': 'Project List',
                         'translate': 'NAV.PROJECT_LIST.TITLE',
                         'type' : 'item',
-                        'url'  : '/project_list'
+                        'url'  : '/projects'
                     }
 
                 ]
@@ -96,14 +96,14 @@ export const navigation: FuseNavigation[] = [
                         'title': 'Operating Cost',
                         'translate': 'NAV.OPERATING_COST.TITLE',
                         'type' : 'item',
-                        'url'  : '/operating_cost'
+                        'url'  : '/operatingcosts'
                     },
                     {
                         'id'   : 'fringe_benefits',
                         'title': 'Fringe Benefits',
                         'translate': 'NAV.FRINGE_BENEFITS.TITLE',
                         'type' : 'item',
-                        'url'  : '/fringe_benefits'
+                        'url'  : '/fringebenefits'
                     }
                    
 

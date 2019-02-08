@@ -1,9 +1,68 @@
 {
   "skills": [
     {
-      "id": 1,
-      "skillName": "json-server",
-      "handle": "typicode"
+      "id": 2,
+      "skillName": "Android",
+      "handle": "android"
+    },
+    {
+      "id": 3,
+      "skillName": "php",
+      "handle": "php"
+    },
+    {
+      "id": 4,
+      "skillName": "Laravel",
+      "handle": "laravel"
+    }
+  ],
+  "clients": [
+    {
+      "id": 2,
+      "title": "Android",
+      "handle": "android"
+    }
+  ],
+  "departments": [
+    {
+      "id": 2,
+      "title": "Android",
+      "handle": "android"
+    }
+  ],
+  "features": [
+    {
+      "id": 2,
+      "title": "Android",
+      "handle": "android"
+    }
+  ],
+  "milestones": [
+    {
+      "id": 2,
+      "title": "Android",
+      "handle": "android"
+    }
+  ],
+  "resources": [
+    {
+      "id": 2,
+      "title": "Android",
+      "handle": "android"
+    }
+  ],
+  "projects": [
+    {
+      "id": 2,
+      "title": "Android",
+      "handle": "android"
+    }
+  ],
+  "opratingcosts": [
+    {
+      "id": 2,
+      "title": "Android",
+      "handle": "android"
     }
   ]
 }

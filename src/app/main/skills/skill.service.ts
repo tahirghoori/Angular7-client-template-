@@ -10,16 +10,16 @@ const API_URL = environment.apiUrl;
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn:  "root"
 })
 export class SkillService {
   
-
+  entityNode: string = 'skills';
   routeParams: any;
-  skill: any;
-  skills: any[];
-  onSkillChanged: BehaviorSubject<any>;
-  onSkillsChanged: BehaviorSubject<any>;
+  item: any;
+  items: any[];
+  onItemChanged: BehaviorSubject<any>;
+  onItemsChanged: BehaviorSubject<any>;
 
   /**
    * Constructor
@@ -31,11 +31,9 @@ export class SkillService {
     private http: Http,
   ) {
     // Set the defaults
-    this.onSkillChanged = new BehaviorSubject({});
-    this.onSkillsChanged = new BehaviorSubject({});
+    this.onItemChanged = new BehaviorSubject({});
+    this.onItemsChanged = new BehaviorSubject({});
   }
-
-
 
   /**
    * Resolver
@@ -63,7 +61,7 @@ export class SkillService {
   }
  
 /**
-   * Get skill
+   * Get item
    *
    * @returns {Promise<any>}
    */
@@ -71,22 +69,22 @@ export class SkillService {
     return new Promise((resolve, reject) => {
       // console.log(this.routeParams.id);
       if (this.routeParams.id === undefined) {
-        this._httpClient.get('http://localhost:3000/skills')
+        this._httpClient.get(API_URL + '/' + this.entityNode)
         .subscribe((response: any) => {
-          this.skills = response;
-          this.onSkillsChanged.next(this.skills);
+          this.items = response;
+          this.onItemsChanged.next(this.items);
           resolve(response);
         }, reject);
       }
       else if (this.routeParams.id === 'new') {
-        this.onSkillChanged.next(false);
+        this.onItemChanged.next(false);
         resolve(false);
       }
       else {
-        this._httpClient.get('http://localhost:3000/skills/' + this.routeParams.id)
+        this._httpClient.get(API_URL + '/' + this.entityNode + '/' + this.routeParams.id)
           .subscribe((response: any) => {
-            this.skill = response;
-            this.onSkillChanged.next(this.skill);
+            this.item = response;
+            this.onItemChanged.next(this.item);
             resolve(response);
           }, reject);
       }
@@ -95,21 +93,21 @@ export class SkillService {
 
 
   /**
-   * Get skill
+   * Get item
    *
    * @returns {Promise<any>}
    */
-  getSkill(): Promise<any> {
+  getItem(): Promise<any> {
     return new Promise((resolve, reject) => {
       if (this.routeParams.id === 'new') {
-        this.onSkillChanged.next(false);
+        this.onItemChanged.next(false);
         resolve(false);
       }
       else {
-        this._httpClient.get(API_URL + '/api/license/skills/skill' + this.routeParams.id)
+        this._httpClient.get(API_URL + '/' + this.entityNode +'/' + this.routeParams.id)
           .subscribe((response: any) => {
-            this.skill = response;
-            this.onSkillChanged.next(this.skill);
+            this.item = response;
+            this.onItemChanged.next(this.item);
             resolve(response);
           }, reject);
       }
@@ -120,12 +118,12 @@ export class SkillService {
   /**
    * Save product
    *
-   * @param skill
+   * @param item
    * @returns {Promise<any>}
    */
-  saveSkill(skill): Promise<any> {
+  saveItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.put('http://localhost:3000/skills/' + skill.id, skill)
+      this._httpClient.put(API_URL + '/' + this.entityNode +'/' + item.id, item)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);
@@ -135,12 +133,12 @@ export class SkillService {
   /**
    * Add product
    *
-   * @param skill
+   * @param item
    * @returns {Promise<any>}
    */
-  addSkill(skill): Promise<any> {
+  addItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.post('http://localhost:3000/skills', skill)
+      this._httpClient.post(API_URL + '/' + this.entityNode , item)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);
@@ -149,23 +147,23 @@ export class SkillService {
 
 
   /**
-   * Get skills
+   * Get items
    *
    * @returns {Promise<any>}
    */
-  getSkills(): Promise<any> {
+  getItems(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.get('http://localhost:3000/skills')
+      this._httpClient.get(API_URL + '/' + this.entityNode)
         .subscribe((response: any) => {
-          this.skills = response;
-          this.onSkillsChanged.next(this.skills);
+          this.items = response;
+          this.onItemsChanged.next(this.items);
           resolve(response);
         }, reject);
     });
   }
 
-  deleteSkillById(skillId: number): any {
-    return  this._httpClient.delete('http://localhost:3000/skills' + skillId);
+  deleteItemById(itemId: number): any {
+    return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
 
   }
 

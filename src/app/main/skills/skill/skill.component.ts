@@ -56,7 +56,7 @@ export class SkillComponent implements OnInit {
   ngOnInit(): void {
 
     // Subscribe to update product on changes
-    this._skillService.onSkillChanged
+    this._skillService.onItemChanged
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(skill => {
 
@@ -107,13 +107,13 @@ export class SkillComponent implements OnInit {
    */
   saveSkill(): void {
     const data = this.skillForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.skillCompanyName);
+    data.handle = FuseUtils.handleize(data.skillName);
 
-    this._skillService.saveSkill(data)
+    this._skillService.saveItem(data)
       .then(() => {
 
         // Trigger the subscription with new data
-        this._skillService.onSkillChanged.next(data);
+        this._skillService.onItemChanged.next(data);
 
         // Show the success message
         this._matSnackBar.open('Record saved', 'OK', {
@@ -129,13 +129,13 @@ export class SkillComponent implements OnInit {
    */
   addSkill(): void {
     const data = this.skillForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.skillCompanyName);
+    data.handle = FuseUtils.handleize(data.skillName);
 
-    this._skillService.addSkill(data)
+    this._skillService.addItem(data)
       .then(() => {
 
         // Trigger the subscription with new data
-        this._skillService.onSkillChanged.next(data);
+        this._skillService.onItemChanged.next(data);
 
         // Show the success message
         this._matSnackBar.open('Record added', 'OK', {

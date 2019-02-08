@@ -20,7 +20,7 @@ export class SkillListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-   displayedColumns = ['skillName', 'active'];
+  displayedColumns = ['skillName', 'active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -90,13 +90,13 @@ export class SkillListComponent implements OnInit {
       this.confirmDialogRef.afterClosed().subscribe(result => {
           if (result) {
 
-              this._skillService.deleteSkillById(skill.id).subscribe((response: any)  => {
+              this._skillService.deleteItemById(skill.id).subscribe((response: any)  => {
                   // Show the success message
                   this._matSnackBar.open('Record Deleted', 'OK', {
                       verticalPosition: 'top',
                       duration: 3000
                   });
-                  this._skillService.getSkills();
+                  this._skillService.getItems();
               });
           }
           this.confirmDialogRef = null;
@@ -125,7 +125,7 @@ export class FilesDataSource extends DataSource<any>
   ) {
       super();
 
-      this.filteredData = this._skillService.skills;
+      this.filteredData = this._skillService.items;
   }
 
   /**
@@ -135,7 +135,7 @@ export class FilesDataSource extends DataSource<any>
    */
   connect(): Observable<any[]> {
       const displayDataChanges = [
-          this._skillService.onSkillsChanged,
+          this._skillService.onItemsChanged,
           this._matPaginator.page,
           this._filterChange,
           this._matSort.sortChange
@@ -144,7 +144,7 @@ export class FilesDataSource extends DataSource<any>
       return merge(...displayDataChanges)
           .pipe(
               map(() => {
-                  let data = this._skillService.skills.slice();
+                  let data = this._skillService.items.slice();
 
                   data = this.filterData(data);
 

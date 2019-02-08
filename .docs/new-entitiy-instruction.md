@@ -37,3 +37,14 @@
         
     }
     ];   
+
+
+
+
+
+
+ng g m main/fringebenefits
+ng g class main/fringebenefits/fringebenefit --type=model
+ng g s main/fringebenefits/fringebenefit
+ng g c main/fringebenefits/fringebenefit
+ng g c main/fringebenefits/fringebenefit-list    

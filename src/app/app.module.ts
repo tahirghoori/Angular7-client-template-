@@ -16,10 +16,58 @@ import { fuseConfig } from 'app/fuse-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { SampleModule } from 'app/main/sample/sample.module';
 import { HttpModule } from '@angular/http';
 
 const appRoutes: Routes = [
+    
+    {
+        path        : '',
+        loadChildren: './main/clients/clients.module#ClientsModule',
+        // canActivate: [AuthGuard]
+
+    },
+    {
+        path        : '',
+        loadChildren: './main/departments/departments.module#DepartmentsModule',
+        // canActivate: [AuthGuard]
+
+    },
+    {
+        path        : '',
+        loadChildren: './main/features/features.module#FeaturesModule',
+        // canActivate: [AuthGuard]
+
+    },
+    {
+        path        : '',
+        loadChildren: './main/fringebenefits/fringebenefits.module#FringebenefitsModule',
+        // canActivate: [AuthGuard]
+
+    },
+    {
+        path        : '',
+        loadChildren: './main/milestones/milestones.module#MilestonesModule',
+        // canActivate: [AuthGuard]
+
+    },
+    {
+        path        : '',
+        loadChildren: './main/opratingcosts/opratingcosts.module#OpratingcostsModule',
+        // canActivate: [AuthGuard]
+
+    },
+    {
+        path        : '',
+        loadChildren: './main/projects/projects.module#ProjectsModule',
+        // canActivate: [AuthGuard]
+
+    },
+    {
+        path        : '',
+        loadChildren: './main/resources/resources.module#ResourcesModule',
+        // canActivate: [AuthGuard]
+
+    },
     {
         path        : '',
         loadChildren: './main/skills/skills.module#SkillsModule',
@@ -68,7 +116,6 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-        SampleModule
     ],
     bootstrap   : [
         AppComponent

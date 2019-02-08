@@ -1,0 +1,91 @@
+<div id="project" class="page-layout carded fullwidth inner-scroll">
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg accent"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+
+    <!-- HEADER -->
+    <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+      <!-- APP TITLE -->
+      <div fxLayout="row" fxLayoutAlign="start center">
+
+        <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/projects'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+
+        <!-- <div class="project-image mr-8 mr-sm-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                  <img *ngIf="project.images[0]" [src]="project.images[0].url">
+                  <img *ngIf="!project.images[0]" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+              </div> -->
+
+        <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          <div class="h2" *ngIf="pageType ==='edit'">
+            {{project.title}}
+          </div>
+          <div class="h2" *ngIf="pageType ==='new'">
+            New Project
+          </div>
+          <div class="subtitle secondary-text">
+            <span>Project Detail</span>
+          </div>
+        </div>
+      </div>
+      <!-- / APP TITLE -->
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT CARD -->
+    <div class="content-card">
+
+      <!-- CONTENT -->
+      <div class="content">
+
+        <form name="projectForm" [formGroup]="projectForm" class="project w-100-p" fxLayout="column" fxFlex>
+
+          <div class=" mat-tab-header header  p-24">
+            <h2 class="m-0">Project Information</h2>
+          </div>
+
+          <div class="tab-content p-24" fusePerfectScrollbar>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Project Name</mat-label>
+                <input matInput placeholder="First Name" name="title" formControlName="title"
+                  required>
+                <mat-error>Project Name is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid" *ngIf="pageType ==='new'"
+              (click)="addProject()">
+              <span>ADD</span>
+            </button>
+
+            <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid || projectForm.pristine"
+              *ngIf="pageType ==='edit'" (click)="saveProject()">
+              <span>SAVE</span>
+            </button>
+
+          </div>
+
+
+
+        </form>
+
+      </div>
+      <!-- / CONTENT -->
+
+    </div>
+    <!-- / CONTENT CARD -->
+
+  </div>
+  <!-- / CENTER -->
+
+</div>

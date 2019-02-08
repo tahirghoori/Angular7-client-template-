@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
     hmr       : false,
-    apiUrl: '',
+    apiUrl: 'http://localhost:3000'
 
 };
