@@ -2,32 +2,59 @@
   "skills": [
     {
       "id": 2,
-      "skillName": "Android",
+      "skillName": "Android ",
       "handle": "android"
     },
     {
-      "id": 3,
-      "skillName": "php",
-      "handle": "php"
+      "id": 5,
+      "skillName": "Python",
+      "handle": "python"
     },
     {
-      "id": 4,
-      "skillName": "Laravel",
-      "handle": "laravel"
+      "id": 6,
+      "skillName": "skill 1",
+      "handle": "skill-1"
     }
   ],
   "clients": [
     {
-      "id": 2,
-      "title": "Android",
-      "handle": "android"
+      "id": 1,
+      "title": "Suraksha",
+      "handle": "suraksha",
+      "phoneNumber": "03357250180",
+      "email": "suraksha.sahani@appiskey.com",
+      "location": "Clifton Karachi",
+      "company": "PNC Solutions"
     }
   ],
   "departments": [
     {
       "id": 2,
       "title": "Android",
-      "handle": "android"
+      "handle": "android",
+      "bench": "Bench mark",
+      "hod": "suraksha "
+    },
+    {
+      "id": 3,
+      "title": "Software-development",
+      "handle": "software-development",
+      "bench": "Bench",
+      "hod": "suraksha"
+    },
+    {
+      "id": 4,
+      "title": "software-engineering",
+      "handle": "undefined",
+      "bench": "bench-top",
+      "hod": "khawar-abbas"
+    },
+    {
+      "id": 5,
+      "title": "SQA",
+      "handle": "sqa",
+      "bench": "Bench 2",
+      "hod": "HOD"
     }
   ],
   "features": [
@@ -56,6 +83,11 @@
       "id": 2,
       "title": "Android",
       "handle": "android"
+    },
+    {
+      "id": 3,
+      "title": "project 1",
+      "handle": "project-1"
     }
   ],
   "opratingcosts": [

@@ -20,7 +20,9 @@ export class DepartmentListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['title', 'active'];
+  displayedColumns = ['title', 'hod', 'bench', 'active'];
+ 
+
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;

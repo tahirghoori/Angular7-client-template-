@@ -65,7 +65,7 @@ export const navigation: FuseNavigation[] = [
                         'title': 'Department',
                         'translate': 'NAV.DEPARTMENT.TITLE',
                         'type' : 'item',
-                        'url'  : '/department'
+                        'url'  : '/departments'
                     },
                     {
                         'id'   : 'create_resource',

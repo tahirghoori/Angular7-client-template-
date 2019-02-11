@@ -4,6 +4,10 @@ export class Client {
     id: string;
     title: string;
     handle: string;
+    phoneNumber: number;
+    email : string;
+    location:string;
+    company:string;
     updatedAt: string;
     createdAt: string;
 
@@ -22,6 +26,10 @@ export class Client {
         }
         this.id = client.id || '';
         this.title = client.title || '';
+        this.phoneNumber = client.phoneNumber || '';
+        this.email = client.email || '';
+        this.location = client.location || '';
+        this.company = client.company || '';
         this.updatedAt = client.updatedAt || '';
         this.createdAt = client.createdAt || '';
     }

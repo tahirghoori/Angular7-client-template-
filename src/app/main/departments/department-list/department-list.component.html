@@ -53,7 +53,21 @@
               </ng-container>
 
              
+     <!-- HOD Column -->
+     <ng-container matColumnDef="hod">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>HOD</mat-header-cell>
+        <mat-cell *matCellDef="let department">
+            <p class="text-truncate">{{department.hod}}</p>
+        </mat-cell>
+    </ng-container>
 
+        <!-- HOD Column -->
+        <ng-container matColumnDef="bench">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Bench</mat-header-cell>
+            <mat-cell *matCellDef="let department">
+                <p class="text-truncate">{{department.bench}}</p>
+            </mat-cell>
+        </ng-container>
               
 
               <!-- Active Column -->

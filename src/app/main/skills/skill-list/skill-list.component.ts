@@ -20,6 +20,7 @@ export class SkillListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
+  
   displayedColumns = ['skillName', 'active'];
 
   @ViewChild(MatPaginator)

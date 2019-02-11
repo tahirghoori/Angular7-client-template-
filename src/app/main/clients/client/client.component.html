@@ -63,6 +63,48 @@
               </mat-form-field>
             </div>
 
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Client Phone-Number</mat-label>
+                <input matInput placeholder="Phone Number" name="phoneNumber" formControlName="phoneNumber"
+                  required>
+                <mat-error>Phone Number is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Email Address</mat-label>
+                <input matInput placeholder="Email Address" name="email" formControlName="email"
+                  required>
+                <mat-error>Email Address is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Location</mat-label>
+                <input matInput placeholder="Location" name="location" formControlName="location"
+                  required>
+                <mat-error>Client Location is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Company Name</mat-label>
+                <input matInput placeholder="Company Name" name="company" formControlName="company"
+                  required>
+                <mat-error>Company Name is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+         
+
             <button mat-raised-button class="save-client-button" [disabled]="clientForm.invalid" *ngIf="pageType ==='new'"
               (click)="addClient()">
               <span>ADD</span>
