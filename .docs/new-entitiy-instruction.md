@@ -11,6 +11,11 @@
    $ ng g c main/skills/skill-list    
 6- Create Module Routings 
 
+json server file run
+ 
+ npm run json-server
+
+
 
     const routes: Routes = [
     {

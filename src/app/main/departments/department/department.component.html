@@ -63,6 +63,24 @@
               </mat-form-field>
             </div>
 
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Department HOD</mat-label>
+                <input matInput placeholder="Department HOD" name="hod" formControlName="hod"
+                  required>
+                <mat-error>Department HOD is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Department Bench</mat-label>
+                <input matInput placeholder="Department Bench" name="bench" formControlName="bench"
+                  required>
+                <mat-error>Department Bench is required!</mat-error>
+              </mat-form-field>
+            </div>
+
             <button mat-raised-button class="save-department-button" [disabled]="departmentForm.invalid" *ngIf="pageType ==='new'"
               (click)="addDepartment()">
               <span>ADD</span>

@@ -4,9 +4,9 @@ export class Department {
     id: string;
     title: string;
     handle: string;
-    updatedAt: string;
-    createdAt: string;
-
+    hod:string;
+    bench:number;
+  
    
     /**
      * Constructor
@@ -22,7 +22,8 @@ export class Department {
         }
         this.id = department.id || '';
         this.title = department.title || '';
-        this.updatedAt = department.updatedAt || '';
-        this.createdAt = department.createdAt || '';
+        this.hod= department.hod || '';
+        this.bench= department.bench || '';
+    
     }
 }

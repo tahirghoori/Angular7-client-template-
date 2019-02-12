@@ -97,7 +97,11 @@ export class ClientComponent implements OnInit {
       return this._formBuilder.group({
         id: [this.client.id],
         title: [this.client.title],
-        handle: [this.client.handle]
+        handle: [this.client.handle],
+        phoneNumber:[this.client.phoneNumber],
+        email: [this.client.email],
+        location: [this.client.location],
+        company: [this.client.company]
       });
    
   }
