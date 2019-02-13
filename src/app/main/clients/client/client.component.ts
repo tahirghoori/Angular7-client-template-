@@ -96,12 +96,12 @@ export class ClientComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.client.id],
-        title: [this.client.title],
+        clientName: [this.client.clientName],
         handle: [this.client.handle],
-        phoneNumber:[this.client.phoneNumber],
-        email: [this.client.email],
-        location: [this.client.location],
-        company: [this.client.company]
+        clientPhoneNumber:[this.client.clientPhoneNumber],
+        clientEmail: [this.client.clientEmail],
+        clientLocation: [this.client.clientLocation],
+        clientCompany: [this.client.clientCompany]
       });
    
   }
@@ -111,7 +111,7 @@ export class ClientComponent implements OnInit {
    */
   saveClient(): void {
     const data = this.clientForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    data.handle = FuseUtils.handleize(data.clientName);
 
     this._clientService.saveItem(data)
       .then(() => {
@@ -133,7 +133,7 @@ export class ClientComponent implements OnInit {
    */
   addClient(): void {
     const data = this.clientForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    data.handle = FuseUtils.handleize(data.clientName);
 
     this._clientService.addItem(data)
       .then(() => {

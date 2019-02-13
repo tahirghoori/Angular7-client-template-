@@ -14,7 +14,7 @@ const API_URL = environment.apiUrl;
 })
 export class SkillService {
   
-  entityNode: string = 'skills';
+  entityNode: string = 'skill';
   routeParams: any;
   item: any;
   items: any[];
@@ -123,7 +123,7 @@ export class SkillService {
    */
   saveItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.put(API_URL + '/' + this.entityNode +'/' + item.id, item)
+      this._httpClient.put(API_URL + '/' + this.entityNode , item)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);

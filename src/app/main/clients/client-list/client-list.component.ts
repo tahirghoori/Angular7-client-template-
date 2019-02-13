@@ -7,6 +7,7 @@ import { ClientService } from '../client.service';
 import { takeUntil, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { DataSource } from '@angular/cdk/table';
 import { FuseUtils } from '@fuse/utils';
+import { Client } from '../client.model';
 
 @Component({
   selector: 'client-list',
@@ -17,10 +18,11 @@ import { FuseUtils } from '@fuse/utils';
 })
 export class ClientListComponent implements OnInit {
 
+ private clients: Client[];
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['title','phoneNumber','email','location','company','active'];
+  displayedColumns = ['clientName','clientPhoneNumber','clientEmail','clientLocation','clientCompany','active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -76,10 +78,12 @@ export class ClientListComponent implements OnInit {
           });
   }
 
+
+
   /**
  * Delete Contact
  */
-  deleteClient(client): void {
+  deleteClientById(client): void {
       console.log(client);
       this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
           disableClose: false
@@ -90,7 +94,7 @@ export class ClientListComponent implements OnInit {
       this.confirmDialogRef.afterClosed().subscribe(result => {
           if (result) {
 
-              this._clientService.deleteItemById(client.id).subscribe((response: any)  => {
+              this._clientService.deleteItemById(client).subscribe((response: any)  => {
                   // Show the success message
                   this._matSnackBar.open('Record Deleted', 'OK', {
                       verticalPosition: 'top',
@@ -103,6 +107,31 @@ export class ClientListComponent implements OnInit {
       });
 
   }
+
+  deleteClient(client): void {
+    console.log(client);
+    this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
+        disableClose: false
+    });
+
+    this.confirmDialogRef.componentInstance.confirmMessage = 'Are you yaqeen you want to delete?';
+
+    this.confirmDialogRef.afterClosed().subscribe(result => {
+        // if (result) {
+
+        //     this._clientService.deleteItem(client).subscribe((response: any)  => {
+        //         // Show the success message
+        //         this._matSnackBar.open('Record Deleted', 'OK', {
+        //             verticalPosition: 'top',
+        //             duration: 3000
+        //         });
+        //         this._clientService.getItems();
+        //     });
+        // }
+        this.confirmDialogRef = null;
+    });
+
+}
 
 }
 
@@ -214,8 +243,8 @@ export class FilesDataSource extends DataSource<any>
           let propertyB: number | string = '';
 
           switch (this._matSort.active) {
-              case 'title':
-                  [propertyA, propertyB] = [a.title, b.title];
+              case 'clientName':
+                  [propertyA, propertyB] = [a.clientName, b.clientName];
                   break;
           }
 

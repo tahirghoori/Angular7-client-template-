@@ -24,7 +24,7 @@
 
         <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
           <div class="h2" *ngIf="pageType ==='edit'">
-            {{client.title}}
+            {{client.clientName}}
           </div>
           <div class="h2" *ngIf="pageType ==='new'">
             New Client
@@ -57,7 +57,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Client Name</mat-label>
-                <input matInput placeholder="First Name" name="title" formControlName="title"
+                <input matInput placeholder="First Name" name="clientName" formControlName="clientName"
                   required>
                 <mat-error>Client Name is required!</mat-error>
               </mat-form-field>
@@ -67,7 +67,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Client Phone-Number</mat-label>
-                <input matInput placeholder="Phone Number" name="phoneNumber" formControlName="phoneNumber"
+                <input matInput placeholder="Phone Number" name="clientPhoneNumber" formControlName="clientPhoneNumber"
                   required>
                 <mat-error>Phone Number is required!</mat-error>
               </mat-form-field>
@@ -76,7 +76,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Email Address</mat-label>
-                <input matInput placeholder="Email Address" name="email" formControlName="email"
+                <input matInput placeholder="Email Address" name="clientEmail" formControlName="clientEmail"
                   required>
                 <mat-error>Email Address is required!</mat-error>
               </mat-form-field>
@@ -87,7 +87,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Location</mat-label>
-                <input matInput placeholder="Location" name="location" formControlName="location"
+                <input matInput placeholder="Location" name="clientLocation" formControlName="clientLocation"
                   required>
                 <mat-error>Client Location is required!</mat-error>
               </mat-form-field>
@@ -97,7 +97,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Company Name</mat-label>
-                <input matInput placeholder="Company Name" name="company" formControlName="company"
+                <input matInput placeholder="Company Name" name="clientCompany" formControlName="clientCompany"
                   required>
                 <mat-error>Company Name is required!</mat-error>
               </mat-form-field>
