@@ -14,7 +14,7 @@ const API_URL = environment.apiUrl;
 })
 export class ClientService {
   
-  entityNode: string = 'clients';
+  entityNode: string = 'client';
   routeParams: any;
   item: any;
   items: any[];
@@ -123,7 +123,7 @@ export class ClientService {
    */
   saveItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.put(API_URL + '/' + this.entityNode +'/' + item.id, item)
+      this._httpClient.put(API_URL + '/' + this.entityNode , item)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);
@@ -155,16 +155,31 @@ export class ClientService {
     return new Promise((resolve, reject) => {
       this._httpClient.get(API_URL + '/' + this.entityNode)
         .subscribe((response: any) => {
-          this.items = response;
+          this.newMethod(response);
           this.onItemsChanged.next(this.items);
           resolve(response);
+    console.log(response);
         }, reject);
     });
+  }
+
+  private newMethod(response: any) {
+    this.items = response;
   }
 
   deleteItemById(itemId: number): any {
     return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
 
+  }
+
+
+  deleteItem(item):  Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._httpClient.delete(API_URL + '/' + this.entityNode , item)
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+    });
   }
 
 }
