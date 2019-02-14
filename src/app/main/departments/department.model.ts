@@ -2,10 +2,10 @@ import { FuseUtils } from "@fuse/utils";
 
 export class Department {
     id: string;
-    title: string;
+    departmentName: string;
     handle: string;
-    hod:string;
-    bench:number;
+    departmentHod:string;
+    departmentBench:number;
   
    
     /**
@@ -21,9 +21,9 @@ export class Department {
             this.handle = FuseUtils.handleize(department.departmentName  + '');
         }
         this.id = department.id || '';
-        this.title = department.title || '';
-        this.hod= department.hod || '';
-        this.bench= department.bench || '';
+        this.departmentName = department.departmentName || '';
+        this.departmentHod= department.departmentHod || '';
+        this.departmentBench= department.departmentBench || '';
     
     }
 }

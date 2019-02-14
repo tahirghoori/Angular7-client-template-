@@ -20,7 +20,7 @@ export class DepartmentListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['title', 'hod', 'bench', 'active'];
+  displayedColumns = ['departmentName', 'departmentHod', 'departmentBench', 'active'];
  
 
 
