@@ -24,7 +24,7 @@
 
         <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
           <div class="h2" *ngIf="pageType ==='edit'">
-            {{department.title}}
+            {{department.departmentName}}
           </div>
           <div class="h2" *ngIf="pageType ==='new'">
             New Department
@@ -57,7 +57,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Department Name</mat-label>
-                <input matInput placeholder="First Name" name="title" formControlName="title"
+                <input matInput placeholder="Department Name" name="departmentName" formControlName="departmentName"
                   required>
                 <mat-error>Department Name is required!</mat-error>
               </mat-form-field>
@@ -66,7 +66,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Department HOD</mat-label>
-                <input matInput placeholder="Department HOD" name="hod" formControlName="hod"
+                <input matInput placeholder="Department HOD" name="departmentHod" formControlName="departmentHod"
                   required>
                 <mat-error>Department HOD is required!</mat-error>
               </mat-form-field>
@@ -75,7 +75,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Department Bench</mat-label>
-                <input matInput placeholder="Department Bench" name="bench" formControlName="bench"
+                <input matInput placeholder="Department Bench" name="departmentBench" formControlName="departmentBench"
                   required>
                 <mat-error>Department Bench is required!</mat-error>
               </mat-form-field>
