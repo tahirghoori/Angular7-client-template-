@@ -96,7 +96,7 @@ export const navigation: FuseNavigation[] = [
                         'title': 'Operating Cost',
                         'translate': 'NAV.OPERATING_COST.TITLE',
                         'type' : 'item',
-                        'url'  : '/operatingcosts'
+                        'url'  : '/opratingcosts'
                     },
                     {
                         'id'   : 'fringe_benefits',

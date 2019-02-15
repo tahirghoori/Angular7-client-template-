@@ -4,7 +4,7 @@ export class Opratingcost {
 
 
     id: string;
-    title: string;
+    monthlyCost:number;
     handle: string;
     updatedAt: string;
     createdAt: string;
@@ -23,7 +23,7 @@ export class Opratingcost {
             this.handle = FuseUtils.handleize(opratingcost.opratingcostName  + '');
         }
         this.id = opratingcost.id || '';
-        this.title = opratingcost.title || '';
+        this.monthlyCost = opratingcost.monthlyCost || '';
         this.updatedAt = opratingcost.updatedAt || '';
         this.createdAt = opratingcost.createdAt || '';
     }

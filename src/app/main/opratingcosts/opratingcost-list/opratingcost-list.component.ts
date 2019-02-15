@@ -20,7 +20,7 @@ export class OpratingcostListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['title', 'active'];
+  displayedColumns = ['monthlyCost', 'active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;

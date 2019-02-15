@@ -27,10 +27,10 @@
             {{opratingcost.title}}
           </div>
           <div class="h2" *ngIf="pageType ==='new'">
-            New Opratingcost
+            New Operating-Cost
           </div>
           <div class="subtitle secondary-text">
-            <span>Opratingcost Detail</span>
+            <span>Operatingcost Detail</span>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
         <form name="opratingcostForm" [formGroup]="opratingcostForm" class="opratingcost w-100-p" fxLayout="column" fxFlex>
 
           <div class=" mat-tab-header header  p-24">
-            <h2 class="m-0">Opratingcost Information</h2>
+            <h2 class="m-0">Operatingcost Information</h2>
           </div>
 
           <div class="tab-content p-24" fusePerfectScrollbar>
@@ -56,10 +56,10 @@
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Opratingcost Name</mat-label>
-                <input matInput placeholder="First Name" name="title" formControlName="title"
+                <mat-label>Monthly Operating cost</mat-label>
+                <input matInput placeholder="Monthly Cost" name="monthlyCost" formControlName="monthlyCost"
                   required>
-                <mat-error>Opratingcost Name is required!</mat-error>
+                <mat-error>Montly Operating Cost is required!</mat-error>
               </mat-form-field>
             </div>
 

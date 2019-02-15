@@ -96,8 +96,10 @@ export class FringebenefitComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.fringebenefit.id],
-        title: [this.fringebenefit.title],
-        handle: [this.fringebenefit.handle]
+        benefitMonth: [this.fringebenefit.benefitMonth],
+        expenseName: [this.fringebenefit.expenseName],
+        expenseAmount: [this.fringebenefit.expenseAmount],
+        isOneTime: [this.fringebenefit.isOneTime]
       });
    
   }
@@ -107,7 +109,7 @@ export class FringebenefitComponent implements OnInit {
    */
   saveFringebenefit(): void {
     const data = this.fringebenefitForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    data.handle = FuseUtils.handleize(data.expenseName);
 
     this._fringebenefitService.saveItem(data)
       .then(() => {
@@ -129,7 +131,7 @@ export class FringebenefitComponent implements OnInit {
    */
   addFringebenefit(): void {
     const data = this.fringebenefitForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    data.handle = FuseUtils.handleize(data.expenseName);
 
     this._fringebenefitService.addItem(data)
       .then(() => {

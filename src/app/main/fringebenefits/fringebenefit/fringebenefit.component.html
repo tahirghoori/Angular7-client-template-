@@ -24,7 +24,7 @@
 
         <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
           <div class="h2" *ngIf="pageType ==='edit'">
-            {{fringebenefit.title}}
+            {{fringebenefit.expenseName}}
           </div>
           <div class="h2" *ngIf="pageType ==='new'">
             New Fringebenefit
@@ -57,11 +57,39 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Fringebenefit Name</mat-label>
-                <input matInput placeholder="First Name" name="title" formControlName="title"
+                <input matInput placeholder="Expense Name" name="expenseName" formControlName="expenseName"
                   required>
-                <mat-error>Fringebenefit Name is required!</mat-error>
+                <mat-error>Expense Name is required!</mat-error>
               </mat-form-field>
             </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Benefit Month</mat-label>
+                <input matInput placeholder="Expense Benefit Month" name="benefitMonth" formControlName="benefitMonth"
+                  required>
+                <mat-error>Expense Benefit Month Name is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Expense Amount</mat-label>
+                <input matInput placeholder="Expense Amount" name="expenseAmount" formControlName="expenseAmount"
+                  required>
+                <mat-error>Expense Amount is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Is One Time?</mat-label>
+                <input matInput placeholder="Is One Time" name="isOneTime" formControlName="isOneTime"
+                  required>
+                <mat-error>Boolean is required!</mat-error>
+              </mat-form-field>
+            </div>
+
 
             <button mat-raised-button class="save-fringebenefit-button" [disabled]="fringebenefitForm.invalid" *ngIf="pageType ==='new'"
               (click)="addFringebenefit()">

@@ -96,7 +96,7 @@ export class OpratingcostComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.opratingcost.id],
-        title: [this.opratingcost.title],
+        monthlyCost: [this.opratingcost.monthlyCost],
         handle: [this.opratingcost.handle]
       });
    
@@ -107,7 +107,7 @@ export class OpratingcostComponent implements OnInit {
    */
   saveOpratingcost(): void {
     const data = this.opratingcostForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    // data.handle = FuseUtils.handleize(data.title);
 
     this._opratingcostService.saveItem(data)
       .then(() => {
@@ -129,7 +129,7 @@ export class OpratingcostComponent implements OnInit {
    */
   addOpratingcost(): void {
     const data = this.opratingcostForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    // data.handle = FuseUtils.handleize(data.title);
 
     this._opratingcostService.addItem(data)
       .then(() => {

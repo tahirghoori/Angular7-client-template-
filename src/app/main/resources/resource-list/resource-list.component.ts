@@ -20,7 +20,7 @@ export class ResourceListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['title', 'active'];
+  displayedColumns = ['resourceName','resourceCNIC','resourceEmail','resourcePhone','resourceNationality','resourceEmergencyContactNo','resourceDesignation','resourcePerHourRate','resourceBenefits','resourceWorkingDays','active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;

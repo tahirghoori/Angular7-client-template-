@@ -20,7 +20,7 @@ export class FringebenefitListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['title', 'active'];
+  displayedColumns = ['expenseName','benefitMonth','expenseAmount','isOneTime', 'active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;

@@ -96,8 +96,30 @@ export class ResourceComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.resource.id],
-        title: [this.resource.title],
-        handle: [this.resource.handle]
+        handle: [this.resource.handle],
+        resourceName : [this.resource.resourceName],
+        resourceCNIC : [this.resource.resourceCNIC],
+        resourceDOB : [this.resource.resourceDOB],
+        resourceEmail : [this.resource.resourceEmail],
+        resourceAddress : [this.resource.resourceAddress],
+        resourcePhone : [this.resource.resourcePhone],
+        resourceReligion :[this.resource.resourceReligion],
+        resourceBloodGroup :[this.resource.resourceBloodGroup], 
+        resourceNationality :[this.resource.resourceNationality],
+        resourceEmergencyContactNo : [this.resource.resourceEmergencyContactNo],
+        resourceMaritalStatus : [this.resource.resourceMaritalStatus] ,
+        resourceDesignation : [this.resource.resourceDesignation], 
+        resourceReportingTo : [ this.resource.resourceReportingTo],
+        resourceResume : [this.resource.resourceResume],
+        resourceDateOfJoining :[this.resource.resourceDateOfJoining],
+        resourceWorkingDays : [this.resource.resourceWorkingDays],
+        resourceExperience :  [this.resource.resourceExperience],
+        resourceSalaryPerMonth :[this.resource.resourceSalaryPerMonth],
+        resourcePerHourRate : [this.resource.resourcePerHourRate],
+        resourceShift: [this.resource.resourceShift],
+        resourceBenefits : [this.resource.resourceBenefits],
+        resourceContractType : [this.resource.resourceContractType],
+        resourcePartTime : [ this.resource.resourcePartTime]
       });
    
   }
@@ -107,7 +129,7 @@ export class ResourceComponent implements OnInit {
    */
   saveResource(): void {
     const data = this.resourceForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    data.handle = FuseUtils.handleize(data.resourceName);
 
     this._resourceService.saveItem(data)
       .then(() => {
@@ -129,7 +151,7 @@ export class ResourceComponent implements OnInit {
    */
   addResource(): void {
     const data = this.resourceForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    data.handle = FuseUtils.handleize(data.resourceName);
 
     this._resourceService.addItem(data)
       .then(() => {

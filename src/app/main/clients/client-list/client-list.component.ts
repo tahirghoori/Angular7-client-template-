@@ -83,8 +83,8 @@ export class ClientListComponent implements OnInit {
   /**
  * Delete Contact
  */
-  deleteClientById(client): void {
-      console.log(client);
+  deleteClient(client): void {
+      //console.log(client);
       this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
           disableClose: false
       });
@@ -94,7 +94,7 @@ export class ClientListComponent implements OnInit {
       this.confirmDialogRef.afterClosed().subscribe(result => {
           if (result) {
 
-              this._clientService.deleteItemById(client).subscribe((response: any)  => {
+              this._clientService.deleteItemById(client.id).subscribe((response: any)  => {
                   // Show the success message
                   this._matSnackBar.open('Record Deleted', 'OK', {
                       verticalPosition: 'top',
@@ -108,30 +108,30 @@ export class ClientListComponent implements OnInit {
 
   }
 
-  deleteClient(client): void {
-    console.log(client);
-    this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
-        disableClose: false
-    });
+//   deleteClient(client): void {
+//     console.log(client);
+//     this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
+//         disableClose: false
+//     });
 
-    this.confirmDialogRef.componentInstance.confirmMessage = 'Are you yaqeen you want to delete?';
+//     this.confirmDialogRef.componentInstance.confirmMessage = 'Are you yaqeen you want to delete?';
 
-    this.confirmDialogRef.afterClosed().subscribe(result => {
-        // if (result) {
+//     this.confirmDialogRef.afterClosed().subscribe(result => {
+//         if (result) {
 
-        //     this._clientService.deleteItem(client).subscribe((response: any)  => {
-        //         // Show the success message
-        //         this._matSnackBar.open('Record Deleted', 'OK', {
-        //             verticalPosition: 'top',
-        //             duration: 3000
-        //         });
-        //         this._clientService.getItems();
-        //     });
-        // }
-        this.confirmDialogRef = null;
-    });
+//             this._clientService.deleteItem(client).subscribe((response: any)  => {
+//                 // Show the success message
+//                 this._matSnackBar.open('Record Deleted', 'OK', {
+//                     verticalPosition: 'top',
+//                     duration: 3000
+//                 });
+//                 this._clientService.getItems();
+//             });
+//         }
+//         this.confirmDialogRef = null;
+//     });
 
-}
+// }
 
 }
 

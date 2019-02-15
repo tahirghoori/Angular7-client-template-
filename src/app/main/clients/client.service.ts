@@ -171,15 +171,26 @@ export class ClientService {
     return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
 
   }
+  // deleteItem(item: any): any {
+  //   console.log(item);
+  //   let body = JSON.stringify(item);
+  //   return  this._httpClient.delete(API_URL + '/' + this.entityNode ,  body.toString );
+
+  // }
+
+  // deleteItem(department: Department | number): Observable<Department> {
+  //   return  this._httpClient.delete<Department>(API_URL + '/' + this.entityNode ,department);
+
+  // }
 
 
-  deleteItem(item):  Promise<any> {
-    return new Promise((resolve, reject) => {
-      this._httpClient.delete(API_URL + '/' + this.entityNode , item)
-        .subscribe((response: any) => {
-          resolve(response);
-        }, reject);
-    });
-  }
+  // deleteItem(item):  Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     this._httpClient.delete(API_URL + '/' + this.entityNode , item)
+  //       .subscribe((response: any) => {
+  //         resolve(response);
+  //       }, reject);
+  //   });
+  // }
 
 }

@@ -2,7 +2,10 @@ import { FuseUtils } from "@fuse/utils";
 
 export class Fringebenefit {
     id: string;
-    title: string;
+    benefitMonth : string;
+    expenseName: string;
+    expenseAmount:number;
+    isOneTime : boolean;
     handle: string;
     updatedAt: string;
     createdAt: string;
@@ -21,7 +24,10 @@ export class Fringebenefit {
             this.handle = FuseUtils.handleize(fringebenefit.fringebenefitName  + '');
         }
         this.id = fringebenefit.id || '';
-        this.title = fringebenefit.title || '';
+        this.benefitMonth = fringebenefit.benefitMonth || '';
+        this.expenseName = fringebenefit.expenseName || '';
+        this.expenseAmount = fringebenefit.expenseAmount || '';
+        this.isOneTime = fringebenefit.isOneTime || '';
         this.updatedAt = fringebenefit.updatedAt || '';
         this.createdAt = fringebenefit.createdAt || '';
     }
