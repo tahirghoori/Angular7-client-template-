@@ -22,7 +22,7 @@ export class ClientListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['clientName','clientPhoneNumber','clientEmail','clientLocation','clientCompany','active'];
+  displayedColumns = ['clientName','clientPhoneNumber','clientEmail','clientLocation','parent','active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -76,6 +76,8 @@ export class ClientListComponent implements OnInit {
 
               this.dataSource.filter = this.filter.nativeElement.value;
           });
+
+
   }
 
 
@@ -247,6 +249,30 @@ export class FilesDataSource extends DataSource<any>
                   [propertyA, propertyB] = [a.clientName, b.clientName];
                   break;
           }
+          switch (this._matSort.active) {
+            case 'clientPhoneNumber':
+                [propertyA, propertyB] = [a.clientPhoneNumber, b.clientPhoneNumber];
+                break;
+        }
+
+        switch (this._matSort.active) {
+            case 'clientEmail':
+                [propertyA, propertyB] = [a.clientEmail, b.clientEmail];
+                break;
+        }
+
+        switch (this._matSort.active) {
+            case 'clientLocation':
+                [propertyA, propertyB] = [a.clientLocation, b.clientLocation];
+                break;
+        }
+
+        switch (this._matSort.active) {
+            case 'parent':
+                [propertyA, propertyB] = [a.parent, b.parent];
+                break;
+        }
+
 
           const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
           const valueB = isNaN(+propertyB) ? propertyB : +propertyB;

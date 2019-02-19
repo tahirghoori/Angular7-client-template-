@@ -23,7 +23,7 @@ export class Resource {
     resourceSalaryPerMonth: number;
     resourcePerHourRate :number;
     resourceShift : string;
-    resourceBenefits: string;
+    resourceBenefits: number;
     resourceContractType : number;     //isIntern, isPartTime , isFullTime
     resourcePartTime : boolean;
     handle: string;

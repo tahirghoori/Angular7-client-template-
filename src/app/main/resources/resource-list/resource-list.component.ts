@@ -17,6 +17,8 @@ import { FuseUtils } from '@fuse/utils';
 })
 export class ResourceListComponent implements OnInit {
 
+ resources: Array<any>;
+
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
@@ -74,6 +76,10 @@ export class ResourceListComponent implements OnInit {
 
               this.dataSource.filter = this.filter.nativeElement.value;
           });
+
+          
+
+
   }
 
   /**

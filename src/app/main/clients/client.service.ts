@@ -5,6 +5,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Client } from './client.model';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
 
 const API_URL = environment.apiUrl;
 
@@ -13,7 +18,7 @@ const API_URL = environment.apiUrl;
   providedIn: "root"
 })
 export class ClientService {
-  
+  clients: any[];
   entityNode: string = 'client';
   routeParams: any;
   item: any;
@@ -151,7 +156,8 @@ export class ClientService {
    *
    * @returns {Promise<any>}
    */
-  getItems(): Promise<any> {
+  getItems(): any {
+    
     return new Promise((resolve, reject) => {
       this._httpClient.get(API_URL + '/' + this.entityNode)
         .subscribe((response: any) => {
@@ -162,6 +168,18 @@ export class ClientService {
         }, reject);
     });
   }
+  public getAll(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNode)
+
+      .map(response => {
+        const clients = response.json();
+        return clients.map((client) => new Client(client));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+
 
   private newMethod(response: any) {
     this.items = response;
@@ -192,5 +210,11 @@ export class ClientService {
   //       }, reject);
   //   });
   // }
+    // tslint:disable-next-line:typedef
+    private handleError (error: Response | any) {
+      console.error('LicenceService::handleError', error);
+      return Observable.throw(error);
+    }
+  
 
 }
