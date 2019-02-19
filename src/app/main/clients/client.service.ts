@@ -5,6 +5,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Client } from './client.model';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
 
 const API_URL = environment.apiUrl;
 
@@ -13,7 +18,7 @@ const API_URL = environment.apiUrl;
   providedIn: "root"
 })
 export class ClientService {
-  
+  clients: any[];
   entityNode: string = 'client';
   routeParams: any;
   item: any;
@@ -151,7 +156,8 @@ export class ClientService {
    *
    * @returns {Promise<any>}
    */
-  getItems(): Promise<any> {
+  getItems(): any {
+    
     return new Promise((resolve, reject) => {
       this._httpClient.get(API_URL + '/' + this.entityNode)
         .subscribe((response: any) => {
@@ -162,6 +168,18 @@ export class ClientService {
         }, reject);
     });
   }
+  public getAll(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNode)
+
+      .map(response => {
+        const clients = response.json();
+        return clients.map((client) => new Client(client));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+
 
   private newMethod(response: any) {
     this.items = response;
@@ -171,15 +189,32 @@ export class ClientService {
     return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
 
   }
+  // deleteItem(item: any): any {
+  //   console.log(item);
+  //   let body = JSON.stringify(item);
+  //   return  this._httpClient.delete(API_URL + '/' + this.entityNode ,  body.toString );
+
+  // }
+
+  // deleteItem(department: Department | number): Observable<Department> {
+  //   return  this._httpClient.delete<Department>(API_URL + '/' + this.entityNode ,department);
+
+  // }
 
 
-  deleteItem(item):  Promise<any> {
-    return new Promise((resolve, reject) => {
-      this._httpClient.delete(API_URL + '/' + this.entityNode , item)
-        .subscribe((response: any) => {
-          resolve(response);
-        }, reject);
-    });
-  }
+  // deleteItem(item):  Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     this._httpClient.delete(API_URL + '/' + this.entityNode , item)
+  //       .subscribe((response: any) => {
+  //         resolve(response);
+  //       }, reject);
+  //   });
+  // }
+    // tslint:disable-next-line:typedef
+    private handleError (error: Response | any) {
+      console.error('LicenceService::handleError', error);
+      return Observable.throw(error);
+    }
+  
 
 }

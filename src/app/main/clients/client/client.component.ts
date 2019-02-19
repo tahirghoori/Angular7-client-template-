@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-client',
@@ -16,6 +17,7 @@ import { fuseAnimations } from '@fuse/animations';
   animations: fuseAnimations
 })
 export class ClientComponent implements OnInit {
+  clients: Client[];
   client: Client;
   pageType: string;
   clientForm: FormGroup;
@@ -63,6 +65,8 @@ export class ClientComponent implements OnInit {
         if (client) {
           this.client = new Client(client);
           this.pageType = 'edit';
+         // console.log(client)
+
         }
         else {
           this.pageType = 'new';
@@ -72,6 +76,16 @@ export class ClientComponent implements OnInit {
 
 
       });
+
+
+      this._clientService.getAll().subscribe(clients => {
+        this.clients =  clients.map((client) => new Client(client));
+    console.log(this.clients);
+
+    });
+
+
+
   }
   /**
    * On destroy
@@ -101,7 +115,7 @@ export class ClientComponent implements OnInit {
         clientPhoneNumber:[this.client.clientPhoneNumber],
         clientEmail: [this.client.clientEmail],
         clientLocation: [this.client.clientLocation],
-        clientCompany: [this.client.clientCompany]
+        parent: [this.client.parent]
       });
    
   }
@@ -134,7 +148,9 @@ export class ClientComponent implements OnInit {
   addClient(): void {
     const data = this.clientForm.getRawValue();
     data.handle = FuseUtils.handleize(data.clientName);
-
+if(data.parent == ""){
+  data.parent=null;
+}
     this._clientService.addItem(data)
       .then(() => {
 
@@ -150,6 +166,12 @@ export class ClientComponent implements OnInit {
         // Change the location with new one
         this._router.navigate(['/clients']);
       });
+     // console.log(data);
   }
+
+  compareFn(c1: Client, c2: Client): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+   }
+
 
 }

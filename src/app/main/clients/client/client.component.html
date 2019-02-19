@@ -51,6 +51,7 @@
             <h2 class="m-0">Client Information</h2>
           </div>
 
+
           <div class="tab-content p-24" fusePerfectScrollbar>
 
 
@@ -72,6 +73,8 @@
                 <mat-error>Phone Number is required!</mat-error>
               </mat-form-field>
             </div>
+     
+
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
@@ -95,15 +98,18 @@
 
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-              <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Company Name</mat-label>
-                <input matInput placeholder="Company Name" name="clientCompany" formControlName="clientCompany"
-                  required>
-                <mat-error>Company Name is required!</mat-error>
-              </mat-form-field>
-            </div>
+                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                    <mat-select placeholder="Company" formControlName="parent" name="parent.clientName"
+                    [compareWith]="compareFn" >
+                        <mat-option>-- Select Company --</mat-option>
+                        <mat-option *ngFor="let client of clients"  [value]="client" >
+                            {{client?.clientName}}
+                        </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            
 
-         
+            </div>
 
             <button mat-raised-button class="save-client-button" [disabled]="clientForm.invalid" *ngIf="pageType ==='new'"
               (click)="addClient()">
@@ -116,10 +122,10 @@
             </button>
 
           </div>
-
-
+       
 
         </form>
+
 
       </div>
       <!-- / CONTENT -->

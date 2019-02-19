@@ -13,7 +13,7 @@ const API_URL = environment.apiUrl;
 })
 export class OpratingcostService {
   
-  entityNode: string = 'opratingcosts';
+  entityNode: string = 'operatingcost';
   routeParams: any;
   item: any;
   items: any[];
@@ -122,7 +122,7 @@ export class OpratingcostService {
    */
   saveItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.put(API_URL + '/' + this.entityNode +'/' + item.id, item)
+      this._httpClient.put(API_URL + '/' + this.entityNode, item)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);

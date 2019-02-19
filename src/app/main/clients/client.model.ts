@@ -9,7 +9,8 @@ export class Client {
     clientSocial:string;
     clientLocation:string;
     clientWebUrl:string;
-    clientCompany:string;
+    // clientCompany:string;
+    parent:Client;
     clientAddress:string;
     clientImageUrl:string;
     clientTimeZone:string;
@@ -41,7 +42,8 @@ export class Client {
         this.clientSocial = client.clientSocial || '';
         this.clientTimeZone = client.clientTimeZone || '';
         this.clientWebUrl = client.clientWebUrl || '';
-        this.clientCompany = client.clientCompany || '';
+        // this.clientCompany = client.clientCompany || '';
+        this.parent = client.parent || null;
 
         this.clientAvailability = client.clientAvailability || '';
         this.isActive = client.isActive || '';

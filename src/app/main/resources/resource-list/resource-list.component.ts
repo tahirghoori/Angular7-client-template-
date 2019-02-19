@@ -17,10 +17,12 @@ import { FuseUtils } from '@fuse/utils';
 })
 export class ResourceListComponent implements OnInit {
 
+ resources: Array<any>;
+
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['title', 'active'];
+  displayedColumns = ['resourceName','resourceCNIC','resourceEmail','resourcePhone','resourceNationality','resourceEmergencyContactNo','resourceDesignation','resourcePerHourRate','resourceBenefits','resourceWorkingDays','active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -74,6 +76,10 @@ export class ResourceListComponent implements OnInit {
 
               this.dataSource.filter = this.filter.nativeElement.value;
           });
+
+          
+
+
   }
 
   /**

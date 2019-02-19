@@ -15,7 +15,7 @@
           <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
 
               <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                  Opratingcosts
+                  Operating Costs
               </span>
           </div>
           <!-- / APP TITLE -->
@@ -45,16 +45,12 @@
               fusePerfectScrollbar>
 
               <!-- Name Column -->
-              <ng-container matColumnDef="title">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+              <ng-container matColumnDef="monthlyCost">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Monthly Operating Cost</mat-header-cell>
                   <mat-cell *matCellDef="let opratingcost">
-                      <p class="text-truncate">{{opratingcost.title}}</p>
+                      <p class="text-truncate">{{opratingcost.monthlyCost}}</p>
                   </mat-cell>
               </ng-container>
-
-             
-
-              
 
               <!-- Active Column -->
               <ng-container matColumnDef="active">

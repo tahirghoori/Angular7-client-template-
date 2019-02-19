@@ -23,8 +23,8 @@ export const navigation: FuseNavigation[] = [
                 'icon'     : 'border_all',
                 'children' : [
                     {
-                        'id'   : 'skills',
-                        'title': 'Skills',
+                        'id'   : 'skill',
+                        'title': 'Skill',
                         'translate': 'NAV.SKILLS.TITLE',
                         'type' : 'item',
                         'url'  : '/skills'
@@ -54,7 +54,7 @@ export const navigation: FuseNavigation[] = [
                 ]
             },
             {
-                'id'       : 'resorces',
+                'id'       : 'resource',
                 'title'    : 'Resources',
                 'translate': 'NAV.RESOURCES.TITLE',
                 'type'     : 'collapsable',
@@ -72,14 +72,14 @@ export const navigation: FuseNavigation[] = [
                         'title': 'Create Resource',
                         'translate': 'NAV.CREATE_RESOURCE.TITLE',
                         'type' : 'item',
-                        'url'  : '/create_resource'
+                        'url'  : '/resources/new'
                     },
                     {
                         'id'   : 'resource_list',
                         'title': 'Resource List',
                         'translate': 'NAV.RESOURCE_LIST.TITLE',
                         'type' : 'item',
-                        'url'  : '/resource_list'
+                        'url'  : '/resources'
                     }
 
                 ]
@@ -96,7 +96,7 @@ export const navigation: FuseNavigation[] = [
                         'title': 'Operating Cost',
                         'translate': 'NAV.OPERATING_COST.TITLE',
                         'type' : 'item',
-                        'url'  : '/operatingcosts'
+                        'url'  : '/opratingcosts'
                     },
                     {
                         'id'   : 'fringe_benefits',

@@ -6,6 +6,8 @@ export class Department {
     handle: string;
     departmentHod:string;
     departmentBench:number;
+    updatedAt: string;
+    createdAt: string;
   
    
     /**
@@ -24,6 +26,8 @@ export class Department {
         this.departmentName = department.departmentName || '';
         this.departmentHod= department.departmentHod || '';
         this.departmentBench= department.departmentBench || '';
+        this.updatedAt = department.updatedAt || '';
+        this.createdAt = department.createdAt || '';
     
     }
 }

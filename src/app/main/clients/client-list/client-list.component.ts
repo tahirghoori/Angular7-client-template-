@@ -22,7 +22,7 @@ export class ClientListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['clientName','clientPhoneNumber','clientEmail','clientLocation','clientCompany','active'];
+  displayedColumns = ['clientName','clientPhoneNumber','clientEmail','clientLocation','parent','active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -76,6 +76,8 @@ export class ClientListComponent implements OnInit {
 
               this.dataSource.filter = this.filter.nativeElement.value;
           });
+
+
   }
 
 
@@ -83,8 +85,8 @@ export class ClientListComponent implements OnInit {
   /**
  * Delete Contact
  */
-  deleteClientById(client): void {
-      console.log(client);
+  deleteClient(client): void {
+      //console.log(client);
       this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
           disableClose: false
       });
@@ -94,7 +96,7 @@ export class ClientListComponent implements OnInit {
       this.confirmDialogRef.afterClosed().subscribe(result => {
           if (result) {
 
-              this._clientService.deleteItemById(client).subscribe((response: any)  => {
+              this._clientService.deleteItemById(client.id).subscribe((response: any)  => {
                   // Show the success message
                   this._matSnackBar.open('Record Deleted', 'OK', {
                       verticalPosition: 'top',
@@ -108,30 +110,30 @@ export class ClientListComponent implements OnInit {
 
   }
 
-  deleteClient(client): void {
-    console.log(client);
-    this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
-        disableClose: false
-    });
+//   deleteClient(client): void {
+//     console.log(client);
+//     this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
+//         disableClose: false
+//     });
 
-    this.confirmDialogRef.componentInstance.confirmMessage = 'Are you yaqeen you want to delete?';
+//     this.confirmDialogRef.componentInstance.confirmMessage = 'Are you yaqeen you want to delete?';
 
-    this.confirmDialogRef.afterClosed().subscribe(result => {
-        // if (result) {
+//     this.confirmDialogRef.afterClosed().subscribe(result => {
+//         if (result) {
 
-        //     this._clientService.deleteItem(client).subscribe((response: any)  => {
-        //         // Show the success message
-        //         this._matSnackBar.open('Record Deleted', 'OK', {
-        //             verticalPosition: 'top',
-        //             duration: 3000
-        //         });
-        //         this._clientService.getItems();
-        //     });
-        // }
-        this.confirmDialogRef = null;
-    });
+//             this._clientService.deleteItem(client).subscribe((response: any)  => {
+//                 // Show the success message
+//                 this._matSnackBar.open('Record Deleted', 'OK', {
+//                     verticalPosition: 'top',
+//                     duration: 3000
+//                 });
+//                 this._clientService.getItems();
+//             });
+//         }
+//         this.confirmDialogRef = null;
+//     });
 
-}
+// }
 
 }
 
@@ -247,6 +249,30 @@ export class FilesDataSource extends DataSource<any>
                   [propertyA, propertyB] = [a.clientName, b.clientName];
                   break;
           }
+          switch (this._matSort.active) {
+            case 'clientPhoneNumber':
+                [propertyA, propertyB] = [a.clientPhoneNumber, b.clientPhoneNumber];
+                break;
+        }
+
+        switch (this._matSort.active) {
+            case 'clientEmail':
+                [propertyA, propertyB] = [a.clientEmail, b.clientEmail];
+                break;
+        }
+
+        switch (this._matSort.active) {
+            case 'clientLocation':
+                [propertyA, propertyB] = [a.clientLocation, b.clientLocation];
+                break;
+        }
+
+        switch (this._matSort.active) {
+            case 'parent':
+                [propertyA, propertyB] = [a.parent, b.parent];
+                break;
+        }
+
 
           const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
           const valueB = isNaN(+propertyB) ? propertyB : +propertyB;

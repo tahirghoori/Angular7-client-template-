@@ -24,7 +24,7 @@
 
         <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
           <div class="h2" *ngIf="pageType ==='edit'">
-            {{resource.title}}
+            {{resource.resourceName}}
           </div>
           <div class="h2" *ngIf="pageType ==='new'">
             New Resource
@@ -57,11 +57,85 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Resource Name</mat-label>
-                <input matInput placeholder="First Name" name="title" formControlName="title"
+                <input matInput placeholder="First Name" name="resourceName" formControlName="resourceName"
                   required>
                 <mat-error>Resource Name is required!</mat-error>
               </mat-form-field>
             </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Resource CNIC</mat-label>
+                <input matInput placeholder="CNIC" name="resourceCNIC" formControlName="resourceCNIC"
+                  required>
+                <mat-error>CNIC is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email Address" name="resourceEmail" formControlName="resourceEmail"
+                  required>
+                <mat-error>Email Address is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Phone Number</mat-label>
+                <input matInput placeholder="Phone Number" name="resourcePhone" formControlName="resourcePhone"
+                  required>
+                <mat-error>Phone number is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Nationality</mat-label>
+                <input matInput placeholder="Nationality" name="resourceNationality" formControlName="resourceNationality"
+                  required>
+                <mat-error>Nationality is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Resource Name</mat-label>
+                <input matInput placeholder="Emergency ContactNo." name="resourceEmergencyContactNo" formControlName="resourceEmergencyContactNo"
+                  required>
+                <mat-error>Resource Name is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Salary/hour</mat-label>
+                <input matInput placeholder="Salary/hour" name="resourcePerHourRate" formControlName="resourcePerHourRate"
+                  required>
+                <mat-error>Salary/hour is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Benefits</mat-label>
+                <input matInput placeholder="Benefits" name="resourceBenefits" formControlName="resourceBenefits"
+                  required>
+                <mat-error>Resource Benefits are required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Working Days</mat-label>
+                <input matInput placeholder="Working-Days" name="resourceWorkingDays" formControlName="resourceWorkingDays"
+                  required>
+                <mat-error>Working Days are required!</mat-error>
+              </mat-form-field>
+            </div>
+
 
             <button mat-raised-button class="save-resource-button" [disabled]="resourceForm.invalid" *ngIf="pageType ==='new'"
               (click)="addResource()">

@@ -82,7 +82,7 @@ export class DepartmentListComponent implements OnInit {
  * Delete Contact
  */
   deleteDepartment(department): void {
-      console.log(department);
+      //console.log(department);
       this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
           disableClose: false
       });

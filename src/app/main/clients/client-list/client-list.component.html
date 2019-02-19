@@ -76,10 +76,10 @@
                             </mat-cell>
                         </ng-container>
                      <!-- Comapany Column -->
-                     <ng-container matColumnDef="clientCompany">
+                     <ng-container matColumnDef="parent">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Company</mat-header-cell>
                         <mat-cell *matCellDef="let client">
-                            <p class="text-truncate">{{client.clientCompany}}</p>
+                            <p class="text-truncate">{{client.parent?.clientName}}</p>
                         </mat-cell>
                     </ng-container>
 
