@@ -63,6 +63,21 @@
               </mat-form-field>
             </div>
 
+            <!-- <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+           
+              <mat-select placeholder="Toppings"  [formControl]="toppings" multiple>
+                <mat-select-trigger>
+                  {{toppings.value ? toppings.value[0].resourceName : ''}}
+                  <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+                    (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                  </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let item of skillResources" [value]="item">{{item.resourceName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            </div> -->
+
             <button mat-raised-button class="save-skill-button" [disabled]="skillForm.invalid" *ngIf="pageType ==='new'"
               (click)="addSkill()">
               <span>ADD</span>

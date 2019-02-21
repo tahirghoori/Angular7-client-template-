@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
+import { Resource } from 'app/main/resources/resource.model';
 
 @Component({
   selector: 'app-department',
@@ -16,6 +17,7 @@ import { fuseAnimations } from '@fuse/animations';
   animations: fuseAnimations
 })
 export class DepartmentComponent implements OnInit {
+  departmentResources: Resource[];
   department: Department;
   pageType: string;
   departmentForm: FormGroup;
@@ -72,6 +74,14 @@ export class DepartmentComponent implements OnInit {
 
 
       });
+
+
+
+      this._departmentService.getAll().subscribe(departmentHod => {
+        this.departmentResources =  departmentHod.map((resource) => new Resource(resource));
+    console.log(this.departmentResources);
+
+    });
   }
   /**
    * On destroy
@@ -149,5 +159,9 @@ export class DepartmentComponent implements OnInit {
         this._router.navigate(['/departments']);
       });
   }
+
+  compareFn(c1: Department, c2: Department): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+   }
 
 }

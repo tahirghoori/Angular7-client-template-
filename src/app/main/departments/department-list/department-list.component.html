@@ -55,9 +55,9 @@
              
      <!-- HOD Column -->
      <ng-container matColumnDef="departmentHod">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>HOD</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Department HOD</mat-header-cell>
         <mat-cell *matCellDef="let department">
-            <p class="text-truncate">{{department.departmentHod}}</p>
+            <p class="text-truncate">{{department.departmentHod?.resourceName}}</p>
         </mat-cell>
     </ng-container>
 

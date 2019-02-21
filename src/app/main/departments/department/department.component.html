@@ -64,13 +64,16 @@
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-              <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Department HOD</mat-label>
-                <input matInput placeholder="Department HOD" name="departmentHod" formControlName="departmentHod"
-                  required>
-                <mat-error>Department HOD is required!</mat-error>
-              </mat-form-field>
-            </div>
+              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                  <mat-select placeholder="HOD" formControlName="departmentHod" name="departmentHod"
+                  [compareWith]="compareFn" >
+                      <mat-option>-- Select HOD --</mat-option>
+                      <mat-option *ngFor="let resource of departmentResources"  [value]="resource" >
+                          {{resource.resourceName}}
+                      </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">

@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Resource } from '../resources/resource.model';
 
 const API_URL = environment.apiUrl;
 
@@ -15,6 +16,7 @@ const API_URL = environment.apiUrl;
 export class DepartmentService {
   
   entityNode: string = 'department';
+  entityNodeResource: string = 'resource';
   routeParams: any;
   item: any;
   items: any[];
@@ -158,6 +160,7 @@ export class DepartmentService {
           this.items = response;
           this.onItemsChanged.next(this.items);
           resolve(response);
+          console.log(response);
         }, reject);
     });
   }
@@ -165,6 +168,22 @@ export class DepartmentService {
   deleteItemById(itemId: number): any {
     return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
 
+  }
+
+  public getAll(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeResource)
+
+      .map(response => {
+        const departmentHod = response.json();
+        return departmentHod.map((resource) => new Resource(resource));
+      })
+      .catch(this.handleError);
+  }
+
+  private handleError (error: Response | any) {
+    console.error('LicenceService::handleError', error);
+    return Observable.throw(error);
   }
 
 }

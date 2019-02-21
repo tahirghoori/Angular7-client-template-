@@ -1,10 +1,11 @@
 import { FuseUtils } from "@fuse/utils";
+import { Resource } from "../resources/resource.model";
 
 export class Department {
     id: string;
     departmentName: string;
     handle: string;
-    departmentHod:string;
+    departmentHod:Resource;
     departmentBench:number;
     updatedAt: string;
     createdAt: string;
@@ -24,7 +25,7 @@ export class Department {
         }
         this.id = department.id || '';
         this.departmentName = department.departmentName || '';
-        this.departmentHod= department.departmentHod || '';
+        this.departmentHod= department.departmentHod || null;
         this.departmentBench= department.departmentBench || '';
         this.updatedAt = department.updatedAt || '';
         this.createdAt = department.createdAt || '';

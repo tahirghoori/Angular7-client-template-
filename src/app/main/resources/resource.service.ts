@@ -5,6 +5,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Department } from '../departments/department.model';
+import { Resource } from './resource.model';
+import { Skill } from '../skills/skill.model';
 
 const API_URL = environment.apiUrl;
 
@@ -15,6 +18,8 @@ const API_URL = environment.apiUrl;
 export class ResourceService {
   
   entityNode: string = 'resource';
+  entityNodeDepartment: string = 'department';
+  entityNodeSkill: string = 'skill';
   routeParams: any;
   item: any;
   items: any[];
@@ -161,6 +166,46 @@ export class ResourceService {
         }, reject);
     });
   }
+
+  public getAll(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeDepartment)
+
+      .map(response => {
+        const departments = response.json();
+        return departments.map((department) => new Department(department));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+  private handleError (error: Response | any) {
+    console.error('LicenceService::handleError', error);
+    return Observable.throw(error);
+  }
+  public getReportingesource(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNode)
+
+      .map(response => {
+        const resources = response.json();
+        return resources.map((resource) => new Resource(resource));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+  public getResourceSkills(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeSkill)
+
+      .map(response => {
+        const skills = response.json();
+        return skills.map((skill) => new Skill(skill));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+
+
 
   deleteItemById(itemId: number): any {
     return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
