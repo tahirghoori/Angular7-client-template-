@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Resource } from '../resource.model';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { ResourceService } from '../resource.service';
 import { MatSnackBar } from '@angular/material';
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
+import { Department } from 'app/main/departments/department.model';
+import { Skill } from 'app/main/skills/skill.model';
 
 @Component({
   selector: 'app-resource',
@@ -16,6 +18,9 @@ import { fuseAnimations } from '@fuse/animations';
   animations: fuseAnimations
 })
 export class ResourceComponent implements OnInit {
+  resourceDepartments:Department[];
+  resourceReporters:Resource[];
+  resourceSkills:Skill[];
   resource: Resource;
   pageType: string;
   resourceForm: FormGroup;
@@ -25,7 +30,9 @@ export class ResourceComponent implements OnInit {
 
   // Private
   private _unsubscribeAll: Subject<any>;
+  toppings = new FormControl();
 
+  //toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   
   /**
    * Constructor
@@ -72,6 +79,26 @@ export class ResourceComponent implements OnInit {
 
 
       });
+
+      this._resourceService.getAll().subscribe(resourceDepartment => {
+        this.resourceDepartments =  resourceDepartment.map((department) => new Department(department));
+    // console.log(this.resourceDepartments);
+
+    });
+
+    this._resourceService.getReportingesource().subscribe(resourceReporter => {
+      this.resourceReporters =  resourceReporter.map((resource) => new Resource(resource));
+  // console.log(this.resourceReporters);
+
+  });
+
+  this._resourceService.getResourceSkills().subscribe(resourceSkills => {
+    this.resourceSkills =  resourceSkills.map((skill) => new Skill(skill));
+// console.log(this.resourceSkills);
+
+});
+
+
   }
   /**
    * On destroy
@@ -119,7 +146,11 @@ export class ResourceComponent implements OnInit {
         resourceShift: [this.resource.resourceShift],
         resourceBenefits : [this.resource.resourceBenefits],
         resourceContractType : [this.resource.resourceContractType],
-        resourcePartTime : [ this.resource.resourcePartTime]
+        resourcePartTime : [ this.resource.resourcePartTime],
+        resourceDepartment : [ this.resource.resourceDepartment],
+        resourceSkills: [ this.resource.resourceSkills]
+
+      
       });
    
   }
@@ -152,6 +183,11 @@ export class ResourceComponent implements OnInit {
   addResource(): void {
     const data = this.resourceForm.getRawValue();
     data.handle = FuseUtils.handleize(data.resourceName);
+    data.resourceSkills = this.toppings.value;
+    if(data.resourceReportingTo == ""){
+      data.resourceReportingTo=null;
+    }
+    console.log(data);
 
     this._resourceService.addItem(data)
       .then(() => {
@@ -166,8 +202,13 @@ export class ResourceComponent implements OnInit {
         });
 
         // Change the location with new one
+   //     this._resourceService.getItems();
+       // console.log( this._resourceService.getItems())
         this._router.navigate(['/resources']);
       });
   }
 
+  compareFn(c1: Resource, c2: Resource): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+   }
 }

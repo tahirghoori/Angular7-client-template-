@@ -64,13 +64,16 @@
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-              <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Resource CNIC</mat-label>
-                <input matInput placeholder="CNIC" name="resourceCNIC" formControlName="resourceCNIC"
-                  required>
-                <mat-error>CNIC is required!</mat-error>
-              </mat-form-field>
-            </div>
+              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                  <mat-select placeholder="Department" formControlName="resourceDepartment" name="resourceDepartment"
+                  [compareWith]="compareFn" >
+                      <mat-option>-- Select Department --</mat-option>
+                      <mat-option *ngFor="let department of resourceDepartments"  [value]="department" >
+                          {{department.departmentName}}
+                      </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
@@ -92,22 +95,41 @@
 
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-              <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Nationality</mat-label>
-                <input matInput placeholder="Nationality" name="resourceNationality" formControlName="resourceNationality"
-                  required>
-                <mat-error>Nationality is required!</mat-error>
+              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                  <mat-select placeholder="Reporting To" formControlName="resourceReportingTo" name="resourceReportingTo"
+                  [compareWith]="compareFn" >
+                      <mat-option>-- Select Resource Reporter --</mat-option>
+                      <mat-option *ngFor="let resource of resourceReporters"  [value]="resource" >
+                          {{resource?.resourceName}}
+                      </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+             
+                <mat-select placeholder="Toppings"  [formControl]="toppings" multiple>
+                  <mat-select-trigger>
+                    {{toppings.value ? toppings.value[0].skillName : ''}}
+                    <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+                      (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let item of resourceSkills" [value]="item">{{item.skillName}}</mat-option>
+                </mat-select>
               </mat-form-field>
-            </div>
-
-            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-              <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Resource Name</mat-label>
-                <input matInput placeholder="Emergency ContactNo." name="resourceEmergencyContactNo" formControlName="resourceEmergencyContactNo"
-                  required>
-                <mat-error>Resource Name is required!</mat-error>
-              </mat-form-field>
-            </div>
+              </div>
+              <!-- <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                    <mat-select placeholder="Skill" formControlName="resourceSkill" name="resourceSkill"
+                    [compareWith]="compareFn" multiple>
+                        <mat-option>-- Select Skill --</mat-option>
+                        <mat-option *ngFor="let skill of resourceSkills"  [value]="skill" multiple>
+                            {{skill.skillName}}
+                        </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div> -->
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">

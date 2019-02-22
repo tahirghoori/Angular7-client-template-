@@ -1,4 +1,6 @@
 import { FuseUtils } from "@fuse/utils";
+import { Department } from "../departments/department.model";
+import { Skill } from "../skills/skill.model";
 
 export class Resource {
 
@@ -15,7 +17,7 @@ export class Resource {
     resourceEmergencyContactNo : string;
     resourceMaritalStatus : string;
     resourceDesignation : string;
-    resourceReportingTo : string;
+    resourceReportingTo : Resource;
     resourceResume : string;
     resourceDateOfJoining : Date;
     resourceWorkingDays: number;
@@ -26,6 +28,8 @@ export class Resource {
     resourceBenefits: number;
     resourceContractType : number;     //isIntern, isPartTime , isFullTime
     resourcePartTime : boolean;
+    resourceDepartment: Department;
+    resourceSkills:Skill[];
     handle: string;
     updatedAt: string;
     createdAt: string;
@@ -56,7 +60,7 @@ export class Resource {
         this.resourceEmergencyContactNo = resource.resourceEmergencyContactNo || '';
         this.resourceMaritalStatus = resource.resourceMaritalStatus || '';
         this.resourceDesignation = resource.resourceDesignation || '';
-        this.resourceReportingTo = resource.resourceReportingTo || '';
+        this.resourceReportingTo = resource.resourceReportingTo || null;
         this.resourceResume = resource.resourceResume || '';
         this.resourceDateOfJoining = resource.resourceDateOfJoining || '';
         this.resourceWorkingDays = resource.resourceWorkingDays || '';
@@ -67,6 +71,8 @@ export class Resource {
         this.resourceBenefits = resource.resourceBenefits || '';
         this.resourceContractType = resource.resourceContractType || '';
         this.resourcePartTime = resource.resourcePartTime || '';
+        this.resourceDepartment = resource.resourceDepartment || null;
+        this.resourceSkills= resource.resourceSkills || null;
         this.updatedAt = resource.updatedAt || '';
         this.createdAt = resource.createdAt || '';
     }

@@ -53,12 +53,12 @@
                     </mat-cell>
                 </ng-container>
                 <!-- Name Column -->
-                <ng-container matColumnDef="resourceCNIC">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>CNIC</mat-header-cell>
+                <!-- <ng-container matColumnDef="resourceDepartment">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Department</mat-header-cell>
                     <mat-cell *matCellDef="let resource">
-                        <p class="text-truncate">{{resource.resourceCNIC}}</p>
+                        <p class="text-truncate">{{resource.resourceDepartment?.departmentName}}</p>
                     </mat-cell>
-                </ng-container>
+                </ng-container> -->
                 <!-- Name Column -->
                 <ng-container matColumnDef="resourceEmail">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
@@ -68,12 +68,12 @@
                 </ng-container>
 
                 <!-- Name Column -->
-                <ng-container matColumnDef="resourceWorkingDays">
+                <!-- <ng-container matColumnDef="resourceWorkingDays">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Working Days</mat-header-cell>
                     <mat-cell *matCellDef="let resource">
                         <p class="text-truncate">{{resource.resourceWorkingDays}}</p>
                     </mat-cell>
-                </ng-container>
+                </ng-container> -->
                 <!-- Name Column -->
                 <ng-container matColumnDef="resourcePhone">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number</mat-header-cell>
@@ -83,41 +83,41 @@
                 </ng-container>
 
                 <!-- Name Column -->
-                <ng-container matColumnDef="resourceNationality">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-                    <mat-cell *matCellDef="let resource">
-                        <p class="text-truncate">{{resource.resourceNationality}}</p>
-                    </mat-cell>
-                </ng-container>
+              
                 <!-- Name Column -->
-                <ng-container matColumnDef="resourceEmergencyContactNo">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Emergency ContactNo</mat-header-cell>
+                <!-- <ng-container matColumnDef="resourceSkill">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Skill</mat-header-cell>
                     <mat-cell *matCellDef="let resource">
-                        <p class="text-truncate">{{resource.resourceEmergencyContactNo}}</p>
+                        <p class="text-truncate">{{resource.resourceSkill?.departmentName}}</p>
                     </mat-cell>
-                </ng-container>
+                </ng-container> -->
                 <!-- Name Column -->
-                <ng-container matColumnDef="resourceDesignation">
+                <!-- <ng-container matColumnDef="resourceDesignation">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Designation</mat-header-cell>
                     <mat-cell *matCellDef="let resource">
                         <p class="text-truncate">{{resource.resourceDesignation}}</p>
                     </mat-cell>
-                </ng-container>
+                </ng-container> -->
                 <!-- Name Column -->
-                <ng-container matColumnDef="resourcePerHourRate">
+                <!-- <ng-container matColumnDef="resourcePerHourRate">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Salary/hour</mat-header-cell>
                         <mat-cell *matCellDef="let resource">
                             <p class="text-truncate">{{resource.resourcePerHourRate}}</p>
                         </mat-cell>
-                </ng-container>
+                </ng-container> -->
                 <!-- Name Column -->
-                <ng-container matColumnDef="resourceBenefits">
+                <!-- <ng-container matColumnDef="resourceBenefits">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Benefits</mat-header-cell>
                     <mat-cell *matCellDef="let resource">
                         <p class="text-truncate">{{resource.resourceBenefits}}</p>
                     </mat-cell>
+                </ng-container> -->
+                <ng-container matColumnDef="resourceReportingTo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Reporting To</mat-header-cell>
+                    <mat-cell *matCellDef="let resource">
+                        <p class="text-truncate">{{resource.resourceReportingTo?.resourceName}}</p>
+                    </mat-cell>
                 </ng-container>
-
 
 
 

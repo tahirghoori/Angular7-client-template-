@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Skill } from '../skill.model';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { SkillService } from '../skill.service';
 import { MatSnackBar } from '@angular/material';
@@ -25,7 +25,7 @@ export class SkillComponent implements OnInit {
 
   // Private
   private _unsubscribeAll: Subject<any>;
-
+  toppings = new FormControl();
   
   /**
    * Constructor
@@ -97,7 +97,8 @@ export class SkillComponent implements OnInit {
       return this._formBuilder.group({
         id: [this.skill.id],
         skillName: [this.skill.skillName],
-        handle: [this.skill.handle]
+        handle: [this.skill.handle],
+        skillResources: [this.skill.skillResources]
       });
    
   }
