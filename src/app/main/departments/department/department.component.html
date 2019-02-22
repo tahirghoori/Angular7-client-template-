@@ -69,7 +69,7 @@
                   [compareWith]="compareFn" >
                       <mat-option>-- Select HOD --</mat-option>
                       <mat-option *ngFor="let resource of departmentResources"  [value]="resource" >
-                          {{resource.resourceName}}
+                          {{resource?.resourceName}}
                       </mat-option>
                   </mat-select>
                 </mat-form-field>

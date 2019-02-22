@@ -77,8 +77,8 @@ export class DepartmentComponent implements OnInit {
 
 
 
-      this._departmentService.getAll().subscribe(departmentHod => {
-        this.departmentResources =  departmentHod.map((resource) => new Resource(resource));
+      this._departmentService.getAll().subscribe(departmentResources => {
+        this.departmentResources =  departmentResources.map((resource) => new Resource(resource));
     console.log(this.departmentResources);
 
     });
