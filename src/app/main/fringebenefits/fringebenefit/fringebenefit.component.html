@@ -24,7 +24,7 @@
 
         <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
           <div class="h2" *ngIf="pageType ==='edit'">
-            {{fringebenefit.expenseName}}
+            {{fringebenefit.name}}
           </div>
           <div class="h2" *ngIf="pageType ==='new'">
             New Fringebenefit
@@ -57,7 +57,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Fringebenefit Name</mat-label>
-                <input matInput placeholder="Expense Name" name="expenseName" formControlName="expenseName"
+                <input matInput placeholder="Expense Name" name="name" formControlName="name"
                   required>
                 <mat-error>Expense Name is required!</mat-error>
               </mat-form-field>

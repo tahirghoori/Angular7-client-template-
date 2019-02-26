@@ -5,6 +5,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Client } from '../clients/client.model';
+import { Feature } from '../features/feature.model';
+import { Milestone } from '../milestones/milestone.model';
+import { Resource } from '../resources/resource.model';
 
 const API_URL = environment.apiUrl;
 
@@ -15,6 +19,10 @@ const API_URL = environment.apiUrl;
 export class ProjectService {
   
   entityNode: string = 'project';
+  entityNodeClient: string = 'client';
+  entityNodeFeature: string = 'feature';
+  entityNodeMilestone: string = 'milestone';
+  entityNodeResource: string = 'resource';
   routeParams: any;
   item: any;
   items: any[];
@@ -162,9 +170,62 @@ export class ProjectService {
     });
   }
 
+  public getAllClients(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeClient)
+
+      .map(response => {
+        const clients = response.json();
+        return clients.map((client) => new Client(client));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+
+  public getAllFeatures(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeFeature)
+
+      .map(response => {
+        const features = response.json();
+        return features.map((feature) => new Feature(feature));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+
+  public getAllMilestones(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeMilestone)
+
+      .map(response => {
+        const milestones = response.json();
+        return milestones.map((milestone) => new Milestone(milestone));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+
+
+  public getAllResources(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeResource)
+
+      .map(response => {
+        const resources = response.json();
+        return resources.map((resource) => new Resource(resource));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
   deleteItemById(itemId: number): any {
     return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
 
+  }
+
+  private handleError (error: Response | any) {
+    console.error('LicenceService::handleError', error);
+    return Observable.throw(error);
   }
 
 }

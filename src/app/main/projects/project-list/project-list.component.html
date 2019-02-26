@@ -52,6 +52,13 @@
                   </mat-cell>
               </ng-container>
 
+              <ng-container matColumnDef="projectClient">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Client</mat-header-cell>
+                <mat-cell *matCellDef="let project">
+                    <p class="text-truncate">{{project.projectClient?.name}}</p>
+                </mat-cell>
+            </ng-container>
+
              
 
               

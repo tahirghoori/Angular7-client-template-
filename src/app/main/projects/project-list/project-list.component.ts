@@ -20,7 +20,7 @@ export class ProjectListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['name', 'active'];
+  displayedColumns = ['name','projectClient', 'active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -214,8 +214,8 @@ export class FilesDataSource extends DataSource<any>
           let propertyB: number | string = '';
 
           switch (this._matSort.active) {
-              case 'title':
-                  [propertyA, propertyB] = [a.title, b.title];
+              case 'name':
+                  [propertyA, propertyB] = [a.name, b.name];
                   break;
           }
 
