@@ -5,7 +5,7 @@ export class Skill {
    
    
     id: string;
-    skillName: string;
+    name: string;
     handle: string;
     skillResources:Resource[];
     updatedAt: string;
@@ -25,7 +25,7 @@ export class Skill {
             this.handle = FuseUtils.handleize(skill.skillName  + '');
         }
         this.id = skill.id || '';
-        this.skillName = skill.skillName || '';
+        this.name = skill.name || '';
         this.skillResources = skill.skillResources || null;
         this.updatedAt = skill.updatedAt || '';
         this.createdAt = skill.createdAt || '';

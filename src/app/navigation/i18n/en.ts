@@ -47,6 +47,12 @@ export const locale = {
             },
             'REPORTS'        : {
                 'TITLE': 'Reports'
+            },
+            'FEATURES'        : {
+                'TITLE': 'Features'
+            },
+            'MILESTONES'        : {
+                'TITLE': 'Milestones'
             }
         }
     }

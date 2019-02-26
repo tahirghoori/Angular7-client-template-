@@ -20,7 +20,7 @@ export class FeatureListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['title', 'active'];
+  displayedColumns = ['name','featureEstimateDuration','active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -214,7 +214,7 @@ export class FilesDataSource extends DataSource<any>
           let propertyB: number | string = '';
 
           switch (this._matSort.active) {
-              case 'title':
+              case 'name':
                   [propertyA, propertyB] = [a.title, b.title];
                   break;
           }

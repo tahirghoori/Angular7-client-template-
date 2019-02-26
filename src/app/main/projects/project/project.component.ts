@@ -96,7 +96,7 @@ export class ProjectComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.project.id],
-        title: [this.project.title],
+        name: [this.project.name],
         handle: [this.project.handle]
       });
    
@@ -107,7 +107,7 @@ export class ProjectComponent implements OnInit {
    */
   saveProject(): void {
     const data = this.projectForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    data.handle = FuseUtils.handleize(data.name);
 
     this._projectService.saveItem(data)
       .then(() => {
@@ -129,7 +129,7 @@ export class ProjectComponent implements OnInit {
    */
   addProject(): void {
     const data = this.projectForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    data.handle = FuseUtils.handleize(data.name);
 
     this._projectService.addItem(data)
       .then(() => {

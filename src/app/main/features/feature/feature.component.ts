@@ -96,8 +96,9 @@ export class FeatureComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.feature.id],
-        title: [this.feature.title],
-        handle: [this.feature.handle]
+        name: [this.feature.name],
+        handle: [this.feature.handle],
+        featureEstimateDuration: [this.feature.featureEstimateDuration]
       });
    
   }
@@ -107,7 +108,7 @@ export class FeatureComponent implements OnInit {
    */
   saveFeature(): void {
     const data = this.featureForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    data.handle = FuseUtils.handleize(data.name);
 
     this._featureService.saveItem(data)
       .then(() => {
@@ -129,7 +130,7 @@ export class FeatureComponent implements OnInit {
    */
   addFeature(): void {
     const data = this.featureForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    data.handle = FuseUtils.handleize(data.name);
 
     this._featureService.addItem(data)
       .then(() => {

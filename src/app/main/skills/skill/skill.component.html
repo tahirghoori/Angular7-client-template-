@@ -24,7 +24,7 @@
 
         <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
           <div class="h2" *ngIf="pageType ==='edit'">
-            {{skill.skillName}}
+            {{skill.title}}
           </div>
           <div class="h2" *ngIf="pageType ==='new'">
             New Skill
@@ -57,7 +57,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Skill Name</mat-label>
-                <input matInput placeholder="First Name" name="skillName" formControlName="skillName"
+                <input matInput placeholder="First Name" name="name" formControlName="name"
                   required>
                 <mat-error>Skill Name is required!</mat-error>
               </mat-form-field>

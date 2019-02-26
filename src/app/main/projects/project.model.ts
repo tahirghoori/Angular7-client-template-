@@ -4,7 +4,7 @@ export class Project {
 
 
     id: string;
-    title: string;
+    name: string;
     handle: string;
     updatedAt: string;
     createdAt: string;
@@ -23,7 +23,7 @@ export class Project {
             this.handle = FuseUtils.handleize(project.projectName  + '');
         }
         this.id = project.id || '';
-        this.title = project.title || '';
+        this.name = project.name || '';
         this.updatedAt = project.updatedAt || '';
         this.createdAt = project.createdAt || '';
     }

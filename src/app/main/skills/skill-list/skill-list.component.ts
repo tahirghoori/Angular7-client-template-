@@ -21,7 +21,7 @@ export class SkillListComponent implements OnInit {
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
   
-  displayedColumns = ['skillName', 'active'];
+  displayedColumns = ['name', 'active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -215,8 +215,8 @@ export class FilesDataSource extends DataSource<any>
           let propertyB: number | string = '';
 
           switch (this._matSort.active) {
-              case 'skillName':
-                  [propertyA, propertyB] = [a.skillName, b.skillName];
+              case 'name':
+                  [propertyA, propertyB] = [a.name, b.name];
                   break;
           }
 

@@ -57,9 +57,19 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Feature Name</mat-label>
-                <input matInput placeholder="First Name" name="title" formControlName="title"
+                <input matInput placeholder="First Name" name="name" formControlName="name"
                   required>
                 <mat-error>Feature Name is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Feature Duration</mat-label>
+                <input matInput placeholder="Estimated Duration" name="featureEstimateDuration" formControlName="featureEstimateDuration"
+                  required>
+                <mat-error>Feature Estimated Duration is required!</mat-error>
               </mat-form-field>
             </div>
 

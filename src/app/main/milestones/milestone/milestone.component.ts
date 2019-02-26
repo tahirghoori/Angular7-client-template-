@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
+import { Project } from 'app/main/projects/project.model';
 
 @Component({
   selector: 'app-milestone',
@@ -16,6 +17,7 @@ import { fuseAnimations } from '@fuse/animations';
   animations: fuseAnimations
 })
 export class MilestoneComponent implements OnInit {
+  projects:Project[];
   milestone: Milestone;
   pageType: string;
   milestoneForm: FormGroup;
@@ -72,6 +74,12 @@ export class MilestoneComponent implements OnInit {
 
 
       });
+
+      this._milestoneService.getAllProjects().subscribe(milestoneProject => {
+        this.projects =  milestoneProject.map((project) => new Project(project));
+
+
+    });
   }
   /**
    * On destroy
@@ -96,8 +104,16 @@ export class MilestoneComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.milestone.id],
-        title: [this.milestone.title],
-        handle: [this.milestone.handle]
+        name: [this.milestone.name],
+        handle: [this.milestone.handle],
+        milestoneStartDate: [this.milestone.milestoneStartDate],
+        milestoneDelieveryDate: [this.milestone.milestoneDelieveryDate],
+        milestoneDevelopmentDate: [this.milestone.milestoneDevelopmentDate],
+        milestoneExpectedPayment: [this.milestone.milestoneExpectedPayment],
+        milestonePaymentAmount: [this.milestone.milestonePaymentAmount],
+        milestoneCost: [this.milestone.milestoneCost],
+        milestonePaymentMethod: [this.milestone.milestonePaymentMethod],
+        project: [this.milestone.project]
       });
    
   }
@@ -107,7 +123,7 @@ export class MilestoneComponent implements OnInit {
    */
   saveMilestone(): void {
     const data = this.milestoneForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    data.handle = FuseUtils.handleize(data.name);
 
     this._milestoneService.saveItem(data)
       .then(() => {
@@ -129,7 +145,7 @@ export class MilestoneComponent implements OnInit {
    */
   addMilestone(): void {
     const data = this.milestoneForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.title);
+    data.handle = FuseUtils.handleize(data.name);
 
     this._milestoneService.addItem(data)
       .then(() => {
@@ -147,5 +163,10 @@ export class MilestoneComponent implements OnInit {
         this._router.navigate(['/milestones']);
       });
   }
+
+
+  compareFn(c1: Milestone, c2: Milestone): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+   }
 
 }
