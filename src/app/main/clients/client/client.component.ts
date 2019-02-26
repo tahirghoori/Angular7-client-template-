@@ -110,7 +110,7 @@ export class ClientComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.client.id],
-        clientName: [this.client.clientName],
+        name: [this.client.name],
         handle: [this.client.handle],
         clientPhoneNumber:[this.client.clientPhoneNumber],
         clientEmail: [this.client.clientEmail],
@@ -125,7 +125,7 @@ export class ClientComponent implements OnInit {
    */
   saveClient(): void {
     const data = this.clientForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.clientName);
+    data.handle = FuseUtils.handleize(data.name);
 
     this._clientService.saveItem(data)
       .then(() => {
@@ -147,7 +147,7 @@ export class ClientComponent implements OnInit {
    */
   addClient(): void {
     const data = this.clientForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.clientName);
+    data.handle = FuseUtils.handleize(data.name);
 if(data.parent == ""){
   data.parent=null;
 }

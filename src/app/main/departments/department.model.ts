@@ -3,7 +3,7 @@ import { Resource } from "../resources/resource.model";
 
 export class Department {
     id: string;
-    departmentName: string;
+    name: string;
     handle: string;
     departmentHod:Resource;
     departmentBench:number;
@@ -24,7 +24,7 @@ export class Department {
             this.handle = FuseUtils.handleize(department.departmentName  + '');
         }
         this.id = department.id || '';
-        this.departmentName = department.departmentName || '';
+        this.name = department.name || '';
         this.departmentHod= department.departmentHod || null;
         this.departmentBench= department.departmentBench || '';
         this.updatedAt = department.updatedAt || '';

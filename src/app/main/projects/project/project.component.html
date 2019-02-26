@@ -24,7 +24,7 @@
 
         <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
           <div class="h2" *ngIf="pageType ==='edit'">
-            {{project.title}}
+            {{project.name}}
           </div>
           <div class="h2" *ngIf="pageType ==='new'">
             New Project
@@ -57,7 +57,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Name</mat-label>
-                <input matInput placeholder="First Name" name="title" formControlName="title"
+                <input matInput placeholder="First Name" name="name" formControlName="name"
                   required>
                 <mat-error>Project Name is required!</mat-error>
               </mat-form-field>

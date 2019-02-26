@@ -106,7 +106,7 @@ export class DepartmentComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.department.id],
-        departmentName: [this.department.departmentName],
+        name: [this.department.name],
         handle: [this.department.handle],
         departmentBench: [this.department.departmentBench],
         departmentHod: [this.department.departmentHod]
@@ -119,7 +119,7 @@ export class DepartmentComponent implements OnInit {
    */
   saveDepartment(): void {
     const data = this.departmentForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.departmentName);
+    data.handle = FuseUtils.handleize(data.name);
 
     this._departmentService.saveItem(data)
       .then(() => {
@@ -141,7 +141,7 @@ export class DepartmentComponent implements OnInit {
    */
   addDepartment(): void {
     const data = this.departmentForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.departmentName);
+    data.handle = FuseUtils.handleize(data.name);
   
     this._departmentService.addItem(data)
       .then(() => {

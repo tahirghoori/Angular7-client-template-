@@ -2,7 +2,7 @@ import { FuseUtils } from "@fuse/utils";
 
 export class Client {
     id: string;
-    clientName: string;
+    name: string;
     handle: string;
     clientPhoneNumber: number;
     clientEmail : string;
@@ -30,10 +30,10 @@ export class Client {
       
         client = client || {};
         if (client.clientName !== ''){
-            this.handle = FuseUtils.handleize(client.clientName  + '');
+            this.handle = FuseUtils.handleize(client.name  + '');
         }
         this.id = client.id || '';
-        this.clientName = client.clientName || '';
+        this.name = client.name || '';
         this.clientPhoneNumber = client.clientPhoneNumber || '';
         this.clientEmail = client.clientEmail || '';
         this.clientAddress = client.clientAddress || '';

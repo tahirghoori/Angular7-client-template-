@@ -24,7 +24,7 @@
 
         <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
           <div class="h2" *ngIf="pageType ==='edit'">
-            {{department.departmentName}}
+            {{department.title}}
           </div>
           <div class="h2" *ngIf="pageType ==='new'">
             New Department
@@ -57,7 +57,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Department Name</mat-label>
-                <input matInput placeholder="Department Name" name="departmentName" formControlName="departmentName"
+                <input matInput placeholder="Department Name" name="name" formControlName="name"
                   required>
                 <mat-error>Department Name is required!</mat-error>
               </mat-form-field>
@@ -69,7 +69,7 @@
                   [compareWith]="compareFn" >
                       <mat-option>-- Select HOD --</mat-option>
                       <mat-option *ngFor="let resource of departmentResources"  [value]="resource" >
-                          {{resource?.resourceName}}
+                          {{resource?.name}}
                       </mat-option>
                   </mat-select>
                 </mat-form-field>

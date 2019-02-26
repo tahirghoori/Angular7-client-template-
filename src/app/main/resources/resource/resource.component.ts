@@ -124,7 +124,7 @@ export class ResourceComponent implements OnInit {
       return this._formBuilder.group({
         id: [this.resource.id],
         handle: [this.resource.handle],
-        resourceName : [this.resource.resourceName],
+        name : [this.resource.name],
         resourceCNIC : [this.resource.resourceCNIC],
         resourceDOB : [this.resource.resourceDOB],
         resourceEmail : [this.resource.resourceEmail],
@@ -160,7 +160,7 @@ export class ResourceComponent implements OnInit {
    */
   saveResource(): void {
     const data = this.resourceForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.resourceName);
+    data.handle = FuseUtils.handleize(data.name);
 
     this._resourceService.saveItem(data)
       .then(() => {
@@ -182,7 +182,7 @@ export class ResourceComponent implements OnInit {
    */
   addResource(): void {
     const data = this.resourceForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.resourceName);
+    data.handle = FuseUtils.handleize(data.name);
     data.resourceSkills = this.toppings.value;
     if(data.resourceReportingTo == ""){
       data.resourceReportingTo=null;
