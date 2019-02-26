@@ -49,6 +49,20 @@ export const navigation: FuseNavigation[] = [
                         'translate': 'NAV.PROJECT_LIST.TITLE',
                         'type' : 'item',
                         'url'  : '/projects'
+                    },
+                    {
+                        'id'   : 'feature',
+                        'title': 'Features',
+                        'translate': 'NAV.FEATURES.TITLE',
+                        'type' : 'item',
+                        'url'  : '/features'
+                    },
+                    {
+                        'id'   : 'milestone',
+                        'title': 'Milestones',
+                        'translate': 'NAV.MILESTONES.TITLE',
+                        'type' : 'item',
+                        'url'  : '/milestones'
                     }
 
                 ]

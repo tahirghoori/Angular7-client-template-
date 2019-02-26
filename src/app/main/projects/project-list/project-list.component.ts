@@ -20,7 +20,7 @@ export class ProjectListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['title', 'active'];
+  displayedColumns = ['name', 'active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;

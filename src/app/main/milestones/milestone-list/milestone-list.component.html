@@ -44,16 +44,69 @@
           <mat-table class="milestones-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}"
               fusePerfectScrollbar>
 
+              <ng-container matColumnDef="project">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Project</mat-header-cell>
+                <mat-cell *matCellDef="let milestone">
+                    <p class="text-truncate">{{milestone.project?.name}}</p>
+                </mat-cell>
+            </ng-container>
+
               <!-- Name Column -->
-              <ng-container matColumnDef="title">
+              <ng-container matColumnDef="name">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
                   <mat-cell *matCellDef="let milestone">
-                      <p class="text-truncate">{{milestone.title}}</p>
+                      <p class="text-truncate">{{milestone.name}}</p>
                   </mat-cell>
               </ng-container>
 
+               <!-- Name Column -->
+               <ng-container matColumnDef="milestoneStartDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Milestone Start Date</mat-header-cell>
+                <mat-cell *matCellDef="let milestone">
+                    <p class="text-truncate">{{milestone.milestoneStartDate}}</p>
+                </mat-cell>
+            </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="milestoneDelieveryDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Milestone Delievery Date</mat-header-cell>
+                <mat-cell *matCellDef="let milestone">
+                    <p class="text-truncate">{{milestone.milestoneDelieveryDate}}</p>
+                </mat-cell>
+            </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="milestoneDevelopmentDate">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Milestone Development Date</mat-header-cell>
+                    <mat-cell *matCellDef="let milestone">
+                        <p class="text-truncate">{{milestone.milestoneDevelopmentDate}}</p>
+                    </mat-cell>
+                </ng-container>
              
 
+                <!-- Name Column -->
+                <ng-container matColumnDef="milestoneExpectedPayment">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Expected Payment</mat-header-cell>
+                    <mat-cell *matCellDef="let milestone">
+                        <p class="text-truncate">{{milestone.milestoneExpectedPayment}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="milestonePaymentAmount">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Payment Amount</mat-header-cell>
+                        <mat-cell *matCellDef="let milestone">
+                            <p class="text-truncate">{{milestone.milestonePaymentAmount}}</p>
+                        </mat-cell>
+                    </ng-container>
+
+                        <!-- Name Column -->
+                <ng-container matColumnDef="milestoneCost">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Total Cost</mat-header-cell>
+                    <mat-cell *matCellDef="let milestone">
+                        <p class="text-truncate">{{milestone.milestoneCost}}</p>
+                    </mat-cell>
+                </ng-container>
               
 
               <!-- Active Column -->

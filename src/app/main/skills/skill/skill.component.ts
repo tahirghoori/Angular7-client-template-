@@ -96,7 +96,7 @@ export class SkillComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.skill.id],
-        skillName: [this.skill.skillName],
+        name: [this.skill.name],
         handle: [this.skill.handle],
         skillResources: [this.skill.skillResources]
       });
@@ -108,7 +108,7 @@ export class SkillComponent implements OnInit {
    */
   saveSkill(): void {
     const data = this.skillForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.skillName);
+    data.handle = FuseUtils.handleize(data.name);
 
     this._skillService.saveItem(data)
       .then(() => {
@@ -130,7 +130,7 @@ export class SkillComponent implements OnInit {
    */
   addSkill(): void {
     const data = this.skillForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.skillName);
+    data.handle = FuseUtils.handleize(data.name);
 
     this._skillService.addItem(data)
       .then(() => {

@@ -45,13 +45,19 @@
               fusePerfectScrollbar>
 
               <!-- Name Column -->
-              <ng-container matColumnDef="title">
+              <ng-container matColumnDef="name">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
                   <mat-cell *matCellDef="let feature">
-                      <p class="text-truncate">{{feature.title}}</p>
+                      <p class="text-truncate">{{feature.name}}</p>
                   </mat-cell>
               </ng-container>
 
+              <ng-container matColumnDef="featureEstimateDuration">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Estimated Duration</mat-header-cell>
+                <mat-cell *matCellDef="let feature">
+                    <p class="text-truncate">{{feature.featureEstimateDuration}}</p>
+                </mat-cell>
+            </ng-container>
              
 
               

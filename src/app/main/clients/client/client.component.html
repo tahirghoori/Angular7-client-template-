@@ -24,7 +24,7 @@
 
         <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
           <div class="h2" *ngIf="pageType ==='edit'">
-            {{client.clientName}}
+            {{client.title}}
           </div>
           <div class="h2" *ngIf="pageType ==='new'">
             New Client
@@ -58,7 +58,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Client Name</mat-label>
-                <input matInput placeholder="First Name" name="clientName" formControlName="clientName"
+                <input matInput placeholder="First Name" name="name" formControlName="name"
                   required>
                 <mat-error>Client Name is required!</mat-error>
               </mat-form-field>
@@ -103,7 +103,7 @@
                     [compareWith]="compareFn" >
                         <mat-option>-- Select Company --</mat-option>
                         <mat-option *ngFor="let client of clients"  [value]="client" >
-                            {{client?.clientName}}
+                            {{client?.name}}
                         </mat-option>
                     </mat-select>
                   </mat-form-field>

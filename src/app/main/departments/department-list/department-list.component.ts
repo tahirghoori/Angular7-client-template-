@@ -20,7 +20,7 @@ export class DepartmentListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['departmentName', 'departmentHod', 'departmentBench', 'active'];
+  displayedColumns = ['name', 'departmentHod', 'departmentBench', 'active'];
  
 
 
@@ -216,7 +216,7 @@ export class FilesDataSource extends DataSource<any>
           let propertyB: number | string = '';
 
           switch (this._matSort.active) {
-              case 'title':
+              case 'name':
                   [propertyA, propertyB] = [a.title, b.title];
                   break;
           }

@@ -20,7 +20,7 @@ export class MilestoneListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['title', 'active'];
+  displayedColumns = ['name','milestoneStartDate','milestoneDelieveryDate','milestoneCost', 'project', 'active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;

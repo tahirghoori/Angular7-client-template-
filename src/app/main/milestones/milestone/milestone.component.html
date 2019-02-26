@@ -55,11 +55,93 @@
 
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                  <mat-select placeholder="Select Project" formControlName="project" name="project"
+                  [compareWith]="compareFn" >
+                      <mat-option>-- Select Project --</mat-option>
+                      <mat-option *ngFor="let project of projects"  [value]="project" >
+                          {{project.name}}
+                      </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Milestone Name</mat-label>
-                <input matInput placeholder="First Name" name="title" formControlName="title"
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="First Name" name="name" formControlName="name"
                   required>
                 <mat-error>Milestone Name is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Start Date: </mat-label>
+                <input matInput placeholder="yyy-mm-dd" name="milestoneStartDate" formControlName="milestoneStartDate"
+                  required>
+                <mat-error>Milestone Start Date is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Delievery Date</mat-label>
+                <input matInput placeholder="yyyy-mm-dd" name="milestoneDelieveryDate" formControlName="milestoneDelieveryDate"
+                  required>
+                <mat-error>Milestone Delievery Date is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Development Date</mat-label>
+                <input matInput placeholder="yyyy-mm-dd" name="milestoneDevelopmentDate" formControlName="milestoneDevelopmentDate"
+                  required>
+                <mat-error>Milestone Development Date is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Expected Payment</mat-label>
+                <input matInput placeholder="Milestone Expected Payment" name="milestoneExpectedPayment" formControlName="milestoneExpectedPayment"
+                  required>
+                <mat-error>Milestone Expected Payment is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Payment Amount</mat-label>
+                <input matInput placeholder="Milestone Payment Amount" name="milestonePaymentAmount" formControlName="milestonePaymentAmount"
+                  required>
+                <mat-error>Milestone Payment Amount is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label> Cost</mat-label>
+                <input matInput placeholder="Milestone Cost" name="milestoneCost" formControlName="milestoneCost"
+                  required>
+                <mat-error>Milestone Cost is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Milestone Payment Method</mat-label>
+                <input matInput placeholder="Milestone Payment Method" name="milestonePaymentMethod" formControlName="milestonePaymentMethod"
+                  required>
+                <mat-error>Milestone Payment Method is required!</mat-error>
               </mat-form-field>
             </div>
 

@@ -1,10 +1,13 @@
 import { FuseUtils } from "@fuse/utils";
+import { CdkCellOutletMultiRowContext } from "@angular/cdk/table";
+import { Client } from "../clients/client.model";
 
 export class Project {
 
 
     id: string;
-    title: string;
+    name: string;
+    projectClient:Client;
     handle: string;
     updatedAt: string;
     createdAt: string;
@@ -23,7 +26,8 @@ export class Project {
             this.handle = FuseUtils.handleize(project.projectName  + '');
         }
         this.id = project.id || '';
-        this.title = project.title || '';
+        this.name = project.name || '';
+        this.projectClient =project.projectClient || null;
         this.updatedAt = project.updatedAt || '';
         this.createdAt = project.createdAt || '';
     }

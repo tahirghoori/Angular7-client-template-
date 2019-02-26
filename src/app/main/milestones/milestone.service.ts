@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Project } from '../projects/project.model';
 
 const API_URL = environment.apiUrl;
 
@@ -14,7 +15,8 @@ const API_URL = environment.apiUrl;
 })
 export class MilestoneService {
   
-  entityNode: string = 'milestones';
+  entityNode: string = 'milestone';
+  entityNodeProject: string = 'project';
   routeParams: any;
   item: any;
   items: any[];
@@ -123,7 +125,7 @@ export class MilestoneService {
    */
   saveItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.put(API_URL + '/' + this.entityNode +'/' + item.id, item)
+      this._httpClient.put(API_URL + '/' + this.entityNode, item)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);
@@ -160,6 +162,22 @@ export class MilestoneService {
           resolve(response);
         }, reject);
     });
+  }
+
+  public getAllProjects(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeProject)
+
+      .map(response => {
+        const projects = response.json();
+        return projects.map((project) => new Project(project));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+  private handleError (error: Response | any) {
+    console.error('LicenceService::handleError', error);
+    return Observable.throw(error);
   }
 
   deleteItemById(itemId: number): any {

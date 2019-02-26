@@ -5,7 +5,7 @@ import { Skill } from "../skills/skill.model";
 export class Resource {
 
     id: string;
-    resourceName :string;
+    name :string;
     resourceCNIC : string;
     resourceDOB : string;
     resourceEmail : string;
@@ -48,7 +48,7 @@ export class Resource {
             this.handle = FuseUtils.handleize(resource.resourceName  + '');
         }
         this.id = resource.id || '';
-        this.resourceName = resource.resourceName || '';
+        this.name = resource.name || '';
         this.resourceCNIC = resource.resourceCNIC || '';
         this.resourceDOB = resource.resourceDOB || '';
         this.resourceEmail = resource.resourceEmail || '';

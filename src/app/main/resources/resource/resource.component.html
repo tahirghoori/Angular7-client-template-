@@ -24,7 +24,7 @@
 
         <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
           <div class="h2" *ngIf="pageType ==='edit'">
-            {{resource.resourceName}}
+            {{resource.name}}
           </div>
           <div class="h2" *ngIf="pageType ==='new'">
             New Resource
@@ -57,7 +57,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Resource Name</mat-label>
-                <input matInput placeholder="First Name" name="resourceName" formControlName="resourceName"
+                <input matInput placeholder="First Name" name="name" formControlName="name"
                   required>
                 <mat-error>Resource Name is required!</mat-error>
               </mat-form-field>
@@ -69,7 +69,7 @@
                   [compareWith]="compareFn" >
                       <mat-option>-- Select Department --</mat-option>
                       <mat-option *ngFor="let department of resourceDepartments"  [value]="department" >
-                          {{department.departmentName}}
+                          {{department.name}}
                       </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -100,7 +100,7 @@
                   [compareWith]="compareFn" >
                       <mat-option>-- Select Resource Reporter --</mat-option>
                       <mat-option *ngFor="let resource of resourceReporters"  [value]="resource" >
-                          {{resource?.resourceName}}
+                          {{resource?.name}}
                       </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -110,12 +110,12 @@
              
                 <mat-select placeholder="Toppings"  [formControl]="toppings" multiple>
                   <mat-select-trigger>
-                    {{toppings.value ? toppings.value[0].skillName : ''}}
+                    {{toppings.value ? toppings.value[0].name : ''}}
                     <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
                       (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
                     </span>
                   </mat-select-trigger>
-                  <mat-option *ngFor="let item of resourceSkills" [value]="item">{{item.skillName}}</mat-option>
+                  <mat-option *ngFor="let item of resourceSkills" [value]="item">{{item.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
               </div>
