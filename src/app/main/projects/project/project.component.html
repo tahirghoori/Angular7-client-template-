@@ -63,6 +63,109 @@
               </mat-form-field>
             </div>
 
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Project Start Date</mat-label>
+                <input matInput placeholder="yyyy-mm-dd" name="projectStartDate" formControlName="projectStartDate"
+                  required>
+                <mat-error>Project Start Date is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Project Development Date</mat-label>
+                <input matInput placeholder="yyyy-mm-dd" name="projectDevelopmentDate" formControlName="projectDevelopmentDate"
+                  required>
+                <mat-error>Project Development Date is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Project Cost</mat-label>
+                <input matInput placeholder="Cost" name="projectCost" formControlName="projectCost"
+                  required>
+                <mat-error>Project Cost is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Project Timeline</mat-label>
+                <input matInput placeholder="Timeline" name="projectTimeline" formControlName="projectTimeline"
+                  required>
+                <mat-error>Project Timeline is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Project Payment Method</mat-label>
+                <input matInput placeholder="Payment Method" name="projectPaymentMethod" formControlName="projectPaymentMethod"
+                  required>
+                <mat-error>Project Payment Method is required!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                  <mat-select placeholder="Client" formControlName="projectClient" name="projectClient"
+                  [compareWith]="compareFn" >
+                      <mat-option>-- Select Client --</mat-option>
+                      <mat-option *ngFor="let client of clients"  [value]="client" >
+                          {{client.name}}
+                      </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+             
+                <mat-select placeholder="Features"  [formControl]="featureToppings" multiple>
+                  <mat-select-trigger>
+                    {{featureToppings.value ? featureToppings.value[0].name : ''}}
+                    <span *ngIf="featureToppings.value?.length > 1" class="example-additional-selection">
+                      (+{{featureToppings.value.length - 1}} {{featureToppings.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let item of projectFeatures" [value]="item">{{item.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+             
+                <mat-select placeholder="Milestones"  [formControl]="milestoneToppings" multiple>
+                  <mat-select-trigger>
+                    {{milestoneToppings.value ? milestoneToppings.value[0].name : ''}}
+                    <span *ngIf="milestoneToppings.value?.length > 1" class="example-additional-selection">
+                      (+{{milestoneToppings.value.length - 1}} {{milestoneToppings.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let item of projectMilestones" [value]="item">{{item.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+             
+                <mat-select placeholder="Resources"  [formControl]="resourceToppings" multiple>
+                  <mat-select-trigger>
+                    {{resourceToppings.value ? resourceToppings.value[0].name : ''}}
+                    <span *ngIf="resourceToppings.value?.length > 1" class="example-additional-selection">
+                      (+{{resourceToppings.value.length - 1}} {{resourceToppings.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let item of projectResources" [value]="item">{{item.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+
             <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid" *ngIf="pageType ==='new'"
               (click)="addProject()">
               <span>ADD</span>

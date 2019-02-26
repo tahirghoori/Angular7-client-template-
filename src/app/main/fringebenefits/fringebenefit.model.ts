@@ -3,7 +3,7 @@ import { FuseUtils } from "@fuse/utils";
 export class Fringebenefit {
     id: string;
     benefitMonth : string;
-    expenseName: string;
+    name: string;
     expenseAmount:number;
     isOneTime : boolean;
     handle: string;
@@ -25,7 +25,7 @@ export class Fringebenefit {
         }
         this.id = fringebenefit.id || '';
         this.benefitMonth = fringebenefit.benefitMonth || '';
-        this.expenseName = fringebenefit.expenseName || '';
+        this.name = fringebenefit.name || '';
         this.expenseAmount = fringebenefit.expenseAmount || '';
         this.isOneTime = fringebenefit.isOneTime || '';
         this.updatedAt = fringebenefit.updatedAt || '';

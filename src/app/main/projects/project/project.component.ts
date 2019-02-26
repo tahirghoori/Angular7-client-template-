@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../project.model';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { ProjectService } from '../project.service';
 import { MatSnackBar } from '@angular/material';
@@ -8,6 +8,10 @@ import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
+import { Client } from 'app/main/clients/client.model';
+import { Feature } from 'app/main/features/feature.model';
+import { Resource } from 'app/main/resources/resource.model';
+import { Milestone } from 'app/main/milestones/milestone.model';
 
 @Component({
   selector: 'app-project',
@@ -16,9 +20,16 @@ import { fuseAnimations } from '@fuse/animations';
   animations: fuseAnimations
 })
 export class ProjectComponent implements OnInit {
+  clients :Client[];
+  projectFeatures:Feature[];
+  projectResources: Resource[];
+  projectMilestones: Milestone[];
   project: Project;
   pageType: string;
   projectForm: FormGroup;
+  resourceToppings = new FormControl();
+  featureToppings = new FormControl();
+  milestoneToppings = new FormControl();
   
   // myControl = new FormControl();
   package_id: string;
@@ -46,6 +57,7 @@ export class ProjectComponent implements OnInit {
     // Set the private defaults
     this._unsubscribeAll = new Subject();
 
+
   }
   // -----------------------------------------------------------------------------------------------------
   // @ Lifecycle hooks
@@ -72,6 +84,32 @@ export class ProjectComponent implements OnInit {
 
 
       });
+
+
+      this._projectService.getAllClients().subscribe(projectClient => {
+        this.clients =  projectClient.map((client) => new Client(client));
+    // console.log(this.resourceDepartments);
+
+    });
+
+
+    this._projectService.getAllFeatures().subscribe(projectFeature => {
+      this.projectFeatures =  projectFeature.map((feature) => new Feature(feature));
+  // console.log(this.resourceDepartments);
+
+  });
+
+  this._projectService.getAllResources().subscribe(projectResource => {
+    this.projectResources =  projectResource.map((resource) => new Resource(resource));
+// console.log(this.resourceDepartments);
+
+});
+
+this._projectService.getAllMilestones().subscribe(projectMilestone => {
+  this.projectMilestones =  projectMilestone.map((milestone) => new Milestone(milestone));
+// console.log(this.resourceDepartments);
+
+});
   }
   /**
    * On destroy
@@ -97,7 +135,16 @@ export class ProjectComponent implements OnInit {
       return this._formBuilder.group({
         id: [this.project.id],
         name: [this.project.name],
-        handle: [this.project.handle]
+        handle: [this.project.handle],
+        projectClient:[this.project.projectClient],
+        projectFeatures:[this.project.projectFeatures], 
+        projectResources:[this.project.projectResources], 
+        projectMilestones:[this.project.projectMilestones], 
+        projectStartDate:[this.project.projectStartDate], 
+        projectDevelopmentDate: [this.project.projectDevelopmentDate], 
+        projectCost:[this.project.projectCost], 
+        projectTimeline:[this.project.projectTimeline], 
+        projectPaymentMethod:[this.project.projectPaymentMethod]
       });
    
   }
@@ -130,6 +177,9 @@ export class ProjectComponent implements OnInit {
   addProject(): void {
     const data = this.projectForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
+    data.projectFeatures=this.featureToppings.value;
+    data.projectResources=this.resourceToppings.value;
+    data.projectMilestones = this.milestoneToppings.value;
 
     this._projectService.addItem(data)
       .then(() => {
