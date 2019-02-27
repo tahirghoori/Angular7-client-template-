@@ -217,6 +217,10 @@ export class FilesDataSource extends DataSource<any>
               case 'name':
                   [propertyA, propertyB] = [a.name, b.name];
                   break;
+
+                  case 'projectClient':
+                  [propertyA, propertyB] = [a.projectClient, b.projectClient];
+                  break;
           }
 
           const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

@@ -245,29 +245,21 @@ export class FilesDataSource extends DataSource<any>
           let propertyB: number | string = '';
 
           switch (this._matSort.active) {
-              case 'clientName':
-                  [propertyA, propertyB] = [a.clientName, b.clientName];
+              case 'name':
+                  [propertyA, propertyB] = [a.name, b.name];
                   break;
-          }
-          switch (this._matSort.active) {
+
             case 'clientPhoneNumber':
                 [propertyA, propertyB] = [a.clientPhoneNumber, b.clientPhoneNumber];
                 break;
-        }
-
-        switch (this._matSort.active) {
+      
             case 'clientEmail':
                 [propertyA, propertyB] = [a.clientEmail, b.clientEmail];
                 break;
-        }
 
-        switch (this._matSort.active) {
             case 'clientLocation':
                 [propertyA, propertyB] = [a.clientLocation, b.clientLocation];
-                break;
-        }
-
-        switch (this._matSort.active) {
+      
             case 'parent':
                 [propertyA, propertyB] = [a.parent, b.parent];
                 break;

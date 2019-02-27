@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
     hmr       : false,
-    apiUrl: 'http://localhost:8080/v1'
+    apiUrl: 'http://ras.scaleablecloud.com/api/raservice/v1'
 
 };

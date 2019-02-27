@@ -24,7 +24,7 @@
 
         <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
           <div class="h2" *ngIf="pageType ==='edit'">
-            {{project.name}}
+            {{project.title}}
           </div>
           <div class="h2" *ngIf="pageType ==='new'">
             New Project
@@ -135,8 +135,18 @@
                 </mat-select>
               </mat-form-field>
               </div>
+              <h3>Add Milestone</h3>
+              <div class="example-button-row">
+              <button mat-icon-button [routerLink]="'/milestones/new'">
+              <mat-icon aria-label="Example icon-button with a heart icon">comment</mat-icon>
+               </button>
 
-              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              </div>
+              
+
+
+
+              <!-- <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                 <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
              
                 <mat-select placeholder="Milestones"  [formControl]="milestoneToppings" multiple>
@@ -149,7 +159,7 @@
                   <mat-option *ngFor="let item of projectMilestones" [value]="item">{{item.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
-              </div>
+              </div> -->
 
               <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                 <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
