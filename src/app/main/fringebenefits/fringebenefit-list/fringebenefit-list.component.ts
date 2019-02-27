@@ -214,8 +214,15 @@ export class FilesDataSource extends DataSource<any>
           let propertyB: number | string = '';
 
           switch (this._matSort.active) {
-              case 'title':
-                  [propertyA, propertyB] = [a.title, b.title];
+              case 'name':
+                  [propertyA, propertyB] = [a.name, b.name];
+                  break;
+                  case 'benefitMonth':
+                  [propertyA, propertyB] = [a.benefitMonth, b.benefitMonth];
+                  break;
+
+                  case 'expenseAmount':
+                  [propertyA, propertyB] = [a.expenseAmount, b.expenseAmount];
                   break;
           }
 

@@ -44,12 +44,12 @@
           <mat-table class="milestones-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}"
               fusePerfectScrollbar>
 
-              <ng-container matColumnDef="project">
+              <!-- <ng-container matColumnDef="project">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Project</mat-header-cell>
                 <mat-cell *matCellDef="let milestone">
                     <p class="text-truncate">{{milestone.project?.name}}</p>
                 </mat-cell>
-            </ng-container>
+            </ng-container> -->
 
               <!-- Name Column -->
               <ng-container matColumnDef="name">

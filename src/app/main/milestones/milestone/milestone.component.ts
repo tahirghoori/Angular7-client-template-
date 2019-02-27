@@ -160,7 +160,7 @@ export class MilestoneComponent implements OnInit {
         });
 
         // Change the location with new one
-        this._router.navigate(['/milestones']);
+        this._router.navigate(['/projects/new']);
       });
   }
 

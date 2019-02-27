@@ -20,7 +20,7 @@ export class MilestoneListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['name','milestoneStartDate','milestoneDelieveryDate','milestoneCost', 'project', 'active'];
+  displayedColumns = ['name','milestoneStartDate','milestoneDelieveryDate','milestoneCost', 'active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -214,8 +214,24 @@ export class FilesDataSource extends DataSource<any>
           let propertyB: number | string = '';
 
           switch (this._matSort.active) {
-              case 'title':
-                  [propertyA, propertyB] = [a.title, b.title];
+              case 'name':
+                  [propertyA, propertyB] = [a.name, b.name];
+                  break;
+
+                  case 'milestoneStartDate':
+                  [propertyA, propertyB] = [a.milestoneStartDate, b.milestoneStartDate];
+                  break;
+
+                  case 'milestoneDelieveryDate':
+                  [propertyA, propertyB] = [a.milestoneDelieveryDate, b.milestoneDelieveryDate];
+                  break;
+
+                  case 'milestoneCost':
+                  [propertyA, propertyB] = [a.milestoneCost, b.milestoneCost];
+                  break;
+
+                  case 'project':
+                  [propertyA, propertyB] = [a.project, b.project];
                   break;
           }
 

@@ -217,7 +217,15 @@ export class FilesDataSource extends DataSource<any>
 
           switch (this._matSort.active) {
               case 'name':
-                  [propertyA, propertyB] = [a.title, b.title];
+                  [propertyA, propertyB] = [a.name, b.name];
+                  break;
+
+                  case 'departmentHod':
+                  [propertyA, propertyB] = [a.departmentHod, b.departmentHod];
+                  break;
+
+                  case 'departmentBench':
+                  [propertyA, propertyB] =[a.departmentBench, b.departmentBench];
                   break;
           }
 
