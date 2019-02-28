@@ -57,7 +57,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Name</mat-label>
-                <input matInput placeholder="First Name" name="name" formControlName="name"
+                <input matInput type="text" minlength="3" maxlength="100" placeholder="First Name" name="name" formControlName="name"
                   required>
                 <mat-error>Project Name is required!</mat-error>
               </mat-form-field>
@@ -65,26 +65,24 @@
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Project Start Date</mat-label>
-                <input matInput placeholder="yyyy-mm-dd" name="projectStartDate" formControlName="projectStartDate"
-                  required>
-                <mat-error>Project Start Date is required!</mat-error>
-              </mat-form-field>
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker1" placeholder="Choose Start Date"  name="projectStartDate" formControlName="projectStartDate">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Project Development Date</mat-label>
-                <input matInput placeholder="yyyy-mm-dd" name="projectDevelopmentDate" formControlName="projectDevelopmentDate"
-                  required>
-                <mat-error>Project Development Date is required!</mat-error>
-              </mat-form-field>
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2" placeholder="Choose Developmennt Date"  name="projectDevelopmentDate" formControlName="projectDevelopmentDate">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Cost</mat-label>
-                <input matInput placeholder="Cost" name="projectCost" formControlName="projectCost"
+                <input matInput type="number" minlength="3" maxlength="50" placeholder="Cost" name="projectCost" formControlName="projectCost"
                   required>
                 <mat-error>Project Cost is required!</mat-error>
               </mat-form-field>
@@ -93,7 +91,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Timeline</mat-label>
-                <input matInput placeholder="Timeline" name="projectTimeline" formControlName="projectTimeline"
+                <input matInput type= "text" placeholder="Timeline" name="projectTimeline" formControlName="projectTimeline"
                   required>
                 <mat-error>Project Timeline is required!</mat-error>
               </mat-form-field>
@@ -103,7 +101,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Payment Method</mat-label>
-                <input matInput placeholder="Payment Method" name="projectPaymentMethod" formControlName="projectPaymentMethod"
+                <input matInput type="text" minlength="3" maxlength="100" placeholder="Payment Method" name="projectPaymentMethod" formControlName="projectPaymentMethod"
                   required>
                 <mat-error>Project Payment Method is required!</mat-error>
               </mat-form-field>
@@ -140,6 +138,16 @@
               <button mat-icon-button [routerLink]="'/milestones/new'">
               <mat-icon aria-label="Example icon-button with a heart icon">comment</mat-icon>
                </button>
+
+               <mat-select placeholder="Milestones"  [formControl]="milestoneToppings" multiple>
+                <mat-select-trigger>
+                  {{milestoneToppings.value ? milestoneToppings.value[0].name : ''}}
+                  <span *ngIf="milestoneToppings.value?.length > 1" class="example-additional-selection">
+                    (+{{milestoneToppings.value.length - 1}} {{milestoneToppings.value?.length === 2 ? 'other' : 'others'}})
+                  </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let item of projectMilestones" [value]="item">{{item.name}}</mat-option>
+              </mat-select>
 
               </div>
               

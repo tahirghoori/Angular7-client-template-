@@ -30,6 +30,8 @@ export class ProjectComponent implements OnInit {
   resourceToppings = new FormControl();
   featureToppings = new FormControl();
   milestoneToppings = new FormControl();
+  minDate = new Date(2000, 0, 1);
+  maxDate = new Date(2020, 0, 1);
   
   // myControl = new FormControl();
   package_id: string;
