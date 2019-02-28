@@ -21,6 +21,9 @@ export class MilestoneComponent implements OnInit {
   milestone: Milestone;
   pageType: string;
   milestoneForm: FormGroup;
+  minDate = new Date(2000, 0, 1);
+  maxDate = new Date(2020, 0, 1);
+  
   
   // myControl = new FormControl();
   package_id: string;

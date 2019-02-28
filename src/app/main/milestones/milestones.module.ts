@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MilestoneListComponent } from './milestone-list/milestone-list.component';
 import { RouterModule, Routes } from '@angular/router';
-import { MatButtonModule, MatChipsModule, MatExpansionModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatRippleModule, MatSelectModule, MatSortModule, MatSnackBarModule, MatTableModule, MatTabsModule, MatAutocompleteModule, MatMenuModule, MatDialogModule, MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatChipsModule, MatExpansionModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatRippleModule, MatSelectModule, MatSortModule, MatSnackBarModule, MatTableModule, MatTabsModule, MatAutocompleteModule, MatMenuModule, MatDialogModule, MatCheckboxModule, MatDatepickerModule } from '@angular/material';
 import { FuseConfirmDialogModule, FuseWidgetModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { MilestoneService } from './milestone.service';
@@ -56,6 +56,7 @@ const routes: Routes = [
     MatAutocompleteModule,
     MatMenuModule,
     MatDialogModule,
+    MatDatepickerModule,
 
 
     FuseConfirmDialogModule,

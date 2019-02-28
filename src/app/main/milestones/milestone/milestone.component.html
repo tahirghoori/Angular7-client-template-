@@ -78,30 +78,27 @@
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Start Date: </mat-label>
-                <input matInput placeholder="yyyy-mm-dd" name="milestoneStartDate" formControlName="milestoneStartDate"
-                  required>
-                <mat-error>Milestone Start Date is required!</mat-error>
-              </mat-form-field>
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker1" placeholder="Choose Start Date"  name="milestoneStartDate" formControlName="milestoneStartDate">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Delievery Date</mat-label>
-                <input matInput placeholder="yyyy-mm-dd" name="milestoneDelieveryDate" formControlName="milestoneDelieveryDate"
-                  required>
-                <mat-error>Milestone Delievery Date is required!</mat-error>
-              </mat-form-field>
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2" placeholder="Choose Delievery Date"  name="milestoneDelieveryDate" formControlName="milestoneDelieveryDate">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
             </div>
 
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Development Date</mat-label>
-                <input matInput placeholder="yyyy-mm-dd" name="milestoneDevelopmentDate" formControlName="milestoneDevelopmentDate"
-                  required>
-                <mat-error>Milestone Development Date is required!</mat-error>
-              </mat-form-field>
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker3" placeholder="Choose Development Date"  name="milestoneDevelopmentDate" formControlName="milestoneDevelopmentDate">
+              <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+              <mat-datepicker #picker3></mat-datepicker>
+            </mat-form-field>
             </div>
 
 
