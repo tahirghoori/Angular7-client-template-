@@ -57,9 +57,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Skill Name</mat-label>
-                <input matInput placeholder="First Name" name="name" formControlName="name"
+                <input matInput type="text" minlength="3" maxlength="100"  placeholder="First Name" name="name" formControlName="name"
                   required>
-                <mat-error>Skill Name is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 

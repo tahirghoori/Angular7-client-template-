@@ -57,27 +57,27 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Fringebenefit Name</mat-label>
-                <input matInput placeholder="Expense Name" name="name" formControlName="name"
+                <input matInput type="text" minlength="3" maxlength="100" placeholder="Expense Name" name="name" formControlName="name"
                   required>
-                <mat-error>Expense Name is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Benefit Month</mat-label>
-                <input matInput placeholder="Expense Benefit Month" name="benefitMonth" formControlName="benefitMonth"
+                <input matInput type="text" minlength="3" maxlength="100" placeholder="Expense Benefit Month" name="benefitMonth" formControlName="benefitMonth"
                   required>
-                <mat-error>Expense Benefit Month Name is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Expense Amount</mat-label>
-                <input matInput placeholder="Expense Amount" name="expenseAmount" formControlName="expenseAmount"
+                <input matInput type= "number" minlength="3" maxlength="100" placeholder="Expense Amount" name="expenseAmount" formControlName="expenseAmount"
                   required>
-                <mat-error>Expense Amount is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
