@@ -4,12 +4,15 @@ import { Client } from "../clients/client.model";
 import { Feature } from "../features/feature.model";
 import { Resource } from "../resources/resource.model";
 import { Milestone } from "../milestones/milestone.model";
+import { Input } from "@angular/core";
 
 export class Project {
 
 
     id: string;
-    name: string;
+    @Input()
+    pattern :string |RegExp
+    name: string ;
     projectClient:Client;
     projectFeatures:Feature[];
     projectResources:Resource[];

@@ -57,9 +57,10 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Name</mat-label>
-                <input matInput type="text" minlength="3" maxlength="100" placeholder="First Name" name="name" formControlName="name"
-                  required>
-                <mat-error>Length must be 3-100!</mat-error>
+                <input matInput type="text" pattern="[a-zA-Z ]*" minlength="3" maxlength="100" placeholder="First Name" name="name" formControlName="name"
+                   required>
+               <mat-error>Username must have a valid input!</mat-error>
+               
               </mat-form-field>
             </div>
 
