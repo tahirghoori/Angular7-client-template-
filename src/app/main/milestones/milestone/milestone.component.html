@@ -70,9 +70,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Name</mat-label>
-                <input matInput placeholder="First Name" name="name" formControlName="name"
+                <input matInput minlength="3" maxlength="100" placeholder="First Name" name="name" formControlName="name"
                   required>
-                <mat-error>Milestone Name is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
@@ -106,9 +106,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Expected Payment</mat-label>
-                <input matInput placeholder="Milestone Expected Payment" name="milestoneExpectedPayment" formControlName="milestoneExpectedPayment"
+                <input matInput minlength="3" maxlength="100" placeholder="Milestone Expected Payment" name="milestoneExpectedPayment" formControlName="milestoneExpectedPayment"
                   required>
-                <mat-error>Milestone Expected Payment is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
@@ -116,9 +116,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Payment Amount</mat-label>
-                <input matInput placeholder="Milestone Payment Amount" name="milestonePaymentAmount" formControlName="milestonePaymentAmount"
+                <input matInput minlength="3" maxlength="100" placeholder="Milestone Payment Amount" name="milestonePaymentAmount" formControlName="milestonePaymentAmount"
                   required>
-                <mat-error>Milestone Payment Amount is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
@@ -126,9 +126,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label> Cost</mat-label>
-                <input matInput placeholder="Milestone Cost" name="milestoneCost" formControlName="milestoneCost"
+                <input matInput  minlength="3" maxlength="100" placeholder="Milestone Cost" name="milestoneCost" formControlName="milestoneCost"
                   required>
-                <mat-error>Milestone Cost is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
@@ -136,14 +136,14 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Milestone Payment Method</mat-label>
-                <input matInput placeholder="Milestone Payment Method" name="milestonePaymentMethod" formControlName="milestonePaymentMethod"
+                <input matInput minlength="3" maxlength="100" placeholder="Milestone Payment Method" name="milestonePaymentMethod" formControlName="milestonePaymentMethod"
                   required>
-                <mat-error>Milestone Payment Method is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
             <button mat-raised-button class="save-milestone-button" [disabled]="milestoneForm.invalid" *ngIf="pageType ==='new'"
-              (click)="addMilestone()">
+              (click)="addMilestone()"  >
               <span>ADD</span>
             </button>
 

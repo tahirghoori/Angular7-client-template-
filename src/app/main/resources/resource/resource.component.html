@@ -57,9 +57,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Resource Name</mat-label>
-                <input matInput placeholder="First Name" name="name" formControlName="name"
+                <input matInput type="text" minlength="3" maxlength="100" placeholder="First Name" name="name" formControlName="name"
                   required>
-                <mat-error>Resource Name is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
@@ -78,18 +78,18 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Email Address" name="resourceEmail" formControlName="resourceEmail"
+                <input matInput type="email" minlength="3" maxlength="100" placeholder="Email Address" name="resourceEmail" formControlName="resourceEmail"
                   required>
-                <mat-error>Email Address is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Phone Number</mat-label>
-                <input matInput placeholder="Phone Number" name="resourcePhone" formControlName="resourcePhone"
+                <input matInput type="number" minlength="10" maxlength="15" placeholder="Phone Number" name="resourcePhone" formControlName="resourcePhone"
                   required>
-                <mat-error>Phone number is required!</mat-error>
+                <mat-error>Length must be 10-15!</mat-error>
               </mat-form-field>
             </div>
 
@@ -134,27 +134,27 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Salary/hour</mat-label>
-                <input matInput placeholder="Salary/hour" name="resourcePerHourRate" formControlName="resourcePerHourRate"
+                <input matInput type= "number" minlength="2" maxlength="50" placeholder="Salary/hour" name="resourcePerHourRate" formControlName="resourcePerHourRate"
                   required>
-                <mat-error>Salary/hour is required!</mat-error>
+                <mat-error>Length must be 2-50!</mat-error>
               </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Benefits</mat-label>
-                <input matInput placeholder="Benefits" name="resourceBenefits" formControlName="resourceBenefits"
+                <input matInput type="number" minlength="3" maxlength="100" placeholder="Benefits" name="resourceBenefits" formControlName="resourceBenefits"
                   required>
-                <mat-error>Resource Benefits are required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Working Days</mat-label>
-                <input matInput placeholder="Working-Days" name="resourceWorkingDays" formControlName="resourceWorkingDays"
+                <input matInput type= "number" minlength="1" maxlength="10" placeholder="Working-Days" name="resourceWorkingDays" formControlName="resourceWorkingDays"
                   required>
-                <mat-error>Working Days are required!</mat-error>
+                <mat-error>Length must be 1-10!</mat-error>
               </mat-form-field>
             </div>
 

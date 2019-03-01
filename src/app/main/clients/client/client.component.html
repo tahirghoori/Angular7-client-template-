@@ -58,9 +58,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Client Name</mat-label>
-                <input matInput placeholder="First Name" name="name" formControlName="name"
+                <input matInput type="text" minlength="3" maxlength="100" placeholder="First Name" name="name" formControlName="name"
                   required>
-                <mat-error>Client Name is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
@@ -68,9 +68,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Client Phone-Number</mat-label>
-                <input matInput placeholder="Phone Number" name="clientPhoneNumber" formControlName="clientPhoneNumber"
+                <input matInput type="number" minlength="3" maxlength="100" placeholder="Phone Number" name="clientPhoneNumber" formControlName="clientPhoneNumber"
                   required>
-                <mat-error>Phone Number is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
      
@@ -79,9 +79,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Email Address</mat-label>
-                <input matInput placeholder="Email Address" name="clientEmail" formControlName="clientEmail"
+                <input matInput  type="email" minlength="3" maxlength="100" placeholder="Email Address" name="clientEmail" formControlName="clientEmail"
                   required>
-                <mat-error>Email Address is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
@@ -90,9 +90,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Location</mat-label>
-                <input matInput placeholder="Location" name="clientLocation" formControlName="clientLocation"
+                <input matInput  type="text" minlength="3" maxlength="100" placeholder="Location" name="clientLocation" formControlName="clientLocation"
                   required>
-                <mat-error>Client Location is required!</mat-error>
+                <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
