@@ -1,9 +1,14 @@
+@import "src/@fuse/scss/fuse";
 
 .milestone-form-dialog {
 
-  
+    @include media-breakpoint('xs') {
+        width: 100%;
+    }
 
- 
+    @include media-breakpoint('gt-xs') {
+        width: 400px;
+    }
 
     .mat-dialog-container {
         padding: 0;

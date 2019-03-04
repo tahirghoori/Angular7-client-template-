@@ -3,6 +3,19 @@
 .example-button-row a {
   margin-right: 8px;
 }
+#add-button {
+    position: absolute;
+    bottom: 12px;
+    right: 52px;
+    padding: 0;
+    z-index: 99;
+    
+    h1 {
+        padding: 0;
+        margin: 0;
+        font-weight: bolder;
+    }
+}
 
     .header {
 
