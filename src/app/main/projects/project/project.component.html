@@ -134,7 +134,7 @@
                 </mat-select>
               </mat-form-field>
               </div>
-              <h3>Add Milestone</h3>
+              <!-- <h3>Add Milestone</h3>
               <div class="example-button-row">
               <button mat-icon-button [routerLink]="'/milestones/new'">
               <mat-icon aria-label="Example icon-button with a heart icon">comment</mat-icon>
@@ -150,8 +150,9 @@
                 <mat-option *ngFor="let item of projectMilestones" [value]="item">{{item.name}}</mat-option>
               </mat-select>
 
-              </div>
-              
+              </div> -->
+          
+               
 
 
 
@@ -169,6 +170,10 @@
                 </mat-select>
               </mat-form-field>
               </div> -->
+              <button mat-fab class="accent" id="add-milestone-button" (click)="newMilestone()" aria-label="add milestone"
+            [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+           <mat-icon>person_add</mat-icon>
+               </button>
 
               <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                 <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">

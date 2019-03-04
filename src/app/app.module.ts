@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MatButtonModule, MatIconModule, MatFormFieldModule, MatRadioModule, MatDatepickerModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatFormFieldModule, MatRadioModule, MatDatepickerModule,MatDialogModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 
@@ -17,6 +17,7 @@ import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { HttpModule } from '@angular/http';
+
 
 const appRoutes: Routes = [
     
@@ -99,6 +100,8 @@ const appRoutes: Routes = [
         MatFormFieldModule,
         MatRadioModule,
         MatDatepickerModule,
+        MatDialogModule,
+        
 
         // Fuse modules
         FuseModule.forRoot(fuseConfig),
