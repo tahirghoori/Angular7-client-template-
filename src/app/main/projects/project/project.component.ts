@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { Project } from '../project.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { ProjectService } from '../project.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialogModule } from '@angular/material';
 import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
 import { Client } from 'app/main/clients/client.model';
 import { Feature } from 'app/main/features/feature.model';
 import { Resource } from 'app/main/resources/resource.model';
 import { Milestone } from 'app/main/milestones/milestone.model';
+import { MilestoneFormComponent } from 'app/main/milestones/milestone-form/milestone-form.component';
+
 
 @Component({
+  providers:[MilestoneFormComponent],
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss'],
@@ -45,14 +49,14 @@ export class ProjectComponent implements OnInit {
    *
    * @param {ProjectService} _projectService
    * @param {FormBuilder} _formBuilder
-   * @param {MatSnackBar} _matSnackBar,
+   * @param {MatSnackBar} _matSnackBar
    *
    */
   constructor(
     private _projectService: ProjectService,
     private _formBuilder: FormBuilder,
     private _matSnackBar: MatSnackBar,
-    private _router: Router
+    private _router: Router,private comp: MilestoneFormComponent
   ) {
     // Set the default
     this.project = new Project();
@@ -172,6 +176,9 @@ this._projectService.getAllMilestones().subscribe(projectMilestone => {
         this._router.navigate(['/projects']);
       });
   }
+  // public callMe(): void {
+  //   this.comp.newMilestone();
+  // }
 
   /**
    * Add project

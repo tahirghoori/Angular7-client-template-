@@ -4,7 +4,7 @@
   "license": "https://themeforest.net/licenses/terms/regular",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --watch --open",
     "start-hmr": "ng serve --configuration hmr --source-map=false --hmr-warning=false",
     "start-hmr-sourcemaps": "ng serve --configuration hmr --source-map=true --hmr-warning=false",
     "build": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --dev",
@@ -62,6 +62,7 @@
     "prismjs": "1.15.0",
     "rxjs": "6.3.3",
     "rxjs-compat": "6.3.3",
+    "tslib": "1.9.3",
     "web-animations-js": "2.3.1",
     "zone.js": "0.8.26"
   },
@@ -78,7 +79,7 @@
     "codelyzer": "4.5.0",
     "jasmine-core": "2.99.1",
     "jasmine-spec-reporter": "4.2.1",
-    "karma": "4.0.0",
+    "karma": "4.0.1",
     "karma-chrome-launcher": "2.2.0",
     "karma-coverage-istanbul-reporter": "2.0.4",
     "karma-jasmine": "1.1.2",

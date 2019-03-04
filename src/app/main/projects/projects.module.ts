@@ -4,9 +4,11 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ProjectService } from './project.service';
-import { MatButtonModule, MatChipsModule, MatExpansionModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatRippleModule, MatSelectModule, MatSortModule, MatSnackBarModule, MatTabsModule, MatTableModule, MatAutocompleteModule, MatMenuModule, MatDialogModule, MatDatepickerModule } from '@angular/material';
-import { FuseConfirmDialogModule, FuseWidgetModule } from '@fuse/components';
+import { MatButtonModule, MatChipsModule, MatExpansionModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatRippleModule, MatSelectModule, MatSortModule, MatSnackBarModule, MatTabsModule, MatTableModule, MatAutocompleteModule, MatMenuModule, MatDialogModule, MatDatepickerModule, MatCheckboxModule, MatToolbarModule } from '@angular/material';
+import { FuseConfirmDialogModule, FuseWidgetModule, FuseSidebarModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';
+import { MilestoneFormComponent } from '../milestones/milestone-form/milestone-form.component';
+import { MilestoneService } from '../milestones/milestone.service';
 
 
 const routes: Routes = [
@@ -32,12 +34,20 @@ const routes: Routes = [
           data: ProjectService
       }
      
-  }
+  },
+  {
+    path     : 'milestones/:id',
+    component: MilestoneFormComponent,
+    resolve  : {
+        data: MilestoneService
+    }
+   
+}
 ];
 
 
 @NgModule({
-  declarations: [ProjectComponent, ProjectListComponent],
+  declarations: [ProjectComponent, ProjectListComponent,MilestoneFormComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -58,10 +68,21 @@ const routes: Routes = [
     MatMenuModule,
     MatDialogModule,
     MatDatepickerModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatDialogModule,
 
 
-    FuseConfirmDialogModule,
+
     FuseSharedModule,
+    FuseConfirmDialogModule,
+    FuseSidebarModule
+,
+
+   
+   
     FuseWidgetModule
   ]
 })
