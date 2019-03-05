@@ -45,7 +45,7 @@
       <!-- CONTENT -->
       <div class="content">
 
-        <form name="projectForm" [formGroup]="projectForm" class="project w-100-p" fxLayout="column" fxFlex>
+        <form name="projectForm" [formGroup]="projectForm" class="project w-100-p" fxLayout="column" fxFlex novalidate>
 
           <div class=" mat-tab-header header  p-24">
             <h2 class="m-0">Project Information</h2>
@@ -57,9 +57,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Name</mat-label>
-                <input matInput type="text" pattern="[a-zA-Z ]*" minlength="3" maxlength="100" placeholder="First Name" name="name" formControlName="name"
-                   required>
-               <mat-error>Username must have a valid input!</mat-error>
+                <input matInput placeholder="First Name" name="name" formControlName="name"
+                   >
+               <mat-error>Name must have a valid input!</mat-error>
                
               </mat-form-field>
             </div>
@@ -83,17 +83,17 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Cost</mat-label>
-                <input matInput type="number" minlength="3" maxlength="50" placeholder="Cost" name="projectCost" formControlName="projectCost"
-                  required>
-                <mat-error>Length must be 3-100!</mat-error>
+                <input matInput type="number"  placeholder="Cost" name="projectCost" formControlName="projectCost"
+                  >
+                <mat-error>Cost must be in numbers!</mat-error>
               </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Timeline</mat-label>
-                <input matInput type= "text" placeholder="Timeline" name="projectTimeline" formControlName="projectTimeline"
-                  required>
+                <input matInput placeholder="Timeline" name="projectTimeline" formControlName="projectTimeline"
+                  >
                 <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
@@ -102,8 +102,8 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Payment Method</mat-label>
-                <input matInput type="text" minlength="3" maxlength="100" placeholder="Payment Method" name="projectPaymentMethod" formControlName="projectPaymentMethod"
-                  required>
+                <input matInput placeholder="Payment Method" name="projectPaymentMethod" formControlName="projectPaymentMethod"
+                  >
                 <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
@@ -156,14 +156,14 @@
               <span>ADD</span>
             </button>
 
-            <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid || projectForm.pristine"
+            <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid"
               *ngIf="pageType ==='edit'" (click)="saveProject()">
               <span>SAVE</span>
             </button>
 
           </div>
 
-          <div   fxFlex="50" class="pl-4" >
+          <div fxFlex="50" class="pl-4" >
             <h2 class="pl-4" >Milestone </h2>
             <app-milestone-list-project></app-milestone-list-project>
           </div>

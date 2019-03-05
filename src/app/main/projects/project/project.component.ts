@@ -40,6 +40,7 @@ export class ProjectComponent implements OnInit {
   resourceToppings = new FormControl();
   featureToppings = new FormControl();
   milestoneToppings = new FormControl();
+  
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(2020, 0, 1);
 
@@ -101,13 +102,10 @@ export class ProjectComponent implements OnInit {
          
         }
         this.projectForm = this.createProjectForm();
-        this._milestoneService.milestones = [new Milestone({id:'1',name:'test',updatedAt:'asdf',
-        createdAt:'asdf','milestoneStartDate':'21-12-2013', milestoneDelieveryDate:'21-12-2013',milestoneDevelopmentDate:'21-12-2013',
-        milestoneExpectedPayment:'30999',
-        milestonePaymentAmount:'4000',
-        milestoneCost:'3221',
-        project:[]
-      })];
+
+
+        this._milestoneService.milestones = this.project.projectMilestones;
+        
       this._milestoneService.onMilestonesChanged.next(this._milestoneService.milestones);
 
       });
@@ -159,20 +157,21 @@ export class ProjectComponent implements OnInit {
    */
   createProjectForm(): FormGroup {
 
-    return this._formBuilder.group({
-      id: [this.project.id],
-      name: [this.project.name],
-      handle: [this.project.handle],
-      projectClient: [this.project.projectClient],
-      projectFeatures: [this.project.projectFeatures],
-      projectResources: [this.project.projectResources],
-      projectMilestones: [this.project.projectMilestones],
-      projectStartDate: [this.project.projectStartDate],
-      projectDevelopmentDate: [this.project.projectDevelopmentDate],
-      projectCost: [this.project.projectCost],
-      projectTimeline: [this.project.projectTimeline],
-      projectPaymentMethod: [this.project.projectPaymentMethod]
-    });
+    
+      return this._formBuilder.group({
+        id: [this.project.id],
+        name: [this.project.name,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+        handle: [this.project.handle],
+        projectClient:[this.project.projectClient],
+        projectFeatures:[this.project.projectFeatures], 
+        projectResources:[this.project.projectResources], 
+        projectMilestones:[this.project.projectMilestones], 
+        projectStartDate:[this.project.projectStartDate], 
+        projectDevelopmentDate: [this.project.projectDevelopmentDate], 
+        projectCost:[this.project.projectCost ,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]], 
+        projectTimeline:[this.project.projectTimeline,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]], 
+        projectPaymentMethod:[this.project.projectPaymentMethod,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
+      });
 
   }
 
@@ -182,6 +181,7 @@ export class ProjectComponent implements OnInit {
   saveProject(): void {
     const data = this.projectForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
+    
 
     this._projectService.saveItem(data)
       .then(() => {
@@ -209,8 +209,8 @@ export class ProjectComponent implements OnInit {
     data.handle = FuseUtils.handleize(data.name);
     data.projectFeatures = this.featureToppings.value;
     data.projectResources = this.resourceToppings.value;
-    data.projectMilestones = this.milestoneToppings.value;
-
+    data.projectMilestones = this._milestoneService.milestones;
+    
     this._projectService.addItem(data)
       .then(() => {
 
@@ -240,7 +240,8 @@ export class ProjectComponent implements OnInit {
         this.dialogRef = this._matDialog.open(MilestoneFormComponent, {
             panelClass: 'milestone-form-dialog',
             data      : {
-                action: 'new'
+                action: 'new',
+               
             }
         });
 
@@ -250,7 +251,30 @@ export class ProjectComponent implements OnInit {
                 {
                     return;
                 }
-console.log(response.getRawValue());
+                this.projectMilestones= response.getRawValue();
+      console.log(this.projectMilestones);
+
+
+//       if(this.createProjectForm){
+//         this._milestoneService.addItem(data)
+//      .then(() => {
+
+//   // Trigger the subscription with new data
+//   this._milestoneService.onItemChanged.next(data);
+
+//   // Show the success message
+//   this._matSnackBar.open('Record added', 'OK', {
+//     verticalPosition: 'top',
+//     duration: 2000
+//   });
+
+//   // Change the location with new one
+
+// });
+
+//       }
+   
+
 
                 this._milestoneService.updateMilestone(response.getRawValue());
             });

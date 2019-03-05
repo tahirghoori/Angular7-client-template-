@@ -110,10 +110,10 @@ export class ClientComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.client.id],
-        name: [this.client.name],
+        name: [this.client.name,[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
         handle: [this.client.handle],
-        clientPhoneNumber:[this.client.clientPhoneNumber],
-        clientEmail: [this.client.clientEmail],
+        clientPhoneNumber:[this.client.clientPhoneNumber, ],
+        clientEmail: [this.client.clientEmail ,[Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(50)]],
         clientLocation: [this.client.clientLocation],
         parent: [this.client.parent]
       });
