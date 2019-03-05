@@ -108,7 +108,7 @@
               <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                 <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
              
-                <mat-select placeholder="Toppings"  [formControl]="toppings" multiple>
+                <mat-select placeholder="Select Skills"  [formControl]="toppings" multiple>
                   <mat-select-trigger>
                     {{toppings.value ? toppings.value[0].name : ''}}
                     <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">

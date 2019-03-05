@@ -19,8 +19,8 @@ export class Opratingcost {
     {
       
         opratingcost = opratingcost || {};
-        if (opratingcost.opratingcostName !== ''){
-            this.handle = FuseUtils.handleize(opratingcost.opratingcostName  + '');
+        if (opratingcost.monthlyCost !== ''){
+            this.handle = FuseUtils.handleize(opratingcost.monthlyCost  + '');
         }
         this.id = opratingcost.id || '';
         this.monthlyCost = opratingcost.monthlyCost || '';

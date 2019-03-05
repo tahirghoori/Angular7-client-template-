@@ -21,8 +21,8 @@ export class Skill {
     {
       
         skill = skill || {};
-        if (skill.skillName !== ''){
-            this.handle = FuseUtils.handleize(skill.skillName  + '');
+        if (skill.name !== ''){
+            this.handle = FuseUtils.handleize(skill.name  + '');
         }
         this.id = skill.id || '';
         this.name = skill.name || '';

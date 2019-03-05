@@ -50,8 +50,8 @@
           <div class=" mat-tab-header header  p-24">
             <h2 class="m-0">Project Information</h2>
           </div>
-
-          <div class="tab-content p-24" fusePerfectScrollbar>
+          <div fxLayout="row" fxLayoutAlign="start start"  class="tab-content p-24 w-100-p"  fusePerfectScrollbar >
+          <div fxFlex="50"  class="pr-4" >
 
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
@@ -93,7 +93,7 @@
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Timeline</mat-label>
                 <input matInput placeholder="Timeline" name="projectTimeline" formControlName="projectTimeline"
-                  required>
+                  >
                 <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
@@ -103,7 +103,7 @@
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Payment Method</mat-label>
                 <input matInput placeholder="Payment Method" name="projectPaymentMethod" formControlName="projectPaymentMethod"
-                  required>
+                  >
                 <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
@@ -134,46 +134,7 @@
                 </mat-select>
               </mat-form-field>
               </div>
-              <!-- <h3>Add Milestone</h3>
-              <div class="example-button-row">
-              <button mat-icon-button [routerLink]="'/milestones/new'">
-              <mat-icon aria-label="Example icon-button with a heart icon">comment</mat-icon>
-               </button>
-
-               <mat-select placeholder="Milestones"  [formControl]="milestoneToppings" multiple>
-                <mat-select-trigger>
-                  {{milestoneToppings.value ? milestoneToppings.value[0].name : ''}}
-                  <span *ngIf="milestoneToppings.value?.length > 1" class="example-additional-selection">
-                    (+{{milestoneToppings.value.length - 1}} {{milestoneToppings.value?.length === 2 ? 'other' : 'others'}})
-                  </span>
-                </mat-select-trigger>
-                <mat-option *ngFor="let item of projectMilestones" [value]="item">{{item.name}}</mat-option>
-              </mat-select>
-
-              </div> -->
-          
-               
-
-
-
-              <!-- <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-             
-                <mat-select placeholder="Milestones"  [formControl]="milestoneToppings" multiple>
-                  <mat-select-trigger>
-                    {{milestoneToppings.value ? milestoneToppings.value[0].name : ''}}
-                    <span *ngIf="milestoneToppings.value?.length > 1" class="example-additional-selection">
-                      (+{{milestoneToppings.value.length - 1}} {{milestoneToppings.value?.length === 2 ? 'other' : 'others'}})
-                    </span>
-                  </mat-select-trigger>
-                  <mat-option *ngFor="let item of projectMilestones" [value]="item">{{item.name}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              </div> -->
-              <button mat-fab class="accent" id="add-milestone-button" (click)="newMilestone()" aria-label="add milestone"
-            [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
-           <mat-icon>person_add</mat-icon>
-               </button>
+         
 
               <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                 <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
@@ -195,17 +156,26 @@
               <span>ADD</span>
             </button>
 
-            <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid || projectForm.pristine"
+            <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid"
               *ngIf="pageType ==='edit'" (click)="saveProject()">
               <span>SAVE</span>
             </button>
 
           </div>
 
-
-
+          <div fxFlex="50" class="pl-4" >
+            <h2 class="pl-4" >Milestone </h2>
+            <app-milestone-list-project></app-milestone-list-project>
+          </div>
+        </div>
         </form>
 
+<!-- ADD CONTACT BUTTON -->
+<a mat-fab class="accent" id="add-button" (click)="newContact()" aria-label="add contact"
+        [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+    <h1>M</h1>
+      </a>
+<!-- / ADD CONTACT BUTTON -->
       </div>
       <!-- / CONTENT -->
 

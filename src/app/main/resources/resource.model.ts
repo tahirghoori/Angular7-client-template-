@@ -44,8 +44,8 @@ export class Resource {
     {
       
         resource = resource || {};
-        if (resource.resourceName !== ''){
-            this.handle = FuseUtils.handleize(resource.resourceName  + '');
+        if (resource.name !== ''){
+            this.handle = FuseUtils.handleize(resource.name  + '');
         }
         this.id = resource.id || '';
         this.name = resource.name || '';
