@@ -105,20 +105,17 @@
                   </mat-select>
                 </mat-form-field>
               </div>
-              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
              
-                <mat-select placeholder="Select Skills"  [formControl]="toppings" multiple>
-                  <mat-select-trigger>
-                    {{toppings.value ? toppings.value[0].name : ''}}
-                    <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
-                      (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
-                    </span>
-                  </mat-select-trigger>
-                  <mat-option *ngFor="let item of resourceSkills" [value]="item">{{item.name}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              </div>
+
+              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                  <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                    <mat-select placeholder="Resources"  name="resourceSkills" formControlName="resourceSkills" multiple  [compareWith]="comparerSkill">
+                            <mat-option *ngFor="let skill of resourceSkillsList" [value]="skill">{{skill.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+              
               <!-- <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                 <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
                     <mat-select placeholder="Skill" formControlName="resourceSkill" name="resourceSkill"

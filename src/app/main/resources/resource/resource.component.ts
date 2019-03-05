@@ -20,7 +20,7 @@ import { Skill } from 'app/main/skills/skill.model';
 export class ResourceComponent implements OnInit {
   resourceDepartments:Department[];
   resourceReporters:Resource[];
-  resourceSkills:Skill[];
+  resourceSkillsList:Skill[];
   resource: Resource;
   pageType: string;
   resourceForm: FormGroup;
@@ -30,7 +30,7 @@ export class ResourceComponent implements OnInit {
 
   // Private
   private _unsubscribeAll: Subject<any>;
-  toppings = new FormControl();
+  // toppings = new FormControl();
 
   //toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   
@@ -93,7 +93,7 @@ export class ResourceComponent implements OnInit {
   });
 
   this._resourceService.getResourceSkills().subscribe(resourceSkills => {
-    this.resourceSkills =  resourceSkills.map((skill) => new Skill(skill));
+    this.resourceSkillsList =  resourceSkills.map((skill) => new Skill(skill));
 // console.log(this.resourceSkills);
 
 });
@@ -183,7 +183,7 @@ export class ResourceComponent implements OnInit {
   addResource(): void {
     const data = this.resourceForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
-    data.resourceSkills = this.toppings.value;
+  
     if(data.resourceReportingTo == ""){
       data.resourceReportingTo=null;
     }
@@ -211,4 +211,9 @@ export class ResourceComponent implements OnInit {
   compareFn(c1: Resource, c2: Resource): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
    }
+
+   comparerSkill(o1: Skill, o2: Skill): boolean {
+    // if possible compare by object's name, and not by reference.
+    return o1 && o2 ? o1.name === o2.name : o2 === o2;
+  }
 }
