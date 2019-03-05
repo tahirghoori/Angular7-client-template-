@@ -106,7 +106,7 @@ export class DepartmentComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.department.id],
-        name: [this.department.name],
+        name: [this.department.name ,[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
         handle: [this.department.handle],
         departmentBench: [this.department.departmentBench],
         departmentHod: [this.department.departmentHod]

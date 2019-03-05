@@ -96,7 +96,7 @@ export class SkillComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.skill.id],
-        name: [this.skill.name],
+        name: [this.skill.name,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
         handle: [this.skill.handle],
         skillResources: [this.skill.skillResources]
       });

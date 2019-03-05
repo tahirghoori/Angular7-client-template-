@@ -4,7 +4,7 @@ export class Opratingcost {
 
 
     id: string;
-    monthlyCost:number;
+    monthlyCost:number ;
     handle: string;
     updatedAt: string;
     createdAt: string;

@@ -10,8 +10,6 @@ export class Project {
 
 
     id: string;
-    @Input()
-    pattern :string |RegExp
     name: string ;
     projectClient:Client;
     projectFeatures:Feature[];

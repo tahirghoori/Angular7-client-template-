@@ -140,7 +140,7 @@ this._projectService.getAllMilestones().subscribe(projectMilestone => {
     
       return this._formBuilder.group({
         id: [this.project.id],
-        name: [this.project.name],
+        name: [this.project.name,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
         handle: [this.project.handle],
         projectClient:[this.project.projectClient],
         projectFeatures:[this.project.projectFeatures], 
@@ -148,9 +148,9 @@ this._projectService.getAllMilestones().subscribe(projectMilestone => {
         projectMilestones:[this.project.projectMilestones], 
         projectStartDate:[this.project.projectStartDate], 
         projectDevelopmentDate: [this.project.projectDevelopmentDate], 
-        projectCost:[this.project.projectCost], 
-        projectTimeline:[this.project.projectTimeline], 
-        projectPaymentMethod:[this.project.projectPaymentMethod]
+        projectCost:[this.project.projectCost ,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]], 
+        projectTimeline:[this.project.projectTimeline,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]], 
+        projectPaymentMethod:[this.project.projectPaymentMethod,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
       });
    
   }

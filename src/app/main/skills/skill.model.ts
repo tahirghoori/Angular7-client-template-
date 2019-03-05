@@ -5,7 +5,7 @@ export class Skill {
    
    
     id: string;
-    name: string;
+    name: string ;
     handle: string;
     skillResources:Resource[];
     updatedAt: string;

@@ -5,28 +5,28 @@ import { Skill } from "../skills/skill.model";
 export class Resource {
 
     id: string;
-    name :string;
-    resourceCNIC : string;
-    resourceDOB : string;
-    resourceEmail : string;
-    resourceAddress : string;
-    resourcePhone : string;
-    resourceReligion : string;
-    resourceBloodGroup : string;
-    resourceNationality : string;
-    resourceEmergencyContactNo : string;
-    resourceMaritalStatus : string;
-    resourceDesignation : string;
-    resourceReportingTo : Resource;
+    name :string ;
+    resourceCNIC : string  ;
+    resourceDOB : string ;
+    resourceEmail : string  ;
+    resourceAddress : string  ;
+    resourcePhone : string ;
+    resourceReligion : string ;
+    resourceBloodGroup : string  ;
+    resourceNationality : string ;
+    resourceEmergencyContactNo : string ;
+    resourceMaritalStatus : string ;
+    resourceDesignation : string ;
+    resourceReportingTo : Resource ;
     resourceResume : string;
     resourceDateOfJoining : Date;
     resourceWorkingDays: number;
-    resourceExperience : number;
+    resourceExperience : number  ;
     resourceSalaryPerMonth: number;
-    resourcePerHourRate :number;
-    resourceShift : string;
+    resourcePerHourRate :number ;
+    resourceShift : string ;
     resourceBenefits: number;
-    resourceContractType : number;     //isIntern, isPartTime , isFullTime
+    resourceContractType : number  ;    //isIntern, isPartTime , isFullTime
     resourcePartTime : boolean;
     resourceDepartment: Department;
     resourceSkills:Skill[];
