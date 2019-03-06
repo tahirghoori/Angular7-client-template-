@@ -150,6 +150,7 @@ export class MilestoneComponent implements OnInit {
     const data = this.milestoneForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
 
+    console.log(data);
     this._milestoneService.addItem(data)
       .then(() => {
 

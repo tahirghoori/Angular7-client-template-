@@ -120,36 +120,26 @@
                 </mat-form-field>
               </div>
 
-              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-             
-                <mat-select placeholder="Features"  [formControl]="featureToppings" multiple>
-                  <mat-select-trigger>
-                    {{featureToppings.value ? featureToppings.value[0].name : ''}}
-                    <span *ngIf="featureToppings.value?.length > 1" class="example-additional-selection">
-                      (+{{featureToppings.value.length - 1}} {{featureToppings.value?.length === 2 ? 'other' : 'others'}})
-                    </span>
-                  </mat-select-trigger>
-                  <mat-option *ngFor="let item of projectFeatures" [value]="item">{{item.name}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              </div>
-         
+            
 
               <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                  <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                    <mat-select placeholder="Features"  name="projectFeatures" formControlName="projectFeatures" multiple  [compareWith]="comparerFeature">
+                            <mat-option *ngFor="let feature of projectFeaturesList" [value]="feature">{{feature.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                  <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                    <mat-select placeholder="Resources"  name="projectResources" formControlName="projectResources" multiple  [compareWith]="comparerResource">
+                            <mat-option *ngFor="let resource of projectResourcesList" [value]="resource">{{resource.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
              
-                <mat-select placeholder="Resources"  [formControl]="resourceToppings" multiple>
-                  <mat-select-trigger>
-                    {{resourceToppings.value ? resourceToppings.value[0].name : ''}}
-                    <span *ngIf="resourceToppings.value?.length > 1" class="example-additional-selection">
-                      (+{{resourceToppings.value.length - 1}} {{resourceToppings.value?.length === 2 ? 'other' : 'others'}})
-                    </span>
-                  </mat-select-trigger>
-                  <mat-option *ngFor="let item of projectResources" [value]="item">{{item.name}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              </div>
+              
 
             <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid" *ngIf="pageType ==='new'"
               (click)="addProject()">

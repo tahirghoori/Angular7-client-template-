@@ -60,13 +60,7 @@ export const navigation: FuseNavigation[] = [
                         'type' : 'item',
                         'url'  : '/features'
                     },
-                    {
-                        'id'   : 'milestone',
-                        'title': 'Milestones',
-                        'translate': 'NAV.MILESTONES.TITLE',
-                        'type' : 'item',
-                        'url'  : '/milestones'
-                    }
+               
 
                 ]
             },
