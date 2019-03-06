@@ -18,6 +18,9 @@ export class MilestoneFormComponent{
     milestone: Milestone;
     milestoneForm: FormGroup;
     dialogTitle: string;
+    minDate = new Date(2000, 0, 1);
+    maxDate = new Date(2020, 0, 1);
+    
 
     /**
      * Constructor
