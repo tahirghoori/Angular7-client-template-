@@ -45,6 +45,14 @@ export const navigation: FuseNavigation[] = [
                         'exactMatch':true
                     },
                     {
+                        'id'   : 'create_project_wizard',
+                        'title': 'Create Project Wizard',
+                        'translate': 'NAV.CREATE_PROJECT_WIZARD.TITLE',
+                        'type' : 'item',
+                        'url'  : '/projects-wizard/new',
+                        'exactMatch':true
+                    },
+                    {
                         'id'   : 'project_list',
                         'title': 'Project List',
                         'translate': 'NAV.PROJECT_LIST.TITLE',

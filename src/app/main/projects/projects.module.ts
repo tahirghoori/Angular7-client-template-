@@ -10,6 +10,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { MilestoneFormComponent } from '../milestones/milestone-form/milestone-form.component';
 import { MilestoneService } from '../milestones/milestone.service';
 import { MilestoneListProjectComponent } from '../milestones/milestone-list-project/milestone-list-project.component';
+import { ProjectWizardComponent } from './project-wizard/project-wizard.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,22 @@ const routes: Routes = [
 
     },
     {
+        path: 'projects-wizard/:id',
+        component: ProjectWizardComponent,
+        resolve: {
+            data: ProjectService
+        }
+
+    },
+    {
+        path: 'projects-wizard/:id/:handle',
+        component: ProjectWizardComponent,
+        resolve: {
+            data: ProjectService
+        }
+
+    },
+    {
         path: 'milestones/:id',
         component: MilestoneFormComponent,
         resolve: {
@@ -48,7 +65,7 @@ const routes: Routes = [
 
 
 @NgModule({
-    declarations: [ ProjectListComponent, MilestoneFormComponent,MilestoneListProjectComponent,ProjectComponent],
+    declarations: [ ProjectListComponent, MilestoneFormComponent,MilestoneListProjectComponent,ProjectComponent, ProjectWizardComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
