@@ -40,17 +40,17 @@ const routes: Routes = [
     {
         path: 'projects-wizard/:id',
         component: ProjectWizardComponent,
-        resolve: {
-            data: ProjectService
-        }
+        // resolve: {
+        //     data: ProjectService
+        // }
 
     },
     {
         path: 'projects-wizard/:id/:handle',
         component: ProjectWizardComponent,
-        resolve: {
-            data: ProjectService
-        }
+        // resolve: {
+        //     data: ProjectService
+        // }
 
     },
     {
@@ -69,7 +69,6 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        MatButtonModule,
         MatChipsModule,
         MatExpansionModule,
         MatFormFieldModule,
@@ -87,12 +86,15 @@ const routes: Routes = [
         MatDialogModule,
         MatDatepickerModule,
         MatDialogModule,
-        MatButtonModule,
         MatCheckboxModule,
         MatToolbarModule,
         MatDialogModule,
 
 
+        MatButtonModule,
+    
+      
+     
 
         FuseSharedModule,
         FuseConfirmDialogModule,
