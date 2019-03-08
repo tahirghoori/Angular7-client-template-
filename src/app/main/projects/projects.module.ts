@@ -11,6 +11,12 @@ import { MilestoneFormComponent } from '../milestones/milestone-form/milestone-f
 import { MilestoneService } from '../milestones/milestone.service';
 import { MilestoneListProjectComponent } from '../milestones/milestone-list-project/milestone-list-project.component';
 import { ProjectWizardComponent } from './project-wizard/project-wizard.component';
+import { PaymentDailogFormComponent } from '../payments/payment-dailog-form/payment-dailog-form.component';
+import { PaymentListProjectComponent } from '../payments/payment-list-project/payment-list-project.component';
+import { ResourceDailogFormComponent } from '../resources/resource-dailog-form/resource-dailog-form.component';
+import { ResourceListProjectComponent } from '../resources/resource-list-project/resource-list-project.component';
+import { FeatureListProjectComponent } from '../features/feature-list-project/feature-list-project.component';
+import { ProjectCreateDailogComponent } from './project-create-dailog/project-create-dailog.component';
 
 
 const routes: Routes = [
@@ -40,17 +46,17 @@ const routes: Routes = [
     {
         path: 'projects-wizard/:id',
         component: ProjectWizardComponent,
-        // resolve: {
-        //     data: ProjectService
-        // }
+        resolve: {
+            data: ProjectService
+        }
 
     },
     {
         path: 'projects-wizard/:id/:handle',
         component: ProjectWizardComponent,
-        // resolve: {
-        //     data: ProjectService
-        // }
+        resolve: {
+            data: ProjectService
+        }
 
     },
     {
@@ -65,7 +71,7 @@ const routes: Routes = [
 
 
 @NgModule({
-    declarations: [ ProjectListComponent, MilestoneFormComponent,MilestoneListProjectComponent,ProjectComponent, ProjectWizardComponent],
+    declarations: [ ProjectListComponent, MilestoneFormComponent,MilestoneListProjectComponent,ProjectComponent, ProjectWizardComponent,PaymentDailogFormComponent,PaymentListProjectComponent, ResourceDailogFormComponent, ResourceListProjectComponent, FeatureListProjectComponent, ProjectCreateDailogComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
@@ -92,14 +98,10 @@ const routes: Routes = [
 
 
         MatButtonModule,
-    
-      
-     
 
         FuseSharedModule,
         FuseConfirmDialogModule,
-        FuseSidebarModule
-        ,
+        FuseSidebarModule,
 
 
 
@@ -109,9 +111,9 @@ const routes: Routes = [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] }
     ],
-    exports: [MilestoneListProjectComponent],
+    exports: [MilestoneListProjectComponent,PaymentListProjectComponent,ResourceListProjectComponent, FeatureListProjectComponent],
     entryComponents: [
-        MilestoneFormComponent
+        MilestoneFormComponent,PaymentDailogFormComponent,ResourceDailogFormComponent,ProjectCreateDailogComponent
     ]
 })
 export class ProjectsModule { }

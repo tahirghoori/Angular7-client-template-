@@ -5,6 +5,7 @@ import { Feature } from "../features/feature.model";
 import { Resource } from "../resources/resource.model";
 import { Milestone } from "../milestones/milestone.model";
 import { Input } from "@angular/core";
+import { Payment } from "../payments/payment.model";
 
 export class Project {
 
@@ -14,6 +15,7 @@ export class Project {
     projectClient:Client;
     projectFeatures:Feature[];
     projectResources:Resource[];
+    projectPayments:Payment[];
     projectMilestones:Milestone[];
     projectStartDate:Date;
     projectDevelopmentDate:Date;
@@ -43,6 +45,7 @@ export class Project {
         this.updatedAt = project.updatedAt || '';
         this.createdAt = project.createdAt || '';
         this.projectFeatures = project.projectFeatures || [];
+        this.projectPayments = project.projectPayments || [];
         this.projectResources = project.projectResources || [];
         this.projectMilestones = project.projectMilestones || [];
         this.projectStartDate = project.projectStartDate || '';

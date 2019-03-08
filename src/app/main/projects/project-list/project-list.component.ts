@@ -7,6 +7,9 @@ import { ProjectService } from '../project.service';
 import { takeUntil, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { DataSource } from '@angular/cdk/table';
 import { FuseUtils } from '@fuse/utils';
+import { ProjectCreateDailogComponent } from '../project-create-dailog/project-create-dailog.component';
+import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'project-list',
@@ -31,6 +34,9 @@ export class ProjectListComponent implements OnInit {
   @ViewChild('filter')
   filter: ElementRef;
 
+  dialogRef: any;
+
+
   // Private
   private _unsubscribeAll: Subject<any>;
  /**
@@ -39,11 +45,13 @@ export class ProjectListComponent implements OnInit {
    * @param {ProjectService} _projectService
    * @param {MatDialog} _matDialog
    * @param {MatSnackBar} _matSnackBar
+   * @param {Router} _router
    */
   constructor(
       private _projectService: ProjectService,
       public _matDialog: MatDialog,
-      private _matSnackBar: MatSnackBar
+      private _matSnackBar: MatSnackBar,
+      private _router: Router
 
 
   ) {
@@ -75,6 +83,41 @@ export class ProjectListComponent implements OnInit {
               this.dataSource.filter = this.filter.nativeElement.value;
           });
   }
+
+  /**
+     * New contact
+     */
+    newProjectDailog(): void {
+        this.dialogRef = this._matDialog.open(ProjectCreateDailogComponent, {
+            panelClass: 'milestone-form-dialog',
+            data: {
+                action: 'new',
+            }
+        });
+
+        this.dialogRef.afterClosed()
+            .subscribe((response: FormGroup) => {
+                if (!response) {
+                    return;
+                }
+
+                var myurl = '/projects-wizard/'+response.getRawValue().id+'/'+response.getRawValue().handle;
+                this._router.navigateByUrl(myurl).then(e => {
+                  if (e) {
+                    console.log("Navigation is successful!");
+                  } else {
+                    console.log("Navigation has failed!");
+                  }
+                });
+
+                // [routerLink]="'/projects/'+project.id+'/'+project.handle"
+                // this.projectMilestonesList = response.getRawValue();
+                // console.log(this.projectMilestonesList);
+
+
+                // this._milestoneService.updateMilestone(response.getRawValue());
+            });
+    }
 
   /**
  * Delete Contact

@@ -16,7 +16,7 @@
 
     <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
 
-        <form  name="milestoneForm" [formGroup]="milestoneForm">
+        <form  name="paymentForm" [formGroup]="paymentForm">
           
          
                   <input  type="hidden"  name="id" formControlName="id"
@@ -37,7 +37,7 @@
 
             <div fxLayout="row" fxLayoutAlign="start start" >
                 <mat-form-field appearance="outline"  fxFlex >
-                <input matInput [matDatepicker]="picker1" placeholder="Payment Date"  name="paymentStartDate" formControlName="paymentStartDate">
+                <input matInput [matDatepicker]="picker1" placeholder="Payment Date"  name="paymentDate" formControlName="paymentDate">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
@@ -53,7 +53,7 @@
         <button *ngIf="action === 'edit'"
                 mat-button
                 class="mr-8"
-                (click)="matDialogRef.close(['delete',milestoneForm])"
+                (click)="matDialogRef.close(['delete',paymentForm])"
                 aria-label="Delete"
                 matTooltip="Delete">
             DELETE
@@ -62,8 +62,8 @@
         <button *ngIf="action !== 'edit'"
                 mat-button
                 class="save-button"
-                (click)="matDialogRef.close(milestoneForm)"
-                [disabled]="milestoneForm.invalid"
+                (click)="matDialogRef.close(paymentForm)"
+                [disabled]="paymentForm.invalid"
                 aria-label="SAVE">
             ADD
         </button>
@@ -71,8 +71,8 @@
         <button *ngIf="action === 'edit'"
                 mat-button
                 class="save-button"
-                (click)="matDialogRef.close(['save',milestoneForm])"
-                [disabled]="milestoneForm.invalid"
+                (click)="matDialogRef.close(['save',paymentForm])"
+                [disabled]="paymentForm.invalid"
                 aria-label="SAVE">
             SAVE
         </button>

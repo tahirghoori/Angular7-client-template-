@@ -65,7 +65,7 @@ export class PaymentDailogFormComponent  {
       return this._formBuilder.group({
         id: [this.payment.id],
         handle: [this.payment.handle],
-        paymentStartDate: [this.payment.paymentDate],
+        paymentDate: [this.payment.paymentDate],
         paymentAmount: [this.payment.paymentAmount]
       });
   }

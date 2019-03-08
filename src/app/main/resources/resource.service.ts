@@ -26,6 +26,11 @@ export class ResourceService {
   onItemChanged: BehaviorSubject<any>;
   onItemsChanged: BehaviorSubject<any>;
 
+  onResourcesChanged: BehaviorSubject<any>;
+  onSelectedResourcesChanged: BehaviorSubject<any>;
+  resources: Resource[];
+  resourceIndex:any;
+
   /**
    * Constructor
    *
@@ -38,6 +43,9 @@ export class ResourceService {
     // Set the defaults
     this.onItemChanged = new BehaviorSubject({});
     this.onItemsChanged = new BehaviorSubject({});
+        // Set the defaults
+        this.onResourcesChanged = new BehaviorSubject([]);
+        this.onSelectedResourcesChanged = new BehaviorSubject([]);
   }
 
   /**
@@ -211,5 +219,53 @@ export class ResourceService {
     return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
 
   }
+
+
+  
+
+    /**
+     * Update resource
+     *
+     * @param resource
+     * @returns {Promise<any>}
+     */
+    updateResource(resource): Promise<any>
+    {
+     
+        return new Promise((resolve, reject) => {
+          if(resource.id != ''){
+           
+        this.resourceIndex = this.resources.indexOf(resource);
+            this.resources.splice(this.resourceIndex, 1);
+          }
+          this.resources.push(resource);
+          this.onResourcesChanged.next(this.resources);
+
+            // this._httpClient.post('api/resources-resources/' + resource.id, {...resource})
+            //     .subscribe(response => {
+            //         this.getResources();
+                    resolve(resource);
+            //     });
+        });
+    }
+
+    
+
+    /**
+     * Delete resource
+     *
+     * @param resource
+     */
+    deleteResource(resource): void
+    {
+        const resourceIndex = this.resources.indexOf(resource);
+        this.resources.splice(resourceIndex, 1);
+        this.onResourcesChanged.next(this.resources);
+    }
+
+
+
+
+
 
 }

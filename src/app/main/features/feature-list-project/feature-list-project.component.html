@@ -1,29 +1,28 @@
 <mat-table #table [dataSource]="dataSource"
            [@animateStagger]="{value:'50'}">
-    <!-- paymentDate Column -->
-    <ng-container matColumnDef="amount">
-        <mat-header-cell *matHeaderCellDef>Payment Amount</mat-header-cell>
-        <mat-cell *matCellDef="let payment">
-            <p class="text-truncate font-weight-600">{{payment.paymentAmount}} </p>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let feature">
+            <p class="text-truncate font-weight-600">{{feature.name}} </p>
         </mat-cell>
     </ng-container>
-
-    <!-- Email Column -->
-    <ng-container matColumnDef="date">
-        <mat-header-cell *matHeaderCellDef >Payment Date </mat-header-cell>
-        <mat-cell *matCellDef="let payment"  >
-            <p class="email text-truncate">
-                {{payment.paymentDate}}
-            </p>
-        </mat-cell>
-    </ng-container>
+   
+      <!-- Duration Column -->
+      <ng-container matColumnDef="duration">
+          <mat-header-cell *matHeaderCellDef >Duration </mat-header-cell>
+          <mat-cell *matCellDef="let feature"  >
+              <p class="email text-truncate">
+                  {{feature.featureEstimateDuration}}
+              </p>
+          </mat-cell>
+      </ng-container>
 
    
-
     <!-- Buttons Column -->
     <ng-container matColumnDef="buttons">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let payment">
+        <mat-cell *matCellDef="let feature">
             <div fxFlex="row" fxLayoutAlign="end center">
               
                 <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
@@ -32,7 +31,7 @@
                 </button>
 
                 <mat-menu #moreMenu="matMenu">
-                    <button mat-menu-item aria-label="remove" (click)="deletePayment(payment)">
+                    <button mat-menu-item aria-label="remove" (click)="deleteFeature(feature)">
                         <mat-icon>delete</mat-icon>
                         <span>Remove</span>
                     </button>
@@ -43,10 +42,9 @@
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let payment; columns: displayedColumns;"
-             class="payment"
-             (click)="editPayment(payment)"
-             [ngClass]="{'accent-50':checkboxes[payment.id]}"
+    <mat-row *matRowDef="let feature; columns: displayedColumns;"
+             class="feature"
+             [ngClass]="{'accent-50':checkboxes[feature.id]}"
              matRipple
              [@animate]="{value:'*',params:{y:'100%'}}">
     </mat-row>

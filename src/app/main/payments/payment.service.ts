@@ -7,9 +7,10 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class PaymentService {
 
-  onMilestonesChanged: BehaviorSubject<any>;
-  onSelectedMilestonesChanged: BehaviorSubject<any>;
+  onPaymentsChanged: BehaviorSubject<any>;
+  onSelectedPaymentsChanged: BehaviorSubject<any>;
   payments: Payment[];
+  paymentIndex:any;
 
  /**
    * Constructor
@@ -19,14 +20,13 @@ export class PaymentService {
   constructor(
   ) {
     // Set the defaults
-    this.onMilestonesChanged = new BehaviorSubject([]);
-    this.onSelectedMilestonesChanged = new BehaviorSubject([]);
+    this.onPaymentsChanged = new BehaviorSubject([]);
+    this.onSelectedPaymentsChanged = new BehaviorSubject([]);
   }
 
   
 
 
-  paymentIndex:any;
 
   
 
@@ -46,11 +46,11 @@ export class PaymentService {
             this.payments.splice(this.paymentIndex, 1);
           }
           this.payments.push(payment);
-          this.onMilestonesChanged.next(this.payments);
+          this.onPaymentsChanged.next(this.payments);
 
             // this._httpClient.post('api/payments-payments/' + payment.id, {...payment})
             //     .subscribe(response => {
-            //         this.getMilestones();
+            //         this.getPayments();
                     resolve(payment);
             //     });
         });
@@ -63,11 +63,11 @@ export class PaymentService {
      *
      * @param payment
      */
-    deleteMilestone(payment): void
+    deletePayment(payment): void
     {
         const paymentIndex = this.payments.indexOf(payment);
         this.payments.splice(paymentIndex, 1);
-        this.onMilestonesChanged.next(this.payments);
+        this.onPaymentsChanged.next(this.payments);
     }
 
 

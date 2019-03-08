@@ -3,33 +3,36 @@ import { fuseAnimations } from '@fuse/animations';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
 import { Subject, Observable } from 'rxjs';
-import { PaymentService } from '../payment.service';
-import { takeUntil } from 'rxjs/operators';
-import { PaymentDailogFormComponent } from '../payment-dailog-form/payment-dailog-form.component';
-import { FormGroup } from '@angular/forms';
+import { ResourceService } from '../resource.service';
 import { DataSource } from '@angular/cdk/table';
+import { FormGroup } from '@angular/forms';
+import { ResourceDailogFormComponent } from '../resource-dailog-form/resource-dailog-form.component';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-payment-list-project',
-  templateUrl: './payment-list-project.component.html',
-  styleUrls: ['./payment-list-project.component.scss'],
+  selector: 'app-resource-list-project',
+  templateUrl: './resource-list-project.component.html',
+  styleUrls: ['./resource-list-project.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations   : fuseAnimations
 })
-export class PaymentListProjectComponent implements OnInit {
+export class ResourceListProjectComponent implements OnInit {
 
 
   @ViewChild('dialogContent')
   dialogContent: TemplateRef<any>;
 
-  payments: any;
+  resources: any;
   user: any;
   dataSource: FilesDataSource | null;
-  displayedColumns = [ 'amount', 'date', 'buttons'];
-  selectedPayments: any[];
+  displayedColumns = [ 'name', 'hour', 'allocation',  'start', 'end', 'buttons'];
+  selectedResources: any[];
   checkboxes: {};
   dialogRef: any;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
+
+
+
 
   // Private
   private _unsubscribeAll: Subject<any>;
@@ -37,11 +40,11 @@ export class PaymentListProjectComponent implements OnInit {
   /**
    * Constructor
    *
-   * @param {PaymentService} _paymentsService
+   * @param {ResourceService} _resourcesService
    * @param {MatDialog} _matDialog
    */
   constructor(
-      private _paymentsService: PaymentService,
+      private _resourcesService: ResourceService,
       public _matDialog: MatDialog
   )
   {
@@ -58,16 +61,16 @@ export class PaymentListProjectComponent implements OnInit {
    */
   ngOnInit(): void
   {
-      this.dataSource = new FilesDataSource(this._paymentsService);
+      this.dataSource = new FilesDataSource(this._resourcesService);
 
-      this._paymentsService.onPaymentsChanged
+      this._resourcesService.onResourcesChanged
           .pipe(takeUntil(this._unsubscribeAll))
-          .subscribe(payments => {
-              this.payments = payments;
+          .subscribe(resources => {
+              this.resources = resources;
 
               this.checkboxes = {};
-              payments.map(payment => {
-                  this.checkboxes[payment.id] = false;
+              resources.map(resource => {
+                  this.checkboxes[resource.id] = false;
               });
           });
 
@@ -90,16 +93,16 @@ export class PaymentListProjectComponent implements OnInit {
   // -----------------------------------------------------------------------------------------------------
 
   /**
-   * Edit payment
+   * Edit resource
    *
-   * @param payment
+   * @param resource
    */
-  editPayment(payment): void
+  editResource(resource): void
   {
-      this.dialogRef = this._matDialog.open(PaymentDailogFormComponent, {
+      this.dialogRef = this._matDialog.open(ResourceDailogFormComponent, {
           panelClass: 'milestone-form-dialog',
           data      : {
-              payment: payment,
+              resource: resource,
               action : 'edit'
           }
       });
@@ -119,14 +122,14 @@ export class PaymentListProjectComponent implements OnInit {
                    */
                   case 'save':
 
-                      this._paymentsService.updatePayment(formData.getRawValue());
+                      this._resourcesService.updateResource(formData.getRawValue());
                       break;
                   /**
                    * Delete
                    */
                   case 'delete':
 
-                      this.deletePayment(payment);
+                      this.deleteResource(resource);
 
                       break;
               }
@@ -134,9 +137,9 @@ export class PaymentListProjectComponent implements OnInit {
   }
 
   /**
-   * Delete Payment
+   * Delete Resource
    */
-  deletePayment(payment): void
+  deleteResource(resource): void
   {
       this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
           disableClose: false
@@ -147,7 +150,7 @@ export class PaymentListProjectComponent implements OnInit {
       this.confirmDialogRef.afterClosed().subscribe(result => {
           if ( result )
           {
-              this._paymentsService.deletePayment(payment);
+              this._resourcesService.deleteResource(resource);
           }
           this.confirmDialogRef = null;
       });
@@ -163,10 +166,10 @@ export class FilesDataSource extends DataSource<any>
   /**
    * Constructor
    *
-   * @param {PaymentService} _paymentsService
+   * @param {ResourceService} _resourcesService
    */
   constructor(
-      private _paymentsService: PaymentService
+      private _resourcesService: ResourceService
   )
   {
       super();
@@ -178,7 +181,7 @@ export class FilesDataSource extends DataSource<any>
    */
   connect(): Observable<any[]>
   {
-      return  this._paymentsService.onPaymentsChanged;
+      return  this._resourcesService.onResourcesChanged;
   }
 
   /**
