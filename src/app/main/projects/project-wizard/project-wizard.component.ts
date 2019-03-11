@@ -135,7 +135,7 @@ export class ProjectWizardComponent implements OnInit {
 
         this._projectService.getAllFeatures().subscribe(projectFeature => {
             this.projectFeatureList = projectFeature.map((feature) => new Feature(feature));
-            console.log(this.projectFeatureList);
+            // console.log(this.projectFeatureList);
             this.featureFilteredOptions = this.featureControl.valueChanges
             .pipe(startWith<string | Feature>(''),
                 map(value => typeof value === 'string' ? value : value.name),
@@ -196,28 +196,13 @@ export class ProjectWizardComponent implements OnInit {
             name: [this.project.name],
             handle: [this.project.handle],
             description: [''],
-            categories: [''],
+            projectStartDate: [this.project.projectStartDate],
+            projectDevelopmentDate: [this.project.projectDevelopmentDate],
             projectClient: [this.project.projectClient],
-            projectDevelopmentDate: [''],
-            projectStartDate: [''],
-            tags: [''],
             projectCost: [this.project.projectCost, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
             projectTimeline: [this.project.projectTimeline, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
             projectPaymentMethod: [this.project.projectPaymentMethod, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-            projectResources: [this.project.projectResources],
-            images: [''],
-            priceTaxExcl: [''],
-            priceTaxIncl: [''],
-            taxRate: [''],
-            comparedPrice: [''],
-            quantity: [''],
-            sku: [''],
-            width: [''],
-            height: [''],
-            depth: [''],
-            weight: [''],
-            extraShippingFee: [''],
-            active: ['']
+            projectResources: [this.project.projectResources]
         });
     }
 

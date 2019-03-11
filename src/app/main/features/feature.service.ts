@@ -190,11 +190,11 @@ export class FeatureService {
     {
      
         return new Promise((resolve, reject) => {
-          if(feature.id != ''){
+        //   if(feature.id != ''){
            
-        this.featureIndex = this.features.indexOf(feature);
-            this.features.splice(this.featureIndex, 1);
-          }
+        // this.featureIndex = this.features.indexOf(feature);
+        //     this.features.splice(this.featureIndex, 1);
+        //   }
           this.features.push(feature);
           this.onFeaturesChanged.next(this.features);
 

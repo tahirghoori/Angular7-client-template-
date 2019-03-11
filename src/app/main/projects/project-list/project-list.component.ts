@@ -10,6 +10,7 @@ import { FuseUtils } from '@fuse/utils';
 import { ProjectCreateDailogComponent } from '../project-create-dailog/project-create-dailog.component';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Project } from '../project.model';
 
 @Component({
   selector: 'project-list',
@@ -101,7 +102,21 @@ export class ProjectListComponent implements OnInit {
                     return;
                 }
 
-                var myurl = '/projects-wizard/'+response.getRawValue().id+'/'+response.getRawValue().handle;
+
+
+                this._projectService.addItem(response.getRawValue())
+                .then((responseData) => {
+          
+          
+                  // Show the success message
+                  this._matSnackBar.open('Record added', 'OK', {
+                    verticalPosition: 'top',
+                    duration: 2000
+                  });
+                 let data = new Project(responseData);
+                  // Change the location with new one
+                //   this._router.navigate(['/projects']);
+                var myurl = '/projects-wizard/'+data.id+'/'+data.handle;
                 this._router.navigateByUrl(myurl).then(e => {
                   if (e) {
                     console.log("Navigation is successful!");
@@ -109,6 +124,11 @@ export class ProjectListComponent implements OnInit {
                     console.log("Navigation has failed!");
                   }
                 });
+                });
+
+
+
+              
 
                 // [routerLink]="'/projects/'+project.id+'/'+project.handle"
                 // this.projectMilestonesList = response.getRawValue();

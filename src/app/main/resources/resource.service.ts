@@ -233,11 +233,28 @@ export class ResourceService {
     {
      
         return new Promise((resolve, reject) => {
-          if(resource.id != ''){
-           
-        this.resourceIndex = this.resources.indexOf(resource);
+        //   if( != ''){
+        // this.resourceIndex = this.resources.indexOf(resource);
+        // let getItem =new Resource(this.resourceIndex);
+        // console.log(resource.id+' - ' +getItem.id );
+          
+    
+        for (let key in this.resources) {
+          let value = this.resources[key];
+          // Use `key` and `value`
+          if(value.id == resource.id){
+            this.resourceIndex = key;
             this.resources.splice(this.resourceIndex, 1);
           }
+      }
+    //     this.resources.forEach(function (value) {
+    //       if(value.id == resource.id){
+    //         let getItem =new Resource(this.resourceIndex value);
+          
+    //  }
+          
+    //     });
+        //   }
           this.resources.push(resource);
           this.onResourcesChanged.next(this.resources);
 

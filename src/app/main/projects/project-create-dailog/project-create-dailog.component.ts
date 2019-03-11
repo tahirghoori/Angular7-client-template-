@@ -44,7 +44,7 @@ export class ProjectCreateDailogComponent  {
       // Set the defaults
       this.action = _data.action;
 
-      console.log(this.action);
+      // console.log(this.action);
       if ( this.action === 'edit' )
       {
           this.dialogTitle = 'Edit Project';
