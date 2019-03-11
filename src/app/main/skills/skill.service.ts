@@ -144,6 +144,20 @@ export class SkillService {
         }, reject);
     });
   }
+   /**
+   * Add product
+   *
+   * @param ListItem
+   * @returns {Promise<any>}
+   */
+  addListItem(Listitem): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._httpClient.post(API_URL + '/' + this.entityNode + '/saveall' , Listitem)
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+    });
+  }
 
 
   /**
