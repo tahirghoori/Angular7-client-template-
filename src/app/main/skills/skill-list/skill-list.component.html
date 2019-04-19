@@ -24,7 +24,7 @@
           <div class="search-wrapper mx-32 mx-md-0">
               <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                   <mat-icon>search</mat-icon>
-                  <input #filter placeholder="Search for a skills">
+                  <input (keyup)="applyFilter($event.target.value)" placeholder="Search for a skills">
               </div>
           </div>
           <!-- / SEARCH -->
@@ -87,10 +87,14 @@
 
           </mat-table>
 
-          <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]">
-          </mat-paginator>
+  <mat-paginator #paginator [length]="totalLength"
+                 [pageSize]="limit" 
+                 [pageSizeOptions]="pageLimit"                 
+                 (page)="changePage($event)">
+  </mat-paginator>
 
+
+          
       </div>
       <!-- / CONTENT CARD -->
   </div>

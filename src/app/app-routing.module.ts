@@ -3,63 +3,26 @@ import { RouterModule } from '@angular/router';
 
 import { Routes } from '@angular/router';
 import { AppAuthGuard } from './app.authguard';
+import { Role } from './main/roles/role.enum';
 
 const appRoutes: Routes = [
     
   {
       path        : '',
-      loadChildren: './main/clients/clients.module#ClientsModule',
-      // canActivate: [AuthGuard]
-
-  },
-  {
-      path        : '',
-      loadChildren: './main/departments/departments.module#DepartmentsModule',
-      // canActivate: [AuthGuard]
-
-  },
-  {
-      path        : '',
-      loadChildren: './main/features/features.module#FeaturesModule',
-      // canActivate: [AuthGuard]
-
-  },
-  {
-      path        : '',
-      loadChildren: './main/fringebenefits/fringebenefits.module#FringebenefitsModule',
-      // canActivate: [AuthGuard]
-
-  },
-  {
-      path        : '',
-      loadChildren: './main/milestones/milestones.module#MilestonesModule',
-      // canActivate: [AuthGuard]
-
-  },
-  {
-      path        : '',
-      loadChildren: './main/opratingcosts/opratingcosts.module#OpratingcostsModule',
-      // canActivate: [AuthGuard]
-
-  },
-  {
-      path        : '',
-      loadChildren: './main/projects/projects.module#ProjectsModule',
-      // canActivate: [AuthGuard]
-
-  },
-  {
-      path        : '',
-      loadChildren: './main/resources/resources.module#ResourcesModule',
-      // canActivate: [AuthGuard]
-
-  },
-  {
-      path        : '',
       loadChildren: './main/skills/skills.module#SkillsModule',
-      // canActivate: [AuthGuard]
+      canActivate: [AppAuthGuard],
+      data: { roles: [Role.Admin] } 
 
-  }
+  },
+  {
+    path        : '',
+    loadChildren: './main/roles/roles.module#RolesModule',
+    canActivate: [AppAuthGuard],
+    data: { roles: [Role.Admin] } 
+
+},
+      // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

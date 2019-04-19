@@ -98,7 +98,6 @@ export class SkillComponent implements OnInit {
         id: [this.skill.id],
         name: [this.skill.name,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
         handle: [this.skill.handle],
-        skillResources: [this.skill.skillResources]
       });
    
   }

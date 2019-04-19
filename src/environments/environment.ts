@@ -3,14 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 import { KeycloakConfig } from 'keycloak-angular';
 
+
 // Add here your keycloak setup infos
 let keycloakConfig: KeycloakConfig = {
-    url: 'http://localhost:8081/auth',
-    realm: 'example',
-    clientId: 'my-app'
+    url: 'http://localhost:8083/auth',
+    realm: 'Viralskills',
+    clientId: 'angular-client-web'
 };
 export const environment = {
-    apiUrl: 'http://localhost:8080/api/raservice/v1',
+    apiUrl: 'http://localhost:8080',
+    apiaccountUrl: 'http://localhost:8084',
 
 
     hmr: false,

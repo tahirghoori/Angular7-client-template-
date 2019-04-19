@@ -77,6 +77,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
                     setTimeout(() => {
                         const activeNavItem: any = document.querySelector('navbar .nav-link.active');
 
+
                         if ( activeNavItem )
                         {
                             const activeItemOffsetTop       = activeNavItem.offsetTop,

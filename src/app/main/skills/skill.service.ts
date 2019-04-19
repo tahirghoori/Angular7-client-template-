@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { environment } from 'environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { catchError, map } from 'rxjs/operators';
+import { SkillPage } from './skillpage.model';
+import { Skill } from './skill.model';
 
 const API_URL = environment.apiUrl;
 
@@ -14,11 +17,77 @@ const API_URL = environment.apiUrl;
 })
 export class SkillService {
   
-  entityNode: string = 'skill';
+
+  // private url = 'http://localhost:8099/api/clients';
+
+  // private urlPage = 'http://localhost:8099/api/clients/get?page=';
+
+  // getSkill(): Observable<Skill[]>{
+  //    return this.http.get<Skill[]>(this.url)
+  //     .pipe(
+  //          catchError(this.handleError('getSkillPage', []))
+  //     );
+  // }
+
+
+  // getSkillPage(page:number) {
+  //   // getItems(): Promise<any> {
+    
+
+
+  //   let promise = new Promise((resolve, reject) => {
+  //     // let apiURL = `${this.apiRoot}?term=${term}&media=music&limit=20`;
+  //     let url = "http://localhost:8080/skills?page=0";
+  //     url=url+page + "&size=20";
+  //     this._httpClient.get(url)
+  //         .toPromise()
+  //         .then(
+  //           (res: any)  => { // Success
+              
+  //               this.items = res.json().results.map(item => {
+  //                 return new SkillPage(
+                      
+  //                 );
+  //               });
+  //               // this.results = res.json().results;
+  //               resolve();
+  //             },
+  //             msg => { // Error
+  //               reject(msg);
+  //             }
+  //         );
+  //   });
+  //   return promise;
+  // }
+
+
+//  getSkillPage(page:number): Observable<SkillPage>{
+//   var url = this.urlPage;
+//   url=url+page + "&size=6";
+//   return this.http.get<SkillPage>(url)
+//   .pipe(
+//     map(response => {
+//       const data = response;
+//       console.log(data.content);
+//       return data ;
+//     }));
+// }
+  
+
+
+
+
+
+
+
+
+  entityNode: string = 'skills';
   routeParams: any;
   item: any;
+  pageItem: any;
   items: any[];
   onItemChanged: BehaviorSubject<any>;
+  onPageItemChanged: BehaviorSubject<any>;
   onItemsChanged: BehaviorSubject<any>;
 
   /**
@@ -32,6 +101,7 @@ export class SkillService {
   ) {
     // Set the defaults
     this.onItemChanged = new BehaviorSubject({});
+    this.onPageItemChanged = new BehaviorSubject({});
     this.onItemsChanged = new BehaviorSubject({});
   }
 
@@ -69,12 +139,20 @@ export class SkillService {
     return new Promise((resolve, reject) => {
       // console.log(this.routeParams.id);
       if (this.routeParams.id === undefined) {
-        this._httpClient.get(API_URL + '/' + this.entityNode)
-        .subscribe((response: any) => {
-          this.items = response;
-          this.onItemsChanged.next(this.items);
-          resolve(response);
-        }, reject);
+
+          this._httpClient.get(API_URL + '/' + this.entityNode)
+            .subscribe((response: any) => {
+              this.pageItem = new SkillPage(response);
+              this.onPageItemChanged.next(this.pageItem);
+              resolve(response);
+            }, reject);
+
+        // this._httpClient.get(API_URL + '/' + this.entityNode)
+        // .subscribe((response: any) => {
+        //   this.items = response;
+        //   this.onItemsChanged.next(this.items);
+        //   resolve(response);
+        // }, reject);
       }
       else if (this.routeParams.id === 'new') {
         this.onItemChanged.next(false);
@@ -159,7 +237,6 @@ export class SkillService {
     });
   }
 
-
   /**
    * Get items
    *
@@ -176,9 +253,40 @@ export class SkillService {
     });
   }
 
+  /**
+   * Get items
+   *
+   * @returns {Promise<any>}
+   */
+  getPageItem(page:number,size:number): Promise<any> {
+    // ?page=0&size=20
+    return new Promise((resolve, reject) => {
+      this._httpClient.get(API_URL + '/' + this.entityNode+'?page='+page+'&size='+size)
+      .subscribe((response: any) => {
+        this.pageItem = new SkillPage(response);
+        this.onPageItemChanged.next(this.pageItem);
+        resolve(response);
+      }, reject);
+    });
+  }
+  
   deleteItemById(itemId: number): any {
     return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
 
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+   
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+   
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
+   
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 
 }

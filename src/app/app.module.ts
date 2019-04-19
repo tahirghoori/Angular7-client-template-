@@ -1,6 +1,6 @@
 import { NgModule,APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -22,6 +22,8 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { HttpModule } from '@angular/http';
 import { initializer } from './utils/app-init';
 import { AppRoutingModule } from './app-routing.module';
+import { JwtInterceptor } from './helper/ jwt.interceptor';
+import { ErrorInterceptor } from './helper/error.interceptor';
 
 
 @NgModule({
@@ -76,8 +78,11 @@ import { AppRoutingModule } from './app-routing.module';
         provide: APP_INITIALIZER,
         useFactory: initializer,
         multi: true,
-        deps: [KeycloakService]
-      }
+        deps: [KeycloakService],
+      },
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
     ],
     bootstrap   : [
         AppComponent

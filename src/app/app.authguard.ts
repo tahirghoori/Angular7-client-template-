@@ -14,11 +14,16 @@ export class AppAuthGuard extends KeycloakAuthGuard {
         this.keycloakAngular.login();
         return;
       }
+      // console.log(this);
 
       const requiredRoles = route.data.roles;
+      console.log(requiredRoles);
       if (!requiredRoles || requiredRoles.length === 0) {
         return resolve(true);
       } else {
+        
+      // console.log(this.roles);
+
         if (!this.roles || this.roles.length === 0) {
           resolve(false);
         }
