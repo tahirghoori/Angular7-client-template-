@@ -24,6 +24,7 @@ import { initializer } from './utils/app-init';
 import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor } from './helper/ jwt.interceptor';
 import { ErrorInterceptor } from './helper/error.interceptor';
+import { EnvServiceProvider } from './env.service.provider';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { ErrorInterceptor } from './helper/error.interceptor';
         AppRoutingModule
     ],
     providers: [
+      EnvServiceProvider,
       {
         provide: APP_INITIALIZER,
         useFactory: initializer,

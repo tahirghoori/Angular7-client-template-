@@ -110,6 +110,8 @@ export class RoleListComponent implements OnInit {
                       duration: 3000
                   });
                   this._roleService.getItems();
+          this._roleService.getPageItem(this._roleService.pageItem.number,this._roleService.pageItem.size);
+
               });
           }
           this.confirmDialogRef = null;

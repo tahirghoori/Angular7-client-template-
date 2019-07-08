@@ -19,8 +19,13 @@ const appRoutes: Routes = [
     loadChildren: './main/roles/roles.module#RolesModule',
     canActivate: [AppAuthGuard],
     data: { roles: [Role.Admin] } 
-
-},
+  },
+  {
+    path        : '',
+    loadChildren: './main/permissions/permissions.module#PermissionsModule',
+    canActivate: [AppAuthGuard],
+    data: { roles: [Role.Admin] } 
+  },
       // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

@@ -1,9 +1,6 @@
 import { FuseUtils } from "@fuse/utils";
 
 export class Role {
-
-
-   
     id: string;
     name: string ;
     permission: string ;

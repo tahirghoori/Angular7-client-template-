@@ -11,7 +11,7 @@ let keycloakConfig: KeycloakConfig = {
     clientId: 'angular-client-web'
 };
 export const environment = {
-    apiUrl: 'http://localhost:8080',
+    apiUrl: 'http://dev.viralskills.com/api/appservice/v1',
     apiaccountUrl: 'http://localhost:8084',
 
 

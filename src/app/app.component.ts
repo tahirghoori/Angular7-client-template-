@@ -17,12 +17,11 @@ import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 @Component({
-    selector   : 'app',
+    selector: 'app',
     templateUrl: './app.component.html',
-    styleUrls  : ['./app.component.scss']
+    styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy
-{
+export class AppComponent implements OnInit, OnDestroy {
     fuseConfig: any;
     navigation: any;
     userDetails: KeycloakProfile;
@@ -53,10 +52,34 @@ export class AppComponent implements OnInit, OnDestroy
         private _translateService: TranslateService,
         private _platform: Platform,
         private _keycloakService: KeycloakService
-    )
-    {
+    ) {
         // Get default navigation
         this.navigation = navigation;
+
+        // console.log(this._keycloakService.getUserRoles());
+        // console.log(this.navigation[0].children);
+        // for (var i = 0; i < this.navigation[0].children.length; i++) {
+
+        //     if (this.navigation[0].children[i].permissions != '') {
+        //         if (!this._keycloakService.isUserInRole(this.navigation[0].children[i].permissions)) {
+        //             this.navigation[0].children.splice(i, 1);
+        //         } else {
+        //             // for (var a = 0; a < this.navigation[0].children[i].children.length; i++) {
+        //                 // if (this.navigation[i].children[a].permissions != '') {
+        //                 //     if (!this._keycloakService.isUserInRole(this.navigation[i].children[a].permissions)) {
+        //                 //         this.navigation[i].children.splice(a, 1);
+        //                 //     }
+        //                 // }
+        //             // }
+        //         }
+        //     }
+
+        // }
+
+
+
+
+        // console.log(this.navigation[0].children);
 
         // Register the navigation to the service
         this._fuseNavigationService.register('main', this.navigation);
@@ -110,8 +133,7 @@ export class AppComponent implements OnInit, OnDestroy
          */
 
         // Add is-mobile class to the body if the platform is mobile
-        if ( this._platform.ANDROID || this._platform.IOS )
-        {
+        if (this._platform.ANDROID || this._platform.IOS) {
             this.document.body.classList.add('is-mobile');
         }
 
@@ -121,7 +143,7 @@ export class AppComponent implements OnInit, OnDestroy
 
 
 
-  
+
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------
@@ -129,9 +151,8 @@ export class AppComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    async  ngOnInit() 
-    {
-       
+    async  ngOnInit() {
+
         // Subscribe to config changes
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
@@ -140,22 +161,18 @@ export class AppComponent implements OnInit, OnDestroy
                 this.fuseConfig = config;
 
                 // Boxed
-                if ( this.fuseConfig.layout.width === 'boxed' )
-                {
+                if (this.fuseConfig.layout.width === 'boxed') {
                     this.document.body.classList.add('boxed');
                 }
-                else
-                {
+                else {
                     this.document.body.classList.remove('boxed');
                 }
 
                 // Color theme - Use normal for loop for IE11 compatibility
-                for ( let i = 0; i < this.document.body.classList.length; i++ )
-                {
+                for (let i = 0; i < this.document.body.classList.length; i++) {
                     const className = this.document.body.classList[i];
 
-                    if ( className.startsWith('theme-') )
-                    {
+                    if (className.startsWith('theme-')) {
                         this.document.body.classList.remove(className);
                     }
                 }
@@ -163,16 +180,15 @@ export class AppComponent implements OnInit, OnDestroy
                 this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
 
-            if (await this._keycloakService.isLoggedIn()) {
-                this.userDetails = await this._keycloakService.loadUserProfile();
-              }
+        if (await this._keycloakService.isLoggedIn()) {
+            this.userDetails = await this._keycloakService.loadUserProfile();
+        }
     }
 
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
@@ -187,8 +203,7 @@ export class AppComponent implements OnInit, OnDestroy
      *
      * @param key
      */
-    toggleSidebarOpen(key): void
-    {
+    toggleSidebarOpen(key): void {
         this._fuseSidebarService.getSidebar(key).toggleOpen();
     }
 }

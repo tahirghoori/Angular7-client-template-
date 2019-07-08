@@ -54,6 +54,9 @@ export const locale = {
             'DEVELOPER_OPTION'        : {
                 'TITLE': 'Developer Option'
             },
+            'PERMISSIONS'        : {
+                'TITLE': 'Permissions'
+            },
             'FEATURES'        : {
                 'TITLE': 'Features'
             },

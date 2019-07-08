@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
+import { EnvService } from 'app/env.service';
 
 @Component({
   selector: 'app-skill',
@@ -27,15 +28,19 @@ export class SkillComponent implements OnInit {
   private _unsubscribeAll: Subject<any>;
   toppings = new FormControl();
   
+  env: any;
+
   /**
    * Constructor
    *
+   * @param {EnvService} _env
    * @param {SkillService} _skillService
    * @param {FormBuilder} _formBuilder
    * @param {MatSnackBar} _matSnackBar,
    *
    */
   constructor(
+    private _env: EnvService,
     private _skillService: SkillService,
     private _formBuilder: FormBuilder,
     private _matSnackBar: MatSnackBar,
@@ -45,6 +50,7 @@ export class SkillComponent implements OnInit {
     this.skill = new Skill();
     // Set the private defaults
     this._unsubscribeAll = new Subject();
+    this.env = this._env.environmentName;
 
   }
   // -----------------------------------------------------------------------------------------------------

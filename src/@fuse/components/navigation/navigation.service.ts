@@ -324,6 +324,7 @@ export class FuseNavigationService
      */
     addNavigationItem(item, id): void
     {
+        
         // Get the current navigation
         const navigation: any[] = this.getCurrentNavigation();
 
