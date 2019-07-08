@@ -5,10 +5,12 @@ export interface FuseNavigationItem
     type: 'item' | 'group' | 'collapsable';
     translate?: string;
     icon?: string;
+    permissions?: string;
     hidden?: boolean;
     url?: string;
     classes?: string;
     exactMatch?: boolean;
+    access?: boolean;
     externalUrl?: boolean;
     openInNewTab?: boolean;
     function?: any;

@@ -2,99 +2,18 @@
   "skills": [
     {
       "id": 2,
-      "skillName": "Android ",
+      "name": "Android ",
       "handle": "android"
     },
     {
       "id": 5,
-      "skillName": "Python",
+      "name": "Python",
       "handle": "python"
     },
     {
       "id": 6,
-      "skillName": "skill 1",
+      "name": "skill 1",
       "handle": "skill-1"
-    }
-  ],
-  "clients": [
-    {
-      "id": 1,
-      "title": "Suraksha",
-      "handle": "suraksha",
-      "phoneNumber": "03357250180",
-      "email": "suraksha.sahani@appiskey.com",
-      "location": "Clifton Karachi",
-      "company": "PNC Solutions"
-    }
-  ],
-  "departments": [
-    {
-      "id": 2,
-      "title": "Android",
-      "handle": "android",
-      "bench": "Bench mark",
-      "hod": "suraksha "
-    },
-    {
-      "id": 3,
-      "title": "Software-development",
-      "handle": "software-development",
-      "bench": "Bench",
-      "hod": "suraksha"
-    },
-    {
-      "id": 4,
-      "title": "software-engineering",
-      "handle": "undefined",
-      "bench": "bench-top",
-      "hod": "khawar-abbas"
-    },
-    {
-      "id": 5,
-      "title": "SQA",
-      "handle": "sqa",
-      "bench": "Bench 2",
-      "hod": "HOD"
-    }
-  ],
-  "features": [
-    {
-      "id": 2,
-      "title": "Android",
-      "handle": "android"
-    }
-  ],
-  "milestones": [
-    {
-      "id": 2,
-      "title": "Android",
-      "handle": "android"
-    }
-  ],
-  "resources": [
-    {
-      "id": 2,
-      "title": "Android",
-      "handle": "android"
-    }
-  ],
-  "projects": [
-    {
-      "id": 2,
-      "title": "Android",
-      "handle": "android"
-    },
-    {
-      "id": 3,
-      "title": "project 1",
-      "handle": "project-1"
-    }
-  ],
-  "opratingcosts": [
-    {
-      "id": 2,
-      "title": "Android",
-      "handle": "android"
     }
   ]
 }

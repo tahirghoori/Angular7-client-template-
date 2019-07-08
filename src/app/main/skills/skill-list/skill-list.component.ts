@@ -1,12 +1,17 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { MatDialogRef, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialogRef, MatPaginator, MatSort, MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
 import { Subject, fromEvent, BehaviorSubject, Observable, merge } from 'rxjs';
 import { SkillService } from '../skill.service';
 import { takeUntil, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { DataSource } from '@angular/cdk/table';
-import { FuseUtils } from '@fuse/utils';
+
+import { Skill } from '../skill.model';
+
+export interface skillsSort {
+   name: string;
+}
+
 
 @Component({
   selector: 'skill-list',
@@ -17,20 +22,19 @@ import { FuseUtils } from '@fuse/utils';
 })
 export class SkillListComponent implements OnInit {
 
-  dataSource: FilesDataSource | null;
+    displayedColumns: string[] = ['name', 'active'];
+    dataSource: MatTableDataSource<Skill>;
+
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  
-  displayedColumns = ['name', 'active'];
+@ViewChild(MatPaginator) paginator: MatPaginator;
+@ViewChild(MatSort) sort: MatSort;
 
-  @ViewChild(MatPaginator)
-  paginator: MatPaginator;
-
-  @ViewChild(MatSort)
-  sort: MatSort;
-
-  @ViewChild('filter')
-  filter: ElementRef;
+  limit:number = 20;
+  skip:number = 0;
+  totalLength:number = 0;
+  pageIndex : number = 0;
+  pageLimit:number[] = [5, 10, 25, 100] ; 
 
   // Private
   private _unsubscribeAll: Subject<any>;
@@ -60,21 +64,29 @@ export class SkillListComponent implements OnInit {
    * On init
    */
   ngOnInit(): void {
-      this.dataSource = new FilesDataSource(this._skillService, this.paginator, this.sort);
 
-      fromEvent(this.filter.nativeElement, 'keyup')
-          .pipe(
-              takeUntil(this._unsubscribeAll),
-              debounceTime(150),
-              distinctUntilChanged()
-          )
-          .subscribe(() => {
-              if (!this.dataSource) {
-                  return;
-              }
+        // Subscribe to update Items on changes
+    this._skillService.onPageItemChanged
+    .pipe(takeUntil(this._unsubscribeAll))
+    .subscribe(skillPage => {
 
-              this.dataSource.filter = this.filter.nativeElement.value;
-          });
+         // Assign the data to the data source for the table to render
+         this.dataSource = new MatTableDataSource(this._skillService.pageItem.content);
+         this.totalLength =  this._skillService.pageItem.totalElements;
+         this.limit = this._skillService.pageItem.size;
+         this.pageIndex = this._skillService.pageItem.number;
+         this.dataSource.sort = this.sort;
+
+    });
+  }
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  changePage(event){
+    console.log('event',event)
+          this._skillService.getPageItem(event.pageIndex,event.pageSize);
+
   }
 
   /**
@@ -105,132 +117,13 @@ export class SkillListComponent implements OnInit {
 
   }
 
-}
-
-export class FilesDataSource extends DataSource<any>
-{
-  private _filterChange = new BehaviorSubject('');
-  private _filteredDataChange = new BehaviorSubject('');
-
-  /**
-   * Constructor
-   *
-   * @param {SkillService} _skillService
-   * @param {MatPaginator} _matPaginator
-   * @param {MatSort} _matSort
+    /**
+   * On destroy
    */
-  constructor(
-      private _skillService: SkillService,
-      private _matPaginator: MatPaginator,
-      private _matSort: MatSort
-  ) {
-      super();
-
-      this.filteredData = this._skillService.items;
-  }
-
-  /**
-   * Connect function called by the table to retrieve one stream containing the data to render.
-   *
-   * @returns {Observable<any[]>}
-   */
-  connect(): Observable<any[]> {
-      const displayDataChanges = [
-          this._skillService.onItemsChanged,
-          this._matPaginator.page,
-          this._filterChange,
-          this._matSort.sortChange
-      ];
-
-      return merge(...displayDataChanges)
-          .pipe(
-              map(() => {
-                  let data = this._skillService.items.slice();
-
-                  data = this.filterData(data);
-
-                  this.filteredData = [...data];
-
-                  data = this.sortData(data);
-
-                  // Grab the page's slice of data.
-                  const startIndex = this._matPaginator.pageIndex * this._matPaginator.pageSize;
-                  return data.splice(startIndex, this._matPaginator.pageSize);
-              }
-              ));
-  }
-
-  // -----------------------------------------------------------------------------------------------------
-  // @ Accessors
-  // -----------------------------------------------------------------------------------------------------
-
-  // Filtered data
-  get filteredData(): any {
-      return this._filteredDataChange.value;
-  }
-
-  set filteredData(value: any) {
-      this._filteredDataChange.next(value);
-  }
-
-  // Filter
-  get filter(): string {
-      return this._filterChange.value;
-  }
-
-  set filter(filter: string) {
-      this._filterChange.next(filter);
-  }
-
-  // -----------------------------------------------------------------------------------------------------
-  // @ Public methods
-  // -----------------------------------------------------------------------------------------------------
-
-  /**
-   * Filter data
-   *
-   * @param data
-   * @returns {any}
-   */
-  filterData(data): any {
-      if (!this.filter) {
-          return data;
-      }
-      return FuseUtils.filterArrayByString(data, this.filter);
-  }
-
-  /**
-   * Sort data
-   *
-   * @param data
-   * @returns {any[]}
-   */
-  sortData(data): any[] {
-      if (!this._matSort.active || this._matSort.direction === '') {
-          return data;
-      }
-
-      return data.sort((a, b) => {
-          let propertyA: number | string = '';
-          let propertyB: number | string = '';
-
-          switch (this._matSort.active) {
-              case 'name':
-                  [propertyA, propertyB] = [a.name, b.name];
-                  break;
-          }
-
-          const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
-          const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
-
-          return (valueA < valueB ? -1 : 1) * (this._matSort.direction === 'asc' ? 1 : -1);
-      });
-  }
-
-  /**
-   * Disconnect
-   */
-  disconnect(): void {
+  ngOnDestroy(): void {
+    // Unsubscribe from all subscriptions
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
   }
 
 }

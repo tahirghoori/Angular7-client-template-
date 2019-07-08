@@ -1,5 +1,4 @@
 import { FuseUtils } from "@fuse/utils";
-import { Resource } from "../resources/resource.model";
 
 export class Skill {
    
@@ -7,7 +6,6 @@ export class Skill {
     id: string;
     name: string ;
     handle: string;
-    skillResources:Resource[];
     updatedAt: string;
     createdAt: string;
 
@@ -26,7 +24,6 @@ export class Skill {
         }
         this.id = skill.id || '';
         this.name = skill.name || '';
-        this.skillResources = skill.skillResources || null;
         this.updatedAt = skill.updatedAt || '';
         this.createdAt = skill.createdAt || '';
     }

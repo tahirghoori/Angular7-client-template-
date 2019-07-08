@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
+import { EnvService } from 'app/env.service';
 
 @Component({
   selector: 'app-skill',
@@ -27,15 +28,19 @@ export class SkillComponent implements OnInit {
   private _unsubscribeAll: Subject<any>;
   toppings = new FormControl();
   
+  env: any;
+
   /**
    * Constructor
    *
+   * @param {EnvService} _env
    * @param {SkillService} _skillService
    * @param {FormBuilder} _formBuilder
    * @param {MatSnackBar} _matSnackBar,
    *
    */
   constructor(
+    private _env: EnvService,
     private _skillService: SkillService,
     private _formBuilder: FormBuilder,
     private _matSnackBar: MatSnackBar,
@@ -45,6 +50,7 @@ export class SkillComponent implements OnInit {
     this.skill = new Skill();
     // Set the private defaults
     this._unsubscribeAll = new Subject();
+    this.env = this._env.environmentName;
 
   }
   // -----------------------------------------------------------------------------------------------------
@@ -98,7 +104,6 @@ export class SkillComponent implements OnInit {
         id: [this.skill.id],
         name: [this.skill.name,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
         handle: [this.skill.handle],
-        skillResources: [this.skill.skillResources]
       });
    
   }
@@ -132,7 +137,24 @@ export class SkillComponent implements OnInit {
     const data = this.skillForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
 
-    this._skillService.addItem(data)
+    let itemList: Skill[] = []; 
+    let splitted = data.name.split(","); 
+    console.log(splitted);
+
+    for (let key in splitted) {
+      let value = splitted[key];
+      // Use `key` and `value`
+      if(value != ''){
+        itemList.push(new Skill({id: '',
+          name: value,
+          handle: '',
+          skillResources:[],
+          updatedAt: '',
+          createdAt: ''}));
+      }
+  }
+
+    this._skillService.addListItem(itemList)
       .then(() => {
 
         // Trigger the subscription with new data

@@ -4,133 +4,95 @@ export const navigation: FuseNavigation[] = [
     {
         id       : 'applications',
         title    : 'Applications',
+        permissions    : 'ADMIN DEVELOPER',
+        access    : false,
         translate: 'NAV.APPLICATIONS',
         type     : 'group',
         children : [
             {
                 id       : 'dashboard',
                 title    : 'Dashboard',
+                permissions    : 'ADMIN',
+                access    : false,
                 translate: 'NAV.DASHBOARD.TITLE',
                 type     : 'item',
                 icon     : 'dashboard',
                 url      : '/dashboard'               
             },
             {
-                'id'       : 'project',
-                'title'    : 'Project',
-                'translate': 'NAV.PROJECT.TITLE',
-                'type'     : 'collapsable',
-                'icon'     : 'border_all',
-                'children' : [
+                id       : 'social',
+                title    : 'Social',
+                translate: 'NAV.SOCIAL.TITLE',
+                type     : 'collapsable',
+                permissions    : 'ADMIN',
+                access    : false,
+                icon     : 'border_all',
+                children : [
                     {
-                        'id'   : 'skill',
-                        'title': 'Skill',
-                        'translate': 'NAV.SKILLS.TITLE',
-                        'type' : 'item',
-                        'url'  : '/skills'
-                    },
-                    {
-                        'id'   : 'client',
-                        'title': 'Client',
-                        'translate': 'NAV.CLIENT.TITLE',
-                        'type' : 'item',
-                        'url'  : '/clients'
-                    },
-                    {
-                        'id'   : 'create_project',
-                        'title': 'Create Project',
-                        'translate': 'NAV.CREATE_PROJECT.TITLE',
-                        'type' : 'item',
-                        'url'  : '/projects/new',
-                        'exactMatch':true
-                    },
-                    {
-                        'id'   : 'project_list',
-                        'title': 'Project List',
-                        'translate': 'NAV.PROJECT_LIST.TITLE',
-                        'type' : 'item',
-                        'url'  : '/projects',
-                        'exactMatch':true
-
-                    },
-                    {
-                        'id'   : 'feature',
-                        'title': 'Features',
-                        'translate': 'NAV.FEATURES.TITLE',
-                        'type' : 'item',
-                        'url'  : '/features'
-                    },
+                        id   : 'post',
+                        title: 'Post',
+                        permissions    : 'ADMIN DEVELOPER',
+                        access    : false,
+                        translate : 'NAV.POST.TITLE',
+                        type : 'item',
+                        url  : '/skills'
+                    }
                
 
                 ]
             },
             {
-                'id'       : 'resource',
-                'title'    : 'Resources',
-                'translate': 'NAV.RESOURCES.TITLE',
-                'type'     : 'collapsable',
-                'icon'     : 'border_all',
-                'children' : [
+                id       : 'settings',
+                title    : 'Settings',
+                translate : 'NAV.SETTINGS.TITLE',
+                type     : 'collapsable',
+                permissions    : 'ADMIN DEVELOPER',
+                access    : false,
+                icon     : 'border_all',
+                children : [
                     {
-                        'id'   : 'department',
-                        'title': 'Department',
-                        'translate': 'NAV.DEPARTMENT.TITLE',
-                        'type' : 'item',
-                        'url'  : '/departments'
+                        id   : 'app_setting',
+                        permissions    : 'ADMIN DEVELOPER',
+                        access    : false,
+                        title: 'App Setting',
+                        translate: 'NAV.APP_SETTING.TITLE',
+                        type : 'item',
+                        url  : '/settings'
                     },
                     {
-                        'id'   : 'create_resource',
-                        'title': 'Create Resource',
-                        'translate': 'NAV.CREATE_RESOURCE.TITLE',
-                        'type' : 'item',
-                        'url'  : '/resources/new',
-                        'exactMatch':true
-                    },
-                    {
-                        'id'   : 'resource_list',
-                        'title': 'Resource List',
-                        'translate': 'NAV.RESOURCE_LIST.TITLE',
-                        'type' : 'item',
-                        'url'  : '/resources',
-                        'exactMatch':true
-
+                        id   : 'roles',
+                        title: 'Roles',
+                        permissions    : 'ADMIN DEVELOPER',
+                        access    : false,
+                        translate: 'NAV.ROLES.TITLE',
+                        type : 'item',
+                        url  : '/roles'
                     }
 
                 ]
             },
             {
-                'id'       : 'operating',
-                'title'    : 'Expense',
-                'translate': 'NAV.OPERATING.TITLE',
-                'type'     : 'collapsable',
-                'icon'     : 'border_all',
-                'children' : [
+                id       : 'developeroption',
+                title    : 'Developer Option',
+                permissions    : 'ADMIN DEVELOPER',
+                access    : false,
+                translate: 'NAV.DEVELOPER_OPTION.TITLE',
+                type     : 'collapsable',
+                icon     : 'border_all',
+                children : [
                     {
-                        'id'   : 'operating_cost',
-                        'title': 'Operating Cost',
-                        'translate': 'NAV.OPERATING_COST.TITLE',
-                        'type' : 'item',
-                        'url'  : '/opratingcosts'
-                    },
-                    {
-                        'id'   : 'fringe_benefits',
-                        'title': 'Fringe Benefits',
-                        'translate': 'NAV.FRINGE_BENEFITS.TITLE',
-                        'type' : 'item',
-                        'url'  : '/fringebenefits'
+                        id   : 'permissions',
+                        title: 'Permission',
+                        permissions   : 'ADMIN DEVELOPER',
+                        access    : false,
+                        translate: 'NAV.PERMISSIONS.TITLE',
+                        type : 'item',
+                        url  : '/permissions'
                     }
-                   
 
                 ]
-            },
-            {
-                'id'   : 'reports',
-                'title': 'Reports',
-                'translate': 'NAV.REPORTS.TITLE',
-                'type' : 'item',
-                'icon' : 'assessment',
-                'url'  : '/report'
             }
+            
         ]
     }
 ];

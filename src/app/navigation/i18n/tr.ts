@@ -9,26 +9,32 @@ export const locale = {
             'USERS'        : {
                 'TITLE': 'Users'
             },
-            'PROJECT'        : {
-                'TITLE': 'Project'
+            'SOCIAL'        : {
+                'TITLE': 'Social'
             },
             'CLIENT'        : {
                 'TITLE': 'Client'
             },
-            'SKILLS'        : {
-                'TITLE': 'Skills'
+            'POST'        : {
+                'TITLE': 'Posts'
             },
             'CREATE_PROJECT'        : {
                 'TITLE': 'Create Project'
             },
+            'CREATE_PROJECT_WIZARD'        : {
+                'TITLE': 'Create Project Wizard'
+            },
             'PROJECT_LIST'        : {
                 'TITLE': 'Project List'
             },
-            'RESOURCES'        : {
-                'TITLE': 'Resources'
+            'APP_SETTING'        : {
+                'TITLE': 'App Setting'
             },
-            'DEPARTMENT'        : {
-                'TITLE': 'Department'
+            'ROLES'        : {
+                'TITLE': 'Roles'
+            },
+            'SETTINGS'        : {
+                'TITLE': 'Settings'
             },
             'CREATE_RESOURCE'        : {
                 'TITLE': 'Create Resource'
@@ -45,8 +51,11 @@ export const locale = {
             'FRINGE_BENEFITS'        : {
                 'TITLE': 'Fringe Benefits'
             },
-            'REPORTS'        : {
-                'TITLE': 'Reports'
+            'DEVELOPER_OPTION'        : {
+                'TITLE': 'Developer Option'
+            },
+            'PERMISSIONS'        : {
+                'TITLE': 'Permissions'
             },
             'FEATURES'        : {
                 'TITLE': 'Features'

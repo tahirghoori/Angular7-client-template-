@@ -130,7 +130,7 @@ body.theme-default {
 
 // Define the primary, accent and warn palettes
 $yellow-light-theme-primary-palette: mat-palette($fuse-navy, 600, 400, 700);
-$yellow-light-theme-accent-palette: mat-palette($mat-yellow, 600, 400, 700);
+$yellow-light-theme-accent-palette: mat-palette($mat-yellow, 700, 600, 400);
 $yellow-light-theme-warn-palette: mat-palette($mat-red);
 
 // Create the Material theme object

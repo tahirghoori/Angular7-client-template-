@@ -1,37 +1,41 @@
 import { Injectable } from '@angular/core';
-
-import { environment } from 'environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-
-const API_URL = environment.apiUrl;
+import { SkillPage } from './skillpage.model';
+import { EnvService } from 'app/env.service';
 
 
 @Injectable({
   providedIn:  "root"
 })
 export class SkillService {
-  
-  entityNode: string = 'skill';
+
+  entityNode: string = 'skills';
   routeParams: any;
   item: any;
+  pageItem: any;
   items: any[];
   onItemChanged: BehaviorSubject<any>;
+  onPageItemChanged: BehaviorSubject<any>;
   onItemsChanged: BehaviorSubject<any>;
 
   /**
    * Constructor
    *
    * @param {HttpClient} _httpClient
+   * @param {Http} http
+   * @param {EnvService} _env
    */
   constructor(
     private _httpClient: HttpClient,
     private http: Http,
+    private _env: EnvService
   ) {
     // Set the defaults
     this.onItemChanged = new BehaviorSubject({});
+    this.onPageItemChanged = new BehaviorSubject({});
     this.onItemsChanged = new BehaviorSubject({});
   }
 
@@ -69,19 +73,27 @@ export class SkillService {
     return new Promise((resolve, reject) => {
       // console.log(this.routeParams.id);
       if (this.routeParams.id === undefined) {
-        this._httpClient.get(API_URL + '/' + this.entityNode)
-        .subscribe((response: any) => {
-          this.items = response;
-          this.onItemsChanged.next(this.items);
-          resolve(response);
-        }, reject);
+
+          this._httpClient.get(this._env.appserviceUrl + '/' + this.entityNode)
+            .subscribe((response: any) => {
+              this.pageItem = new SkillPage(response);
+              this.onPageItemChanged.next(this.pageItem);
+              resolve(response);
+            }, reject);
+
+        // this._httpClient.get(this._env.appserviceUrl + '/' + this.entityNode)
+        // .subscribe((response: any) => {
+        //   this.items = response;
+        //   this.onItemsChanged.next(this.items);
+        //   resolve(response);
+        // }, reject);
       }
       else if (this.routeParams.id === 'new') {
         this.onItemChanged.next(false);
         resolve(false);
       }
       else {
-        this._httpClient.get(API_URL + '/' + this.entityNode + '/' + this.routeParams.id)
+        this._httpClient.get(this._env.appserviceUrl + '/' + this.entityNode + '/' + this.routeParams.id)
           .subscribe((response: any) => {
             this.item = response;
             this.onItemChanged.next(this.item);
@@ -104,7 +116,7 @@ export class SkillService {
         resolve(false);
       }
       else {
-        this._httpClient.get(API_URL + '/' + this.entityNode +'/' + this.routeParams.id)
+        this._httpClient.get(this._env.appserviceUrl + '/' + this.entityNode +'/' + this.routeParams.id)
           .subscribe((response: any) => {
             this.item = response;
             this.onItemChanged.next(this.item);
@@ -123,7 +135,7 @@ export class SkillService {
    */
   saveItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.put(API_URL + '/' + this.entityNode , item)
+      this._httpClient.put(this._env.appserviceUrl + '/' + this.entityNode , item)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);
@@ -138,13 +150,26 @@ export class SkillService {
    */
   addItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.post(API_URL + '/' + this.entityNode , item)
+      this._httpClient.post(this._env.appserviceUrl + '/' + this.entityNode , item)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);
     });
   }
-
+   /**
+   * Add product
+   *
+   * @param ListItem
+   * @returns {Promise<any>}
+   */
+  addListItem(Listitem): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._httpClient.post(this._env.appserviceUrl + '/' + this.entityNode + '/saveall' , Listitem)
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+    });
+  }
 
   /**
    * Get items
@@ -153,7 +178,7 @@ export class SkillService {
    */
   getItems(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.get(API_URL + '/' + this.entityNode)
+      this._httpClient.get(this._env.appserviceUrl + '/' + this.entityNode)
         .subscribe((response: any) => {
           this.items = response;
           this.onItemsChanged.next(this.items);
@@ -162,9 +187,40 @@ export class SkillService {
     });
   }
 
+  /**
+   * Get items
+   *
+   * @returns {Promise<any>}
+   */
+  getPageItem(page:number,size:number): Promise<any> {
+    // ?page=0&size=20
+    return new Promise((resolve, reject) => {
+      this._httpClient.get(this._env.appserviceUrl + '/' + this.entityNode+'?page='+page+'&size='+size)
+      .subscribe((response: any) => {
+        this.pageItem = new SkillPage(response);
+        this.onPageItemChanged.next(this.pageItem);
+        resolve(response);
+      }, reject);
+    });
+  }
+  
   deleteItemById(itemId: number): any {
-    return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
+    return  this._httpClient.delete(this._env.appserviceUrl + '/' + this.entityNode +'/' + itemId);
 
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+   
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+   
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
+   
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 
 }
